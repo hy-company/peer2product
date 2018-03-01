@@ -1,0 +1,76 @@
+          <h2 class="sub-header"><?=$LANG['orderview:title']?><span style="float: right;"><a href="order/edit/<?php echo $id; ?>"><button type="button" class="btn btn btn-primary right"><?=$LANG['button-edit']?></button></a> <a href="orders"><button type="button" class="btn btn btn-danger right"><?=$LANG['button-back']?></button></a></span></h2>
+          <div style="min-height: 180px;">
+			  <div style="display: inline-block; float: left; margin-right: 48px;">
+				  <h3><?=$LANG['orderview:address']?></h3>
+				  <div id="address-container">
+						<div style="display: inline-block;">
+							<?php echo (!empty($json['company'])?$json['company']: (!empty($json['firstname'])?$json['firstname'].' ':'').(!empty($json['preposition'])?$json['preposition'].' ':'').(!empty($json['lastname'])?$json['lastname']:'') ); ?>
+						</div><br />
+						<div style="display: inline-block;">
+							<?php echo $json['streetname'].' '.$json['housenumber']; ?>
+						</div><br />
+						<div style="display: inline-block;">
+							<?php echo $json['zipcode']; ?>
+						</div><br />
+						<div style="display: inline-block;">
+							<?php echo $json['city']; ?>
+						</div><br />
+						<div style="display: inline-block;">
+							<?php echo $json['country']; ?>
+						</div>
+				  </div>
+			  </div>
+			  <div style="display: inline-block;">
+				<h3><?=$LANG['orderview:properties']?></h3>
+				  <table>
+					  <tbody>
+						  <tr><th><?=$LANG['orderview:vendor']?></th><td><?php echo (isset($json['vendor'])&&$json['vendor']?$vendors[ $json['vendor'] ]['name']:'local');?></td></tr>
+						  <tr><th style='padding-right: 3em;'><?=$LANG['orderview:datetime']?></th><td><?php echo date('d.m.Y  H:i',($json['time']?$json['time']:0));?></td></tr>
+						  <tr><th style='padding-right: 3em;'><?=$LANG['orderview:ordernumber']?></th><td><?php echo $id; ?></td></tr>
+						  <?php if($json['firstname']||$json['lastname']) { echo '<tr><th>Contact</th><td>'.(!empty($json['firstname'])?$json['firstname'].' ':'').(!empty($json['preposition'])?$json['preposition'].' ':'').(!empty($json['lastname'])?$json['lastname']:'').'</td></tr>'; } ?>
+						  <tr style="height: 12px;"></tr>
+						  <tr><th><?=$LANG['orderview:status']?></th><td id="status"><?php echo $shop->order_status($json,2); ?></td></tr>
+						  <tr><th></th><td><div style="margin-top: 4px;"><button type="button" class="btn-orderstatus btn btn-<?=(isset($json['orderstatus'])&&$json['orderstatus']==100?'disabled':'primary')?>" onclick="clickPaymentDone();"><?=$LANG['orderview:button-set-payment']?> &nbsp;&nbsp;<i class="fa fa-money"></i></button> <button type="button" class="btn-ordersent btn btn btn-<?=(isset($json['ordersent'])&&$json['ordersent']?'disabled':'primary')?>" onclick="clickOrderSent();"><?=$LANG['orderview:button-set-sent']?> &nbsp;&nbsp;<i class="fa fa-rocket"></i></button></div></td></tr>
+						  <?php if($json['remarks']||$json['notransport']) { echo '<tr style="height: 12px;"></tr><tr><th style="vertical-align: top !important;">'.$LANG['orderview:remarks'].'</th><td>'.$json['remarks'].($json['notransport']?'<div style="color: red;">'.$LANG['orderview:do-not-send-message'].'</div>':'').'</td></tr>'; } ?>
+					  </tbody>
+				  </table>
+			  </div>
+		  </div>
+		  <br>
+          <div style="display: block;">
+			  <h3><?=$LANG['orderview:shopping-list']?></h3>
+			  <?php if(isset($json['product-table']) && $json['product-table']) {
+						echo htmlspecialchars_decode($json['product-table']);
+					} else {
+						echo '<h4 style="color: red;">'.$LANG['orderview:incomplete-checkout-message'].'</h4>';
+					} ?>
+					
+		  </div>
+		  <br><br><br><br><br>
+		  
+		<script>
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					document.getElementById("status").innerHTML = xhttp.responseText;
+				} else if(xhttp.status == 500 || xhttp.status == 404) {
+					document.getElementById("status").innerHTML = "<span style=\"color: red;\">✖</span> <?=$LANG['orderview:error-status-message']?>";
+				}
+			}
+			function clickPaymentDone() {
+				document.getElementById("status").innerHTML = '<?=$LANG['orderview:changing-status']?>';
+				items = document.getElementsByClassName("btn-orderstatus");
+				items[0].setAttribute("onclick", "");
+				items[0].setAttribute("class", "btn-orderstatus btn btn-disabled");
+				xhttp.open("GET", "order/ajax/<?=$id;?>/paymentdone", true);
+				xhttp.send();
+			}
+			function clickOrderSent() {
+				document.getElementById("status").innerHTML = '<?=$LANG['orderview:changing-status']?>';
+				items = document.getElementsByClassName("btn-ordersent");
+				items[0].setAttribute("onclick", "");
+				items[0].setAttribute("class", "btn-ordersent btn btn-disabled");
+				xhttp.open("GET", "order/ajax/<?=$id;?>/ordersent", true);
+				xhttp.send();
+			}
+		</script>

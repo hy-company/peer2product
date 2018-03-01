@@ -1,0 +1,21 @@
+          <h2 class="sub-header"><?=$LANG['modifiers:title']?> <a href="settings/modifier/new" style="float: right;" ><button type="button" class="btn btn btn-primary right"><?=$LANG['modifiers:button-add']?></button></a></h2>
+          <p class="ex"><?=$LANG['modifiers:description']?><br><br></p>
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<thead><tr><th><?=$LANG['modifiers:th-index']?></th><th><?=$LANG['modifiers:th-title']?></th><th class="ex"><?=$LANG['modifiers:th-formula']?></th><th> </th></tr></thead>
+				<tbody>
+				<?php $cnt = 0; $end = count($inventory)-1; foreach($inventory as $key => $val):?>
+					<tr>
+						<td><?php echo ($cnt+1);?></td>
+						<td><?php echo $val['title'];?></td>
+						<td class="ex"><?php echo $val['formula'];?></td>
+						<td style="min-width: 250px; text-align: right;">
+							<?php if($cnt>0): ?><a href="settings/modifier/move/<?php echo $key;?>/up"><button style="width: 30px;" type="button" class="btn btn-xs btn-default">&#9650;</button></a>&nbsp;<?php endif; if($cnt<$end): ?><a href="settings/modifier/move/<?php echo $key;?>/down"><button style="width: 30px;" type="button" class="btn btn-xs btn-default">&#9660;</button></a><?php else: ?><div style="width: 30px; display: inline-block;"></div><?php endif; ?>&nbsp;&nbsp;&nbsp;
+							<a href="settings/modifier/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-success"><?=$LANG['button-edit']?></button></a>
+						    <a href="settings/modifier/delete/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-danger"><?=$LANG['button-delete']?></button></a>
+						</td>
+					</tr>
+				<?php $cnt++; endforeach;?>
+				</tbody>
+            </table>
+          </div>

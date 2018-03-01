@@ -1,0 +1,19 @@
+          <h2 class="sub-header"><?=$LANG['gateways:title']?></h2>
+          <p class="ex"><?=$LANG['gateways:description']?></p>
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<thead><tr><th><?=$LANG['gateways:th-gateway']?></th><th><?=$LANG['gateways:th-description']?></th><th><?=$LANG['gateways:th-status']?></th><th> </th></tr></thead>
+				<tbody>
+				<?php foreach($inventory as $key => $val):?>
+					<tr>
+						<td><?php echo $val['name'];?></td>
+						<td><?php echo $val['description'];?></td>
+						<td><?php echo ($val['active']?'<span style="color: green;">active</span>':'<span style="color: red;">inactive</span>');?></td>
+						<td style="text-align: right;">
+							<a href="settings/gateway/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-success"><?=$LANG['button-configure']?></button></a>
+						</td>
+					</tr>
+				<?php endforeach;?>
+				</tbody>
+            </table>
+          </div>

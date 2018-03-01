@@ -1,0 +1,145 @@
+          <h2 class="sub-header"><?=$LANG['dashboard:title']?></h2>
+          <p class="ex"><?=$LANG['dashboard:description']?></p>
+		  <?php
+			if($notify['type']) {
+				echo '<div class="alert alert-'.$notify['type'].'" role="alert">
+						<strong>'.($notify['type']=='success'?'Success!':($notify['type']=='warning'?'Warning!':'Danger!')).'</strong> '.$notify['message'].'
+					  </div>';
+			}
+		  ?>
+        <div style="display: inline-block; width: 100%; max-width: 500px; margin-top: 2em; margin-right: 3em;">
+				<h4><?=$LANG['dashboard:visitors']?></h4>
+				<canvas id="chartVisitors"></canvas>
+				<script>
+					var ctx = document.getElementById("chartVisitors");
+					var myChart = new Chart(ctx, {
+						type: 'line',
+						data: {
+							labels: [<?='"'.implode('","',$chart['visitors']['labels']).'"';?>],
+							datasets: [{
+								lineTension: 0,
+								data: [<?=implode(',',$chart['visitors']['data']);?>],
+								backgroundColor: [
+									'rgba(0, 0, 255, 0.2)'
+								],
+								borderColor: [
+									'rgba(0, 0, 255,1)'
+								],
+								borderWidth: 2
+							}]
+						},
+						options: {
+							legend: {
+								display:false
+							},
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero:true
+									}
+								}]
+							}
+						}
+					});
+				</script>
+		</div>
+        <div style="display: inline-block; width: 100%; max-width: 500px; margin-top: 2em;">
+				<h4><?=$LANG['dashboard:toptags']?></h4>
+				<canvas id="chartToptags"></canvas>
+				<script>
+					var ctx = document.getElementById("chartToptags");
+					var myChart = new Chart(ctx, {
+						type: 'bar',
+						data: {
+							labels: [<?='"'.implode('","',$chart['toptags']['labels']).'"';?>],
+							datasets: [{
+								lineTension: 0,
+								data: [<?=implode(',',$chart['toptags']['data']);?>],
+								borderWidth: 2,
+								backgroundColor: 'rgba(200,0,0,0.5)',
+								borderColor: 'rgba(200,0,0,1)'
+							}]
+						},
+						options: {
+							legend: {
+								display:false
+							},
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero:true
+									}
+								}]
+							}
+						}
+					});
+				</script>
+		</div>
+        <div style="display: inline-block; width: 100%; max-width: 500px; margin-top: 2em; margin-right: 3em;">
+				<h4><?=$LANG['dashboard:sales']?></h4>
+				<canvas id="chartSales"></canvas>
+				<script>
+					var ctx = document.getElementById("chartSales");
+					var myChart = new Chart(ctx, {
+						type: 'line',
+						data: {
+							labels: [<?='"'.implode('","',$chart['sales']['labels']).'"';?>],
+							datasets: [{
+								lineTension: 0,
+								data: [<?=implode(',',$chart['sales']['data']);?>],
+								backgroundColor: [
+									'rgba(0, 255, 0, 0.2)'
+								],
+								borderColor: [
+									'rgba(0, 255, 0,1)'
+								],
+								borderWidth: 2
+							}]
+						},
+						options: {
+							legend: {
+								display:false
+							},
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero:true
+									}
+								}]
+							}
+						}
+					});
+				</script>
+		</div>
+        <div style="display: inline-block; width: 100%; max-width: 500px; margin-top: 2em;">
+				<h4><?=$LANG['dashboard:mostsold']?></h4>
+				<canvas id="chartMostsold"></canvas>
+				<script>
+					var ctx = document.getElementById("chartMostsold");
+					var myChart = new Chart(ctx, {
+						type: 'bar',
+						data: {
+							labels: [<?='"'.implode('","',$chart['mostsold']['labels']).'"';?>],
+							datasets: [{
+								lineTension: 0,
+								data: [<?=implode(',',$chart['mostsold']['data']);?>],
+								borderWidth: 2,
+								backgroundColor: 'rgba(220,180,0,0.5)',
+								borderColor: 'rgba(220,180,0,1)'
+							}]
+						},
+						options: {
+							legend: {
+								display:false
+							},
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero:true
+									}
+								}]
+							}
+						}
+					});
+				</script>
+		</div>

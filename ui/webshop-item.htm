@@ -1,0 +1,25 @@
+			<form method="post" action="" class="jcart">
+				<fieldset>
+					<input type="hidden" name="jcartToken" value="<?php echo $_SESSION['jcartToken'];?>" />
+					<input type="hidden" name="my-item-id" value="<?=$productid?>|<?=$product['vendorid']?>" />
+					<input type="hidden" name="my-item-name" value="<?=$product['name']?>" />
+					<input type="hidden" name="my-item-price" value="<?=$product['price']?>" />
+					<input type="hidden" name="my-item-qty" value="1" />
+					<a class="lightbox-image-link" href="<?=($product['img']?$product['img']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['description']?>"><img src="<?=($product['img']?$product['img']:'ui/images/product.png')?>" alt=""/>
+						<h5><strong><?=$product['name']?></strong></h5>
+					</a>
+					<? if($product['imgA']) { ?>
+						<a class="lightbox-image-link" href="<?=($product['imgA']?$product['imgA']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_A']?>"></a>
+					<? } ?>
+					<? if($product['imgB']) { ?>
+						<a class="lightbox-image-link" href="<?=($product['imgB']?$product['imgB']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_B']?>"></a>
+					<? } ?>					
+					<ul>
+						<li><?=$STR['Price']?> <?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price'])?></li>
+						<li style="color: gray; line-height: 0.8em; padding-bottom: 4px;"><small>(<?=$STR['Price_NoTax']?>: <?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price-notax'])?>)</small></li>
+						<li style="color: gray;"><?=$STR['Origin']?> <?=(isset($product['vendorname'])?$product['vendorname']:$STR['local'])?></li>
+						<li style="color: gray;"><?=$STR['Stock']?> <?=($product['stock']!=-1?$product['stock']:'∞')?></li>
+					</ul>
+					<button type="submit" name="my-add-button" value="add-to-cart" class="btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button>
+				</fieldset>
+			</form>

@@ -1,0 +1,168 @@
+          <h2 class="sub-header"><?=$title;
+          if(isset($back)) {
+			 echo ' <a href="'.$back.'" style="float: right;" ><button type="button" class="btn btn btn-danger right">'.$LANG['button-back'].'</button></a>';
+		  }?></h2>
+          <?php if(isset($paragraph)) { echo '<p>'.html_entity_decode($paragraph).'</p><br>'; } ?>
+          <div class="table-responsive">
+			<form class="form-signin"  action="<?=$jump;?>" method="post" enctype="multipart/form-data">
+			<?php if(isset($id)):?>
+			<input id="id" name="id" class="form-control" type="hidden" value="<?=$id;?>" />
+			<?php endif;?>
+            <table class="table table-striped">
+				<tbody>
+				<?php foreach($json as $key => $val):
+					  if(isset($map[$key]) && $map[$key]!='id'):?>
+				<?=($map[$key]=='title'||substr($key,0,1)=='_'?'<tr class="title"><th><div><i class="fa fa-angle-down"></i>'.str_replace('_',' ',(isset($LANG[$action.':'.$key])?$LANG[$action.':'.$key]:$key)).'</div></th>':'');?>
+				<?=($map[$key]!='hidden'&&!($map[$key]=='title'||substr($key,0,1)=='_')?'<tr><th>'.str_replace('_',' ',(isset($LANG[$action.':'.$key])?$LANG[$action.':'.$key]:$key)).'</th>':'');?>
+				<?=($map[$key]!='hidden'?'<td>':'')?>
+				<?php if($map[$key]=='string'):?>
+					<input id="<?=$key?>" name="<?=$key?>" class="form-control" placeholder="<?=$val?>" autofocus="" value="<?=$val?>" />
+				<?php elseif($map[$key]=='string-required'):?>
+					<input id="<?=$key?>" name="<?=$key?>" class="form-control" placeholder="<?=$val?>" required="" autofocus="" value="<?=$val?>" />
+				<?php elseif($map[$key]=='number'):?>
+					<input id="<?=$key?>" name="<?=$key?>" type="number" class="form-control" placeholder="<?=($val?$val:0);?>" required="" autofocus="" value="<?=($val?$val:0);?>" />
+				<?php elseif($map[$key]=='integer'):?>
+					<input id="<?=$key?>" name="<?=$key?>" type="number" class="form-control" placeholder="<?=($val?$val:0);?>" required="" autofocus="" value="<?=round(($val?$val:0));?>" />
+				<?php elseif($map[$key]=='money'):?>
+					<input id="<?=$key?>" name="<?=$key?>" class="form-control" placeholder="<?=number_format(($val?floatval($val):0) , 2, '.', '');?>" required="" autofocus="" value="<?=number_format(($val?floatval($val):0) , 2, '.', '');?>" />
+				<?php elseif($map[$key]=='e-mail'):?>
+					<input id="<?=$key?>" name="<?=$key?>" type="email" class="form-control" placeholder="<?=$val?>" required="" autofocus="" value="<?=$val?>" />
+				<?php elseif($map[$key]=='(e-mail)'):?>
+					<input id="<?=$key?>" name="<?=$key?>" type="email" class="form-control" placeholder="<?=$val?>" autofocus="" value="<?=$val?>" />
+				<?php elseif($map[$key]=='textarea'):?>
+					<textarea id="<?=$key?>" name="<?=$key?>" class="form-control" rows="5"><?=$val?></textarea>
+				<?php elseif($map[$key]=='editor'): $wymeditors[]=$key; ?>
+					<textarea id="<?=$key?>" name="<?=$key?>" class="wymeditor-<?=$key?>"><?=$val?></textarea>
+				<?php elseif($map[$key]=='password'):?>
+					<input id="<?=$key?>" name="<?=$key?>" type="password" class="form-control" placeholder="" required="" autofocus="" value="#####" />
+				<?php elseif($map[$key]=='boolean'):?>
+					 <input id="<?=$key?>" name="<?=$key?>" type="checkbox" <?php if($val):echo 'checked="checked"';endif;?>>
+				<?php elseif($map[$key]=='timenow'):?>
+					<input id="<?=$key?>" name="<?=$key?>" class="form-control" placeholder="<?=date('d.m.Y  H:i',time());?>" required="" autofocus="" value="<?=date('d.m.Y  H:i',time());?>" />
+				<?php elseif($map[$key]=='timestamp'):?>
+					<input id="<?=$key?>" name="<?=$key?>" class="form-control" placeholder="<?=date('d.m.Y  H:i',time());?>" required="" autofocus="" value="<?=date('d.m.Y  H:i',($val?$val:0));?>" />
+				<?php elseif($map[$key]=='image'):?>
+					<!--<input type="hidden" name="#image|<?=$key?>" value="<?=$val?>">-->
+					<span class="btn btn-default btn-file">
+						<div class="fileinput fileinput-new" data-provides="fileinput">
+							<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="padding: 12px; min-width: 148px; min-height: 64px; max-width: 320px; max-height: 200px;">
+								<img src="<?=($val?$dir.($id?$id.'/':'').$val:(isset($def[$key])?'../'.$def[$key]:'')); ?>" alt="<?=($val?$val:''); ?>"/>
+							</div>
+							<div>
+								<input type="hidden" name="<?=$key?>" value="<?=$val?>">
+								<span class="btn btn-default btn-file"><span class="fileinput-new">Select</span>
+								<span class="fileinput-exists">Change</span><input type="file" name="<?=$key?>" value="<?=$val?>"></span>
+								<a href="#" class="btn btn-default" data-dismiss="fileinput">Remove</a>
+							</div>
+						</div>
+					</span>
+				<?php elseif($map[$key]=='hidden'):?>
+					<input id="<?=$key?>" name="<?=$key?>" type="hidden" value="<?=$val?>" />
+				<?php elseif($map[$key]=='readonly'):?>
+					<span class="form-control" style="color: grey;"><?=$val?></span>
+					<input id="<?=$key?>" name="<?=$key?>" type="hidden" value="<?=$val?>" />
+				<?php elseif($map[$key]=='title'||substr($key,0,1)=='_'):?>
+					<span><?=$val?></span>
+					<input id="<?=$key?>" name="<?=$key?>" type="hidden" value="<?=$val?>" />
+				<?php elseif(is_array($map[$key])):
+						if(isset($map[$key]['#type'])): $type=$map[$key]['#type']; else: $type='dropdown'; endif;
+						if(isset($map[$key]['#array'])):
+							$map[$key] = $array[ $map[$key]['#array'] ];						
+						endif;
+						switch($type):
+							case 'dropdown':?>
+								<select id="<?=$key?>" name="<?=$key?>" class="selectpicker form-control">
+								<?php foreach($map[$key] as $mkey => $mval):
+										if(substr($mkey,0,1)=='#'):
+											if($mkey=='#selected'): $val = $mval; endif;
+										else:?>
+											<option value="<?=$mkey;?>"<?php if($mkey==$val):echo ' selected="selected" class="active"';endif;?>><?=$mval;?></option>
+										<?php endif;
+									  endforeach;?>
+								</select>								
+							<?php break;
+							case 'radio':
+							?><div class="btn-group" data-toggle="buttons"><?php
+									 $cnt=0;
+								     foreach($map[$key] as $mkey => $mval):
+										if(substr($mkey,0,1)=='#'):
+											if($mkey=='#selected'): $val = $mval; endif;
+										else:?>
+										    <label class="btn btn-default<?php if($mkey==$val):echo ' active';endif;?>"><input value="<?=$mkey;?>" type="radio" id="<?=$key.'-'.$cnt;?>" name="<?=$key?>"<?php if($mkey==$val):echo ' checked="checked"';endif;?>><?=$mval;?></input></label>
+										<?php $cnt++;endif;
+									  endforeach;?>
+							  </div>
+							<?php break;
+							case 'multiselect':?>
+								<select id="<?=$key?>" name="<?=$key?>[]" class="selectpicker form-control" multiple>
+								<?php foreach($map[$key] as $mkey => $mval):
+										if(substr($mkey,0,1)=='#'):
+											if($mkey=='#selected'): $val[] = $mval; endif;
+										else:?>
+											<option value="<?=$mkey;?>"<?php if(in_array($mkey,$val)):echo ' selected="selected" class="active"';endif;?>><?=$mval;?></option>
+										<?php endif;
+									  endforeach;?>
+								</select>								
+							<?php break;
+						endswitch; // AFTER THIS POINT WE GET SPECIFIC USE CASE FIELD FILLERS // ?>
+				<?php elseif($map[$key]=='ordersequence'):?>
+					<input id="<?=$key?>" name="<?=$key?>" type="hidden" value="<?=$val?>" />
+					checkout completed to step <?=$val; ?> of 3  (<?=round(($val/3)*100); ?>%)
+				<?php elseif($map[$key]=='vendorconnect'):?>
+					<div id="<?=$key;?>" style="display: block; width: 100%;"><img src="../ui/images/loading.gif" alt="..." /></div>
+					<script>
+						var xhttp = new XMLHttpRequest();
+						xhttp.onreadystatechange = function() {
+							if (xhttp.readyState == 4 && xhttp.status == 200) {
+								document.getElementById("<?=$key;?>").innerHTML = xhttp.responseText;
+							} else if(xhttp.status == 500 || xhttp.status == 404) {
+								document.getElementById("<?=$key;?>").innerHTML = '<span style=\"color: red;\">✖</span> <?=$LANG['vendors:connectfail-message']?>';
+							}
+						}
+						xhttp.open("GET", "vendor/ajax/status/<?=$id;?>", true);
+						setInterval(function() {
+							xhttp.send();
+						} , 5000);
+					</script>
+				<?php else: // all else is non-required string ?>
+					<input id="<?=$key?>" name="<?=$key?>" class="form-control" placeholder="<?=$val?>" autofocus="" value="<?=$val?>" />
+				<?php endif;?>
+				<?=($map[$key]!='hidden'?'</td></tr>':'')?>
+				<?php endif;
+					  endforeach;?>
+				</tbody>
+            </table>
+            <input type="hidden" name="action" value="<?=$action;?>" />
+            <center><a href="<?=(isset($back)?$back:$jump);?>"><button style="width: 10%; min-width: 120px;" type="button" class="btn btn-danger"><?=$LANG['button-cancel']?></button></a>&nbsp;&nbsp;&nbsp;&nbsp;<button style="width: 20%;" class="btn btn-success wymupdate" type="submit"><?=$LANG['button-submit']?></button></center>
+            </form>
+			<?php if(isset($wymeditors)): foreach($wymeditors as $key): ?>
+					<script> 
+						var wymopts = {
+							toolsItems: [
+								{'name': 'Bold', 'title': 'Strong', 'css': 'wym_tools_strong'},
+								{'name': 'Italic', 'title': 'Emphasis', 'css': 'wym_tools_emphasis'},
+								{'name': 'Undo', 'title': 'Undo', 'css': 'wym_tools_undo'},
+								{'name': 'Redo', 'title': 'Redo', 'css': 'wym_tools_redo'},
+								{'name': 'InsertOrderedList', 'title': 'Ordered_List', 'css': 'wym_tools_ordered_list'},
+								{'name': 'InsertUnorderedList', 'title': 'Unordered_List', 'css': 'wym_tools_unordered_list'},
+								{'name': 'Indent', 'title': 'Indent', 'css': 'wym_tools_indent'},
+								{'name': 'Outdent', 'title': 'Outdent', 'css': 'wym_tools_outdent'},
+								{'name': 'Superscript', 'title': 'Superscript', 'css': 'wym_tools_superscript'},
+								{'name': 'Subscript', 'title': 'Subscript', 'css': 'wym_tools_subscript'},
+								{'name': 'CreateLink', 'title': 'Link', 'css': 'wym_tools_link'},
+								{'name': 'Unlink', 'title': 'Unlink', 'css': 'wym_tools_unlink'},
+								{'name': 'ToggleHtml', 'title': 'HTML', 'css': 'wym_tools_html'}
+							],
+							containersItems: [
+								{'name': 'P', 'title': 'Paragraph', 'css': 'wym_containers_p'},
+								{'name': 'H1', 'title': 'Heading_1', 'css': 'wym_containers_h1'},
+								{'name': 'H2', 'title': 'Heading_2', 'css': 'wym_containers_h2'},
+								{'name': 'H3', 'title': 'Heading_3', 'css': 'wym_containers_h3'},
+								{'name': 'H4', 'title': 'Heading_4', 'css': 'wym_containers_h4'}
+							],
+							basePath:"ui/js/wymeditor/",wymPath:"ui/js/wymeditor/"
+						}
+						$(".wymeditor-<?=$key?>").wymeditor(wymopts);
+					</script>
+			<?php endforeach; endif; ?>
+          </div>

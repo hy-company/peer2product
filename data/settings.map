@@ -1,0 +1,13 @@
+{
+  "shopname":"string",
+  "shopmainlogo":"image",
+  "shopbackdrop":"image",
+  "shoptheme":{"#type":"dropdown","#array":"themes"},
+  "shopslider":"boolean",
+  "mainpage_message":"editor",
+  "mainpage_category":{"#type":"dropdown","#array":"categories"},
+  "sitepage_about":"editor",
+  "sitepage_terms":"editor",
+  "sitepage_contact":"editor",
+  "shopcurrency":"string"
+}

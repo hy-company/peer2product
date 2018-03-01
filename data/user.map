@@ -1,0 +1,7 @@
+{
+  "username":"string",
+  "e-mail":"e-mail",
+  "receive_notifications":"boolean",
+  "role":{"#type":"dropdown","0":"administrator","1":"manager","2":"editor"},
+  "password":"password"
+}

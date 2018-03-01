@@ -1,0 +1,58 @@
+          <h2 class="sub-header"><?=$LANG['settlements:title']?> <?php echo (isset($vendors[$id])?'<a href="vendor/'.$id.'">'.$vendors[ $id ]['name'].'</a>':'<i>'.$LANG['generic-unknown'].'</i>'); ?><span style="float: right;"><a href="settlement/new/<?=$id?>"><button type="button" class="btn btn btn-primary right"><?=$LANG['settlements:button-add']?></button></a> <a href="settlements"><button type="button" class="btn btn btn-danger right"><?=$LANG['button-back']?></button></a></span></h2>
+          <p class="ex"><?=str_replace('{vendor}',(isset($vendors[$id])?$vendors[ $id ]['name']:'<i>'.$LANG['generic-unknown'].'</i>'),$LANG['settlements-details:description'])?></p>
+          <div class="summary" style="text-align: center; margin: 16px; margin-top: 24px;">
+			  <?php 
+				$entries = 0;
+				$credit = 0;
+				$debit = 0;
+				foreach($inventory[$id] as $key => $val):
+					if($val['settlement']>0):
+						$credit = $credit + $val['settlement'];
+					else:
+						$debit = $debit + $val['settlement'];
+					endif;
+					$entries++;
+				endforeach;
+				$maxpercent = 60;
+				$creditdebit=$credit-$debit;
+				$percent = round(($credit?$credit:0.0001)/($creditdebit?$creditdebit:0.0001)*$maxpercent); if($percent>$maxpercent) { $percent = $maxpercent; } if($creditdebit==0) { $percent = ($maxpercent/2); }
+				$barstyle = 'display: inline-block; min-width: 96px; height: 32px; padding:8px; font-weight: bold; color: #FFF; width:';
+			  ?>
+			  <h4><?=$LANG['settlements:balance']?> <span style="color: <?=(($credit+$debit)==0?'black':(($credit+$debit)>0?'green':'red'))?>;"> <?='<big>'.(($credit+$debit)!=0?'&nbsp;'.number_format(abs($credit+$debit) , 2, '.', ''):'').'</big> '.(($credit+$debit)==0?$LANG['settlements:bar-equal']:(($credit+$debit)>0?$LANG['settlements:bar-receivable']:$LANG['settlements:bar-indebt']));?></span></h4>
+			  <div><div style="<?=$barstyle.($maxpercent-$percent)?>%; border-radius: 8px 0px 0px 8px; background-color: red;">debit <?=number_format(0-$debit , 2, '.', '')?></div><div style="<?=$barstyle.$percent?>%; border-radius: 0px 8px 8px 0px; background-color: green;">credit <?=number_format($credit , 2, '.', '')?></div></div>
+			  <br>
+		  </div>          
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<thead><tr><th><?=$LANG['settlements-details:th-orderid']?></th><th><a href="sort/type/settlements/<?=$id?>"><?=$LANG['settlements-details:th-type']?></a></th><th><a href="sort/description/settlements/<?=$id?>"><?=$LANG['settlements-details:th-description']?></a></th><th class="ex"><a href="sort/subtotal/settlements/<?=$id?>"><?=$LANG['settlements-details:th-subtotal']?></a></th><th class="ex"><a href="sort/modifiers/settlements/<?=$id?>"><?=$LANG['settlements-details:th-modifiers']?></a></th><th class="ex"><a href="sort/transport/settlements/<?=$id?>"><?=$LANG['settlements-details:th-transport']?></a></th><th class="ex"><a href="sort/margin/settlements/<?=$id?>"><?=$LANG['settlements-details:th-margin']?></a></th><th><a href="sort/profit/settlements/<?=$id?>"><?=$LANG['settlements-details:th-profit']?></a></th><th><a href="sort/settlement/settlements/<?=$id?>"><?=$LANG['settlements-details:th-amount']?></a></th><th><a href="sort/time/settlements/<?=$id?>"><?=$LANG['settlements-details:th-time']?></a></th><th style="text-align: right;"><a href="sort/-/settlements/<?=$id?>"><button style="width: 20px;" type="button" class="btn btn-xs btn-default">X</button></a></th></tr></thead>
+				<tbody>
+				<?php foreach($inventory[$id] as $key => $val):?>
+					<tr>
+					<td>
+					<?php if($val['type']=='x'):
+						echo $key;
+					else:
+						echo '<a href="order/'.$key.'">'.$key.'</a>';
+					endif;?>
+					</td>
+					<td><?php echo ($val['type']=='c'?$LANG['settlements-details:credit']:($val['type']=='x'?$LANG['settlements-details:clearing']:$LANG['settlements-details:debit'])).' '.($val['type']=='x'?(isset($val['send'])&&$val['send']?'('.$LANG['settlements-details:sent'].')':'('.$LANG['settlements-details:received'].')'):'');?></td>
+					<td><?php echo $val['description'];?></td>
+					<td class="ex"><?php echo (isset($val['subtotal'])?number_format(abs($val['subtotal']) , 2, '.', ''):'/');?></td>
+					<td class="ex"><?php echo (isset($val['modifiers'])?number_format(abs($val['modifiers']) , 2, '.', ''):'/');?></td>
+					<td class="ex"><?php echo (isset($val['transport'])?number_format(abs($val['transport']) , 2, '.', ''):'/');?></td>
+					<td class="ex"><?php echo (isset($val['margin'])?$val['margin'].'%':'/');?></td>
+					<td><?php echo (isset($val['profit'])?number_format( $val['profit'] , 2, '.', ''):'/');?></td>
+					<td <?php echo 'style="color:'.($val['settlement']==0?'black':($val['settlement']>0?'green':'red')).';">'.number_format(abs($val['settlement']) , 2, '.', '');?></td>
+					<td><?php echo date('d.m.Y H:i',($val['time']?$val['time']:0));?></td>
+					<td style="text-align: right;">
+					<?php if($val['type']=='x'):?>
+					<a href="settlement/delete/<?php echo $id;?>/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-danger"><?=$LANG['button-delete']?></button></a>
+					<?php else:?>
+					<button type="button" class="btn btn-xs btn-disabled"><?=$LANG['button-delete']?></button>
+					<?php endif;?>
+					</td>
+					</tr>
+				<?php endforeach;?>
+				</tbody>
+            </table>
+          </div>

@@ -1,0 +1,22 @@
+          <h2 class="sub-header"><?=$LANG['categories:title']?> <a href="category/new" style="float: right;" ><button type="button" class="btn btn btn-primary right"><?=$LANG['categories:add-category']?></button></a></h2>
+          <p class="ex"><?=$LANG['categories:description']?></p>
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<thead><tr><th><?=$LANG['categories:th-name']?></th><th><?=$LANG['categories:th-description']?></th><th><?=$LANG['categories:th-tags']?></th><th> </th></tr></thead>
+				<tbody>
+				<?php $cnt = 0; $end = count($inventory)-1; foreach($inventory as $key => $val):?>
+					<tr>
+						<td><?php echo $val['name'];?></td>
+						<td><?php echo substr($val['description'],9,48).(strlen($val['description'])>48?'...':'');?></td>
+						<td><?php echo substr($val['tags'],0,24).(strlen($val['tags'])>24?'...':'');?></td>
+						<td><?php echo (isset($val['visible'])&&$val['visible']?'':'<i>(hidden)</i>');?></td>
+						<td style="text-align: right;">
+							<?php if($cnt>0): ?><a href="category/move/<?php echo $key;?>/up"><button style="width: 30px;" type="button" class="btn btn-xs btn-default">&#9650;</button></a>&nbsp;<?php endif; if($cnt<$end): ?><a href="category/move/<?php echo $key;?>/down"><button style="width: 30px;" type="button" class="btn btn-xs btn-default">&#9660;</button></a><?php else: ?><div style="width: 30px; display: inline-block;"></div><?php endif; ?>&nbsp;&nbsp;&nbsp;
+							<a href="category/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-success"><?=$LANG['categories:action-edit']?></button></a>
+						    <a href="category/delete/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-danger"><?=$LANG['categories:action-delete']?></button></a>
+						</td>
+					</tr>
+				<?php $cnt++; endforeach;?>
+				</tbody>
+            </table>
+          </div>

@@ -1,0 +1,13 @@
+          <h2 class="sub-header">Statistics</h2>
+		  <?php
+			if($notify['type']) {
+				echo '<div class="alert alert-'.$notify['type'].'" role="alert">
+						<strong>'.($notify['type']=='success'?'Success!':($notify['type']=='warning'?'Warning!':'Danger!')).'</strong> '.$notify['message'].'
+					  </div>';
+			}
+		  ?>
+          <div class="temporary">
+				<h4>[ TODO: Charts and stats. ]</h4>
+          </div>
+          <script>
+          </script>

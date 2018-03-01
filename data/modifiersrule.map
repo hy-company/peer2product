@@ -1,0 +1,8 @@
+{
+  "title":"string-required",
+  "formula":"textarea",
+  "default_active":"boolean",
+  "enabled_locally":"boolean",
+  "enabled_remotely":"boolean",
+  "tax_modifier":"boolean"
+}

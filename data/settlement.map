@@ -1,0 +1,9 @@
+{
+  "orderid":"id",
+  "type":"hidden",
+  "vendor":{"#type":"dropdown","#array":"vendors"},
+  "send":{"#type":"radio","#selected":"1","1":"sent","0":"received"},
+  "settlement":"float",
+  "description":"textarea",
+  "time":"timenow"
+}

@@ -1,0 +1,29 @@
+          <h2 class="sub-header"><?=$LANG['orders:title']?></h2>          
+          <p class="ex"><?=$LANG['orders:description']?></p>
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<thead><tr><th class="ex"><?=$LANG['orders:th-ordernumber']?></th><th><a href="sort/lastname/orders"><?=$LANG['orders:th-lastname']?></a></th><th class="ex"><a href="sort/firstname/orders"><?=$LANG['orders:th-firstname']?></a></th><th class="ex"><a href="sort/company/orders"><?=$LANG['orders:th-company']?></a></th><th><a href="sort/amount/orders"><?=$LANG['orders:th-amount']?></a></th><th><a href="sort/time/orders"><?=$LANG['orders:th-time']?></a></th><th><a href="sort/vendor/orders"><?=$LANG['orders:th-vendor']?></a></th><th><a href="sort/sequence/orders"><?=$LANG['orders:th-status']?></a></th><th style="text-align: right;"><a href="sort/-/orders"><button style="width: 20px;" type="button" class="btn btn-xs btn-default">X</button></a></tr></tr></thead>
+				<tbody>
+				<?php foreach($orders as $key => $val):?>
+					<tr>
+						<td class="ex"><?php echo $key;?></td>
+						<td><?php echo (isset($val['lastname']) && $val['lastname']?$val['lastname']:'?').'<span style="color: grey;">'.(isset($val['preposition']) && $val['preposition']?', '.$val['preposition']:'').'</span>';?></td>
+						<td class="ex"><?php echo (isset($val['firstname'])?$val['firstname']:'');?></td>
+						<td class="ex"><?php echo (isset($val['company'])?$val['company']:'');?></td>
+						<td><?php echo number_format( (isset($val['amount'])?$val['amount']:0) , 2, '.', '');?></td>
+						<td><?php echo date('d.m.Y H:i',($val['time']?$val['time']:0));?></td>
+						<td><?php echo (isset($val['vendor'])&&$val['vendor']?$vendors[ $val['vendor'] ]['name']:$LANG['orders:type-local']);?></td>
+						<td><?php echo $shop->order_status($orders[$key],1); ?></td>
+						<td style="text-align: right;">
+							<a href="order/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-success"><?=$LANG['button-viewedit']?></button></a>
+						    <?php if($shop->order_status($orders[$key])<100) { ?>
+								<a href="order/delete/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-danger"><?=$LANG['button-delete']?></button></a>
+							<?php } else { ?>
+								<button type="button" class="btn btn-xs btn-disabled"><?=$LANG['button-delete']?></button>
+							<?php } ?>
+						</td>
+					</tr>
+				<?php endforeach;?>
+				</tbody>
+            </table>
+          </div>

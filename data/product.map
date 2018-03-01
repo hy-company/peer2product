@@ -1,0 +1,17 @@
+{
+  "name":"string-required",
+  "tags":"string",
+  "image":"image",
+  "description":"editor",
+  "price":"money",
+  "modifiers":{"#type":"multiselect","#array":"modifiers"},
+  "weight":"string",
+  "size":"string",
+  "stock":"number",
+  "sellout":"boolean",
+  "time":"timenow",
+  "detail_image_A":"image",
+  "detail_caption_A":"editor",
+  "detail_image_B":"image",
+  "detail_caption_B":"editor"
+}

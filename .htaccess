@@ -1,0 +1,21 @@
+# Enable rewrite engine and route requests to framework
+RewriteEngine On
+
+# Some servers require you to specify the `RewriteBase` directive
+# In such cases, it should be the path (relative to the document root)
+# containing this .htaccess file
+#
+#RewriteBase /
+
+Options +FollowSymLinks -MultiViews -Indexes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+DirectoryIndex index.php index.html index.htm
+
+# Customized for Peer2Product
+RewriteRule ^checkout/?$ index.php?checkout
+RewriteRule ^about/?$ index.php?about
+RewriteRule ^terms/?$ index.php?terms
+RewriteRule ^contact/?$ index.php?contact
+RewriteRule ^category-(.*)/?$ index.php?category=$1
+

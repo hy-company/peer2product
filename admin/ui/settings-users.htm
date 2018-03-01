@@ -1,0 +1,24 @@
+          <h2 class="sub-header"><?=$LANG['users:title']?> <a href="settings/user/new" style="float: right;" ><button type="button" class="btn btn btn-primary right"><?=$LANG['users:button-add']?></button></a></h2>
+          <p class="ex"><?=$LANG['users:description']?></p>
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<thead><tr><th><?=$LANG['users:th-username']?></th><th><?=$LANG['users:th-mail']?></th><th><?=$LANG['users:th-notifications']?></th><th> </th></tr></thead>
+				<tbody>
+				<?php foreach($inventory as $key => $val):?>
+					<tr>
+						<td><?php echo $val['username'];?></td>
+						<td><?php echo $val['e-mail'];?></td>
+						<td><?php echo (isset($val['receive_notifications']) && $val['receive_notifications']?$LANG['generic-yes']:$LANG['generic-no']);?></td>
+						<td style="text-align: right;">
+							<a href="settings/user/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-success"><?=$LANG['button-edit']?></button></a>
+							<?php if($key>100):?>
+						    <a href="settings/user/delete/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-danger"><?=$LANG['button-delete']?></button></a>
+						    <?php else:?>
+						    <button type="button" class="btn btn-xs btn-disabled"><?=$LANG['button-delete']?></button>
+						    <?php endif;?>
+						</td>
+					</tr>
+				<?php endforeach;?>
+				</tbody>
+            </table>
+          </div>

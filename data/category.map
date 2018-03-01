@@ -1,0 +1,6 @@
+{
+  "name":"string",
+  "tags":"string",
+  "visible":"boolean",
+  "description":"editor"
+}

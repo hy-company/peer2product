@@ -1,0 +1,26 @@
+{
+  "sequence":"ordersequence",
+  "time":"timestamp",
+
+  "company":"string",
+  "firstname":"string",
+  "preposition":"string",
+  "lastname":"string",
+  "streetname":"string",
+  "housenumber":"string",
+  "zipcode":"string",
+  "city":"string",
+  "country":"string",
+  "telephone":"string",
+  "email":"string",
+  "remarks":"textarea",
+  "nopostage":"boolean",
+
+  "amount":"money",
+  "weight":"number",
+  "transport":"money",
+  "quantity":"number",
+
+  "gateway":"string",
+  "payment":"string"
+ }

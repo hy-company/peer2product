@@ -1,0 +1,37 @@
+          <h2 class="sub-header"><?=$LANG['products:title']?> <a href="product/new" style="float: right;" ><button type="button" class="btn btn btn-primary right"><?=$LANG['products:button-add']?></button></a></h2>
+          <p class="ex"><?=$LANG['products:description']?></p>
+		  <?php
+			if($notify['type']) {
+				echo '<div class="alert alert-'.$notify['type'].'" role="alert">
+						<strong>'.($notify['type']='success'?'Success!':($notify['type']='warning'?'Warning!':'Danger!')).'</strong> '.$notify['message'].'
+					  </div>';
+			}
+		  ?>
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<thead><tr><th><a href="sort/name/products"><?=$LANG['products:th-name']?></a></th><th><a href="sort/tags/products"><?=$LANG['products:th-tags']?></a></th><th><a href="sort/sales/products"><?=$LANG['products:th-sales']?></a></th><th><a href="sort/stock/products"><?=$LANG['products:th-stock']?></a></th><th><a href="sort/time/products"><?=$LANG['products:th-time']?></a></th><th style="text-align: right;"><a href="sort/-/products"><button style="width: 20px;" type="button" class="btn btn-xs btn-default">X</button></a></tr></thead>
+				<tbody>
+				<?php foreach($inventory as $key => $val):?>
+					<tr>
+						<td><?php echo $val['name'];?></td>
+						<td><?php echo $val['tags'];?></td>
+						<td><?php echo $val['sales'];?></td>
+						<td><button style="width: 20px;" type="button" class="btn btn-xs btn-default" onClick="stocksub('<?php echo $key;?>')">-</button>&nbsp;<button style="width: 20px;" type="button" class="btn btn-xs btn-default" onClick="stockadd('<?php echo $key;?>')">+</button>&nbsp;&nbsp;<span id="stock-<?php echo $key;?>"><?php echo ($val['stock']!=-1?$val['stock']:'∞');?></span></td>
+						<td><?php echo date('d.m.Y H:i',($val['time']?$val['time']:0));?></td>
+						<td style="text-align: right;">
+							<a href="product/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-success"><?=$LANG['button-edit']?></button></a>
+						    <a href="product/delete/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-danger"><?=$LANG['button-delete']?></button></a>
+						</td>
+					</tr>
+				<?php endforeach;?>
+				</tbody>
+            </table>
+          </div>
+          <script>
+			function stockadd(id) {
+				$("#stock-"+id).load("product/stock/"+id+"/add");
+			}
+			function stocksub(id) {
+				$("#stock-"+id).load("product/stock/"+id+"/sub");
+			}
+          </script>

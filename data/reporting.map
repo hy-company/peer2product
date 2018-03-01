@@ -1,0 +1,12 @@
+{
+  "from_e-mail":"string",
+  "order_complete_subject":"string",
+  "order_complete_message":"editor",
+  "order_sent_subject":"string",
+  "order_sent_message":"editor",
+  "use_smtp":"boolean",
+  "smtp_host":"string",
+  "smtp_port":"number",
+  "smtp_user":"string",
+  "smtp_pass":"password"
+}

@@ -1,0 +1,10 @@
+{
+  "id":"id",
+  "name":"string-required",
+  "reseller_margin":"number",
+  "shared_categories":{"#type":"multiselect","#array":"categories"},
+  "apply_local_modifiers":{"#type":"multiselect","#array":"modifiers"},
+  "host":"string",
+  "secret":"string",
+  "status":"vendorconnect"
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="<?php echo $ENCODING; ?>" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Peer2Product Administration</title>
+		<base href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>"/>
+		<link rel="stylesheet" href="../ui/css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="../ui/css/bootstrap-select.min.css" type="text/css"/>
+		<link rel="stylesheet" href="../ui/css/jasny-bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="ui/css/dashboard.css" type="text/css"/>
+		<link rel="stylesheet" href="ui/css/theme.css" type="text/css"/>
+		<link rel="stylesheet" href="ui/css/awesome.css" type="text/css"/>
+		<link rel="stylesheet" href="ui/js/wymeditor/skins/default/skin.css" type="text/css"/>
+	</head>
+	<body>
+    <script src="../ui/js/jquery.min.js"></script>
+    <script src="ui/js/wymeditor/jquery.wymeditor.min.js"></script>
+    <script src="ui/js/chart.js"></script>
+    <script src="../ui/js/bootstrap.min.js"></script>
+    <script src="../ui/js/bootstrap-select.min.js"></script>
+    <script src="../ui/js/jasny-bootstrap.min.js"></script>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="../ui/images/logowhite.png" alt="Peer2Product" style="margin-top: -8px;" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+			<?php $cnt=0;foreach($TOPBAR as $key => $val): if($AUTH[$key]>=$SESSION['authrole']):?>
+				<li><a href="<?php echo $val;if($val=='../'){echo'" target="_blank';}?>"><?php echo '<i class="fa fa-'.$ICON[$key].'"></i> '.$LANG['topbar:'.$key];?></a></li>
+			<?php endif; endforeach;?>
+          </ul>
+          <!--<form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>-->
+        </div>
+      </div>
+    </nav>		
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+			<?php $cnt=0;$sidebar_active=array_search($sidebar_active,array_values($sidebar));foreach($sidebar as $key => $val): if($AUTH[$key]>=$SESSION['authrole']):?>
+				<li<?php if($cnt==$sidebar_active):echo ' class="active"';endif;?>><a href="<?php echo $val;?>"><?php echo '<i class="fa fa-'.$ICON[$key].'"></i> '.$LANG['sidebar:'.$key]; if($cnt==$sidebar_active):echo '<span class="sr-only">(current)</span>';endif;?></a></li>
+			<?php endif; $cnt++; endforeach;?>
+		  </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+		  <?php echo $this->render(Base::instance()->get('content')); ?>
+		          
+        </div>
+      </div>
+    </div>
+
+
+	</body>
+</html>
