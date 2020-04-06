@@ -2,7 +2,7 @@
 
 /*
 
-	Copyright (c) 2009-2015 F3::Factory/Bong Cosca, All rights reserved.
+	Copyright (c) 2009-2019 F3::Factory/Bong Cosca, All rights reserved.
 
 	This file is part of the Fat-Free Framework (http://fatfreeframework.com).
 
@@ -10,7 +10,13 @@
 	terms of the GNU General Public License as published by the Free Software
 	Foundation, either version 3 of the License, or later.
 
-	Please see the LICENSE file for more information.
+	Fat-Free Framework is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along
+	with Fat-Free Framework.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -29,14 +35,18 @@ class Log {
 	**/
 	function write($text,$format='r') {
 		$fw=Base::instance();
-		$fw->write(
-			$this->file,
-			date($format).
+		foreach (preg_split('/\r?\n|\r/',trim($text)) as $line)
+			$fw->write(
+				$this->file,
+				date($format).
 				(isset($_SERVER['REMOTE_ADDR'])?
-					(' ['.$_SERVER['REMOTE_ADDR'].']'):'').' '.
-			trim($text).PHP_EOL,
-			TRUE
-		);
+					(' ['.$_SERVER['REMOTE_ADDR'].
+					(($fwd=filter_var($fw->get('HEADERS.X-Forwarded-For'),
+						FILTER_VALIDATE_IP))?(' ('.$fwd.')'):'')
+					.']'):'').' '.
+				trim($line).PHP_EOL,
+				TRUE
+			);
 	}
 
 	/**
@@ -53,7 +63,7 @@ class Log {
 	**/
 	function __construct($file) {
 		$fw=Base::instance();
-		if (!is_dir($dir=$fw->get('LOGS')))
+		if (!is_dir($dir=$fw->LOGS))
 			mkdir($dir,Base::MODE,TRUE);
 		$this->file=$dir.$file;
 	}
