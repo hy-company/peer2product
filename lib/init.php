@@ -1,4 +1,6 @@
 <?php
+  // set short default socket timeout
+  ini_set('default_socket_timeout', 8);
 	// set protocol and base site
 	if (isset($_SERVER['HTTPS']) &&
 		($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
