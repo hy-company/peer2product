@@ -857,16 +857,18 @@ final class Base extends Prefab implements ArrayAccess {
 					$arg=clone($arg);
 					$cast=is_a($arg,'IteratorAggregate')?
 						iterator_to_array($arg):get_object_vars($arg);
-					foreach ($cast as $key=>$val)
-						$arg->$key=$this->recursive(
-							$val,$func,array_merge($stack,[$arg]));
+          foreach ($cast as $key=>$val) {
+            $keyTrim = trim($key); // Agent725 hack to fix \0 prefix issues in PHP7+
+            $arg->$keyTrim = $this->recursive(
+              $val,$func,array_merge($stack,[$arg]));
+          }
 				}
 				return $arg;
 			case 'array':
 				$copy=[];
 				foreach ($arg as $key=>$val)
-					$copy[$key]=$this->trim(recursive($val,$func,
-						array_merge($stack,[$arg])));
+					$copy[$key]=$this->recursive($val,$func,
+						array_merge($stack,[$arg]));
 				return $copy;
 		}
 		return $func($arg);
