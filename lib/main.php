@@ -25,7 +25,7 @@ if(isset($_GET['checkout'])) {
 	if(isset($categories[ $SET['mainpage_category'] ]['tags'])) { $SET['defaulttags'] = $categories[ $SET['mainpage_category'] ]['tags']; } else { $SET['defaulttags']=FALSE; }
 
 	// peer2peer communication with other shops
-	if(function_exists('mcrypt_encrypt')) {
+	if(function_exists('openssl_encrypt')) {
 		// handle encrypted queries
 		if (isset($_GET['q'])) {
 			$query = $shop->rx($_GET['q']);
@@ -217,7 +217,7 @@ if(isset($_GET['checkout'])) {
 				}
 			}
 		}
-	} else { die('<h4 style="color:red;">ERROR: Peer2Product uses cryptography for peer-to-peer connections. You do not have the required library on this server. Make sure to install php5-mcrypt, and enable it by doing php5enmod mcrypt. Then restart your webserver.</h4>');}
+	} else { die('<h4 style="color:red;">ERROR: Peer2Product uses cryptography for peer-to-peer connections. You do not have the required library on this server. Make sure to install openssl, and enable it by doing #TODO. Then restart your webserver.</h4>');}
 	
 	// create category buttons
 	$content['categories'] = '';

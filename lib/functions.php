@@ -991,7 +991,8 @@ class functions {
 	// RX TX functions (rudimentary security over unsafe connections)
 	function net_encode($string,$key = '#p4dd%ng#r(jNda3l',$compression = 7) {
 		$string = gzdeflate($string,$compression);
-		$string = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
+		// DEPRECATED: $string = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
+    $string = openssl_encrypt($string, 'sha256', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING);
 		$string = base64_encode($string);
 		$string = str_replace(array('+','/','='),array('-','_','.'),$string); // make url safe
 		return $string;
@@ -1000,7 +1001,8 @@ class functions {
 	function net_decode($string,$key = '#p4dd%ng#r(jNda3l') {
 		$string = str_replace(array('-','_','.'),array('+','/','='),$string); // restore from url safe
 		$string = base64_decode($string);
-		$string = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
+		// DEPRECATED: $string = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
+    $string = openssl_decrypt($string, 'sha256', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING);
 		$string = gzinflate($string);
 		return $string;
 	}
