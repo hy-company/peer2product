@@ -25,7 +25,7 @@ if(isset($_GET['checkout'])) {
 	if(isset($categories[ $SET['mainpage_category'] ]['tags'])) { $SET['defaulttags'] = $categories[ $SET['mainpage_category'] ]['tags']; } else { $SET['defaulttags']=FALSE; }
 
 	// peer2peer communication with other shops
-	if(function_exists('openssl_encrypt')) {
+	if(function_exists('openssl_encrypt') or function_exists('mcrypt_encrypt')) {
 		// handle encrypted queries
 		if (isset($_GET['q'])) {
 			$query = $shop->rx($_GET['q']);

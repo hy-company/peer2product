@@ -988,12 +988,36 @@ class functions {
 		}
 	}
 
+  function encrypt($data, $key)
+  {
+      $l = strlen($key);
+      if ($l < 16)
+          $key = str_repeat($key, ceil(16/$l));
+      if ($m = strlen($data)%8)
+          $data .= str_repeat("\x00",  8 - $m);
+      if (function_exists('mcrypt_encrypt'))
+          $val = mcrypt_encrypt(MCRYPT_BLOWFISH, $key, $data, MCRYPT_MODE_ECB);
+      else
+          $val = openssl_encrypt($data, 'BF-ECB', $key, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
+      return $val;
+  }
+
+  function decrypt($data, $key)
+  {
+      $l = strlen($key);
+      if ($l < 16)
+          $key = str_repeat($key, ceil(16/$l));
+      if (function_exists('mcrypt_encrypt'))
+          $val = mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $data, MCRYPT_MODE_ECB);
+      else
+          $val = openssl_decrypt($data, 'BF-ECB', $key, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
+      return $val;
+  }
+    
 	// RX TX functions (rudimentary security over unsafe connections)
 	function net_encode($string,$key = '#p4dd%ng#r(jNda3l',$compression = 7) {
 		$string = gzdeflate($string,$compression);
-		// DEPRECATED: $string = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
-    $iv = openssl_random_pseudo_bytes(16);
-		$string = openssl_encrypt($string, 'AES-256-XTS', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $iv);
+		$string = $this->encrypt($string, $key);
 		$string = base64_encode($string);
 		$string = str_replace(array('+','/','='),array('-','_','.'),$string); // make url safe
 		return $string;
@@ -1002,13 +1026,10 @@ class functions {
 	function net_decode($string,$key = '#p4dd%ng#r(jNda3l') {
 		$string = str_replace(array('-','_','.'),array('+','/','='),$string); // restore from url safe
 		$string = base64_decode($string);
-		// DEPRECATED: $string = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
-    $iv = openssl_random_pseudo_bytes(16);
-		$string = openssl_decrypt($string, 'AES-256-XTS', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $iv);
+		$string = $this->decrypt($string, $key);
 		$string = gzinflate($string);
 		return $string;
 	}
-
 
 	function tx($array,$key = '#') {
 		if (isset($array['tmp'])) { $tmp=$array['tmp']; unset($array['tmp']); } // unset temporary data storage properties
@@ -1021,34 +1042,6 @@ class functions {
 		return json_decode($this->net_decode($string,$key.'p4dd%ng#r(jNda3l') ,TRUE);
 	}
 
-	// DEPRECATED: This doesn't seem to work on all PHP installations
-	/*
-	function daemonize()
-	{
-        function shutdown() {
-            posix_kill(posix_getpid(), SIGHUP);
-        }
-        // Switch over to daemon mode.
-        if ($pid = pcntl_fork())
-            return FALSE;     // Parent
-        ob_end_clean(); // Discard the output buffer and close
-        fclose(STDIN);  // Close all of the standard
-        fclose(STDOUT); // file descriptors as we
-        fclose(STDERR); // are running as a daemon.
-        register_shutdown_function('shutdown');
-        if (posix_setsid() < 0)
-            return posix_setsid();
-        if ($pid = pcntl_fork())
-            return FALSE;     // Parent
-        // Now running as a daemon. This process will even survive
-        // an apachectl stop.
-        //sleep(10);
-        //$fp = fopen("/tmp/sdf123", "w");
-        //fprintf($fp, "PID = %s\n", posix_getpid());
-        //fclose($fp);
-        return posix_getpid();
-	} 
-	*/
 }
 
 ?>
