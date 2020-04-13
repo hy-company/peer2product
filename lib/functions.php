@@ -992,7 +992,8 @@ class functions {
 	function net_encode($string,$key = '#p4dd%ng#r(jNda3l',$compression = 7) {
 		$string = gzdeflate($string,$compression);
 		// DEPRECATED: $string = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
-    $string = openssl_encrypt($string, 'sha256', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING);
+    $iv = openssl_random_pseudo_bytes(16);
+		$string = openssl_encrypt($string, 'AES-256-XTS', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $iv);
 		$string = base64_encode($string);
 		$string = str_replace(array('+','/','='),array('-','_','.'),$string); // make url safe
 		return $string;
@@ -1002,7 +1003,8 @@ class functions {
 		$string = str_replace(array('-','_','.'),array('+','/','='),$string); // restore from url safe
 		$string = base64_decode($string);
 		// DEPRECATED: $string = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, substr($key,0,24), $string, MCRYPT_MODE_ECB);
-    $string = openssl_decrypt($string, 'sha256', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING);
+    $iv = openssl_random_pseudo_bytes(16);
+		$string = openssl_decrypt($string, 'AES-256-XTS', substr($key,0,24), OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $iv);
 		$string = gzinflate($string);
 		return $string;
 	}
