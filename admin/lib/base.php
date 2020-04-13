@@ -864,11 +864,9 @@ final class Base extends Prefab implements ArrayAccess {
 				return $arg;
 			case 'array':
 				$copy=[];
-        // Agent725 hack to fix \0 webserver NULL character problems.
-        $argTrimmed = get_object_vars($arg);
-				foreach ($argTrimmed as $key=>$val)
-					$copy[$key]=$this->recursive($val,$func,
-						array_merge($stack,[$arg]));
+				foreach ($arg as $key=>$val)
+					$copy[$key]=$this->trim(recursive($val,$func,
+						array_merge($stack,[$arg])));
 				return $copy;
 		}
 		return $func($arg);
