@@ -143,7 +143,7 @@ class functions {
 		if(file_exists($directory)) {
 			$subhandle = opendir($directory);
 			$array = array();
-			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..'))) {
+			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
 				$date = substr($file,0,-4);
 				$count = substr_count(file_get_contents($directory.$file),"\n"); // count amount of IP entries in file
 				$array[$date] = $count;
@@ -161,7 +161,7 @@ class functions {
 		if(file_exists($directory)) {
 			$subhandle = opendir($directory);
 			$array = array();
-			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..'))) {
+			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
 				$date = substr($file,0,-4);
 				$count = file_get_contents($directory.$file); // get total sales count per date
 				$array[$date] = $count;
@@ -177,7 +177,7 @@ class functions {
 	function chart_stat_mostsold($directory) {
 		$handle = opendir($directory);
 		$array = array();
-		while ($file = readdir($handle)) if (!in_array($file, array('.', '..'))) {
+		while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
 			$product = $this->get_product($directory,$file);
 			$array[ substr($product[$file]['name'],0,16).(strlen($product[$file]['name'])>16?'...':'') ] = $product[$file]['sales'];
 			arsort($array);
@@ -198,7 +198,7 @@ class functions {
 		$array = array();
 		if(file_exists($directory)) {
 			$subhandle = opendir($directory);			
-			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..'))) {
+			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
 				$date = substr($file,0,-4);
 				$entries = file($directory.$file,FILE_SKIP_EMPTY_LINES); // get entries
 				foreach($entries as $entry) {
@@ -277,7 +277,7 @@ class functions {
 		// get settlements (single batch by vendorid, or all recursively)
 		if($id) {
 			$subhandle = opendir($directory.'/'.$id);
-			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..'))) {
+			while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
 				$json = json_decode(file_get_contents($directory.'/'.$id.'/'.$file), true);
 				foreach($json as $vendorid => $item) {
 					if(!isset($item['subtotal'])) { $item['subtotal']=0; }
@@ -291,9 +291,9 @@ class functions {
 			}			
 		} else {
 			$handle = opendir($directory);
-			while ($subdir = readdir($handle)) if (!in_array($subdir, array('.', '..'))) {
+			while ($subdir = readdir($handle)) if (!in_array($subdir, array('.', '..','README.md'))) {
 				$subhandle = opendir($directory.$subdir);
-				while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..'))) {
+				while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
 					$json = json_decode(file_get_contents($directory.$subdir.'/'.$file), true);
 					foreach($json as $vendorid => $item) {
 						if(isset($item['type'])) {
@@ -434,7 +434,7 @@ class functions {
 		}
 		$products = array();
 		$handle = opendir($directory);
-		while ($file = readdir($handle)) if (!in_array($file, array('.', '..'))) {
+		while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
 			if(file_exists($directory.$file.'/product.json')) {
 				$json = json_decode(file_get_contents($directory.$file.'/product.json'), true);
 				foreach($json as $id => $product) {
@@ -500,7 +500,7 @@ class functions {
 		// get vendors
 		$handle = opendir($directory);
 		$vendors = array();
-		while ($file = readdir($handle)) if (!in_array($file, array('.', '..'))) {
+		while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
 			$json = json_decode(file_get_contents($directory.$file.'/vendor.json'), true);
 			foreach($json as $id => $vendor) $vendors[$id] = $vendor;
 		}
@@ -513,7 +513,7 @@ class functions {
 		// get vendors
 		$handle = opendir($directory);
 		$users = array();
-		while ($file = readdir($handle)) if (!in_array($file, array('.', '..'))) {
+		while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
 			$json = json_decode(file_get_contents($directory.$file.'/user.json'), true);
 			foreach($json as $id => $user) $users[$id] = $user;
 		}
@@ -539,7 +539,7 @@ class functions {
 		// make a list of usable gateways
 		$handle = opendir($directory);
 		$gateways = array();
-		while ($file = readdir($handle)) if (!in_array($file, array('.', '..'))) {
+		while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
 			if(file_exists($directory.$file.'/gateway.json')) {
 				$json = $this->get_json($directory.$file.'/gateway.json');
 				$gateways[$file]['gateway'] = $json['gateway'];
@@ -552,6 +552,23 @@ class functions {
 		ksort($gateways);
 		return $gateways;
 	}
+  
+  /* CURRENTLY NOT USED, INSTEAD BOOLEAN OPTION TO HAVE PACKAGE SENT OR RETRIEVAL
+  function get_transports($directory) {
+		// make a list of usable transport methods
+		$transports = array();
+		if(file_exists($directory.'transportmath.json')) {
+			$json = $this->get_json($directory.'transportmath.json');
+			foreach($json as $id => $transport) {
+        $title = $transport[$id]['title'];
+        $transports[$title]['id'] = $id;
+        $transports[$title]['title'] = $title;
+      }
+		}
+		ksort($transports);
+		return $transports;
+	}
+  */
 
 	function get_order($directory,$id) {
 		$orders = array();
@@ -573,7 +590,7 @@ class functions {
 		$orders = array();
 		// make a list of pending and filled orders
 		$handle = opendir($directory);
-		while ($file = readdir($handle)) if (!in_array($file, array('.', '..'))) {
+		while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
 			if(file_exists($directory.$file)) {
 				$json = $this->get_json($directory.$file);
 				foreach($json as $id => $order) $orders[$id] = $order;

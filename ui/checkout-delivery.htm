@@ -43,10 +43,9 @@
 					<label><?=$STR['Telephone'];?></label>
 					<td colspan="2"><input class="form-control" type="text" id="tf9" size="46" name="telephone" value="<?php echo (isset($array['telephone'])?$array['telephone']:''); ?>" />
 					<br>
-					<!--
-					<label>Send by mail order / Retrieve the package</label><br>
-					<input class="form-control" style="display: inline-block; width: 40px; margin-bottom: 8px; vertical-align: middle;" type="checkbox" name="notransport" <?php echo ((isset($array['notransport'])?$array['notransport']:0)?'checked="checked" ':''); ?>/>Don't send, please. I'll come get the package.</label><br>
-					-->
+					<label><?=$STR['TransportMethod'];?></label><br>
+					<input style="display: inline-block; width: 40px !important; margin-bottom: 8px; padding-right: 40px; vertical-align: middle;" type="checkbox" name="notransport" <?php echo ((isset($array['notransport'])?$array['notransport']:0)?'checked="checked" ':''); ?>/><?=$STR['NoTransport'];?></label><br>
+					<br>
 					<label><?=$STR['Comments'];?></label>
 					<textarea class="form-control" id="tx11" rows="3" name="remarks"><?php echo (isset($array['remarks'])?$array['remarks']:''); ?></textarea>
 				</div>
