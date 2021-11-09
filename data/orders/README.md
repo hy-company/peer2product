@@ -1,4 +1,4 @@
 #Peer2Product
 
-This directory contains user accounts.
+This directory contains order data.
 
