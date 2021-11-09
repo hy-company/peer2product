@@ -1,0 +1,136 @@
+/* 
+    Document   : ppt.css
+    Created on : 11-mrt-2013, 12:29:37
+    Author     : Kelvin Huizing
+    Description:
+        Cascading stylesheet for the PPT demo of Pay.nl
+*/
+
+/** container div **/
+
+div.ppt {
+    position: relative;
+    width: 480px;
+    font-family: Arial;
+    letter-spacing: 1px;
+    font-size: 12px;    
+    line-height: 120%;
+    margin-left: auto;
+    margin-right: auto;    
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    /*background-color: #eff5d6;    */
+    padding: 10px 20px 10px 20px;
+    margin-top: 50px;
+}
+
+div.ppt div {
+    margin-top: 5px;
+}
+
+div.ppt div.clear {
+    clear: both;
+}
+
+/** label **/
+
+div.ppt label {    
+    display: inline-block;
+    font-size: 15px;
+    height: 21px;
+    min-width: 200px;
+    padding-right: 20px;
+    text-align: right;    
+    font-weight: bold;    
+    vertical-align: baseline; 
+}
+
+/** list of banks **/
+div.ppt div#banks {
+    display: none;
+    vertical-align: top;        
+}
+
+div.ppt div#banks label {
+    vertical-align: top; 
+    margin-top: 10px;
+}
+
+div.ppt div#banks div.bankList {
+    position: relative;
+    width: 180px;
+    display: inline-block;
+} 
+
+div.ppt div#banks div.bankList input[type=radio], div.ppt div#banks div.bankList img {
+    vertical-align: middle;
+    margin: 0px;
+}  
+
+/** input field / select box **/
+
+div.ppt input, div.ppt select {
+    font-family: arial;
+    font-size: 12px;
+    color: #000;
+    padding: 6px 10px;
+    background-color: #fff;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;    
+}
+
+div.ppt input[name=amount] {
+    width: 100px;
+}
+
+div.ppt input[name=external_order], div.ppt select {
+    width: 210px;
+}
+
+/** submit button **/
+
+div.ppt input.button {
+    -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+    background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+    background-color: #ededed;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display:inline-block;
+    color: #777777;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    margin-top: 15px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0px #ffffff;
+    cursor: pointer;
+}
+
+div.ppt input.button:hover {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+    background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+    background-color :#dfdfdf;
+}
+
+/** debug **/
+div.paynl_debug {
+    width: 100%;
+    border-bottom: 1px dashed #000;
+    color: #777777;
+    font-family: arial;   
+    font-size: 11px;
+}
+
+/** eof **/

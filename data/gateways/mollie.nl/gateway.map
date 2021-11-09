@@ -1,0 +1,10 @@
+{
+  "gateway":"readonly",
+  "gateway_name":"string",
+  "gateway_description":"string",
+  "gateway_active":"boolean",
+  "Account_ID":"string",
+  "Program_ID":"string",
+  "API_Token":"string",
+  "Notification_E-mail":"string"
+}
