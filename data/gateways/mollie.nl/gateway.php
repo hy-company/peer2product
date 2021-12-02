@@ -49,16 +49,17 @@ function paymentgate($array,$shop) {
 }
 
 function paymentform($array,$shop) {
-    global $GATEWAY,$SET,$STR;
-    // get gateway variables
-    require($GATEWAY['directory'].'settings.php');
+  global $GATEWAY,$SET,$STR;
+  // get gateway variables
+  require($GATEWAY['directory'].'settings.php');
 
 
-    if (!isset($array['amount']) || !isset($array['ordernumber'])) {
-      echo 'Missing amount or ordernumber!';
-      die();
-    }
+  if (!isset($array['amount']) || !isset($array['ordernumber'])) {
+    echo 'Missing amount or ordernumber!';
+    die();
+  }
 
+  try {
     /*
      * Initialize the Mollie API library with API key.
      *
@@ -79,7 +80,7 @@ function paymentform($array,$shop) {
 
     ]);
 
-//  header("Location: " . $payment->getPaymentUrl());
+    //  header("Location: " . $payment->getPaymentUrl());
 
     echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
        '<span>'.$GATEWAY['description'].'</span><br><br>'.
@@ -92,7 +93,11 @@ function paymentform($array,$shop) {
        '<tr><td style="width: 200px;">Webhook Url: </td><td>'.$shop->tx($array).'</td></tr>'.
        '</table></div></div>'.
        '<a class="submit btn btn-success" type="button" name="forward" value="'.$GATEWAY['Button_text'].' &nbsp;>" href="#" />';
-    // JUMP WITH THIS FORM DATA: echo '<input type="hidden" name="x" value="'.$shop->tx($array).'" />';
+  } catch(Exception $exc) {
+    echo '<p>Error: Exception while trying to instantiate Mollie payment method!</p>'.
+         '<p>'.$exc.'</p>';
+  }
+  // JUMP WITH THIS FORM DATA: echo '<input type="hidden" name="x" value="'.$shop->tx($array).'" />';
 }
 
 ?>
