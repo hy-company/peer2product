@@ -113,7 +113,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 
 /* Main front */
 #peer2product { margin: 0 auto; width: 90%; padding: 8px; min-height: 200px;}
-#shopnav { padding: 12px; margin-bottom: 24px; min-height: 48px; }
+#shopnav { padding: 12px; margin-bottom: 40px; min-height: 48px; }
 #topbar { margin-top: -16px; }
 #navbar { display: inline-block; float: right; font-size: 1.1em; margin-top: 24px; }
 #navbar a { padding-left: 16px; padding-right: 16px; text-decoration: none; }
