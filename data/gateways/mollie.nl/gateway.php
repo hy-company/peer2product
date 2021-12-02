@@ -65,23 +65,26 @@ function paymentform($array,$shop) {
      * See: https://www.mollie.com/dashboard/developers/api-keys
      */
     // === MOLLIE INIT === //
-    require($GATEWAY['directory'].'lib/src/MollieApiClient.php');
-    $mollie = new Mollie_API_Client;
-    $mollie->setApiKey($GATEWAY['API_key']);
+    require($GATEWAY['directory'].'lib/vendor/autoload.php');
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey($GATEWAY['API_Key']);
     $payment = $mollie->payments->create([
         "amount" => [
             "currency" => $SET['shopcurrency'],
-            "value" => $array['amount']
+            "value" => $shop->formatn($array['amount'])
         ],
         "description" => $array['ordernumber'],
-        "redirectUrl" => $shop->tx($array),
-        "webhookUrl"  => $shop->tx($array)
+        "redirectUrl" => 'https://peer2product.com/redirected',
+        "webhookUrl"  => 'https://peer2product.com/webhook'
+
     ]);
+
 //  header("Location: " . $payment->getPaymentUrl());
 
     echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
        '<span>'.$GATEWAY['description'].'</span><br><br>'.
        '<div style="display: inline-block; text-align: left; background: #FFF none repeat scroll 0% 0%; font-weight: bold; margin: 12px 0; padding: 12px; min-width: 320px; border: 3px dashed #777;"><table>'.
+       '<tr><td style="width: 200px;">API key: </td><td>'.$GATEWAY['API_Key'].'</td></tr>'.
        '<tr><td style="width: 200px;">Currency: </td><td>'.$SET['shopcurrency'].'</td></tr>'.
        '<tr><td style="width: 200px;">Amount: </td><td>'.$array['amount'].'</td></tr>'.
        '<tr><td style="width: 200px;">Ordernumber: </td><td>'.$array['ordernumber'].'</td></tr>'.
