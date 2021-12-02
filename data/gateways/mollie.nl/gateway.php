@@ -68,7 +68,7 @@ function paymentform($array,$shop) {
        '<tr><td style="width: 200px;">Redirect Url: </td><td>'.$shop->tx($array).'</td></tr>'.
        '<tr><td style="width: 200px;">Webhook Url: </td><td>'.$shop->tx($array).'</td></tr>'.
        '</table></div></div>'.
-       '<a class="submit btn btn-success" type="button" name="forward" value="'+$GATEWAY['Button_text']+' &nbsp;>" href="#" />';
+       '<a class="submit btn btn-success" type="button" name="forward" value="'.$GATEWAY['Button_text'].' &nbsp;>" href="#" />';
     // JUMP WITH THIS FORM DATA: echo '<input type="hidden" name="x" value="'.$shop->tx($array).'" />';
 
     /*
@@ -76,7 +76,9 @@ function paymentform($array,$shop) {
      *
      * See: https://www.mollie.com/dashboard/developers/api-keys
      */
-    $mollie = new \Mollie\Api\MollieApiClient();
+    // === MOLLIE INIT === //
+    require_once "lib/src/MollieApiClient.php";
+    $mollie = new Mollie_API_Client;
     $mollie->setApiKey($GATEWAY['API_key']);
     $payment = $mollie->payments->create([
         "amount" => [
