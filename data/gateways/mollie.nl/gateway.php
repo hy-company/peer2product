@@ -43,7 +43,7 @@ function paymentgate($array,$shop) {
             "value" => $array['amount']
         ],
         "description" => $array['ordernumber'],
-        "redirectUrl" => ,
+        "redirectUrl" => "",
         "webhookUrl"  => $shop->tx($array)
     ]);
 }
