@@ -80,7 +80,9 @@ function paymentform($array,$shop) {
 
     ]);
 
-    //  header("Location: " . $payment->getPaymentUrl());
+
+    // This header location should always be a GET, thus we enforce 303 http response code
+    //header("Location: " . $payment->getCheckoutUrl(), true, 303);
 
     echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
        '<span>'.$GATEWAY['description'].'</span><br><br>'.
