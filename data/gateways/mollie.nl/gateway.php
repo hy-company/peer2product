@@ -80,7 +80,9 @@ function paymentform($array,$shop) {
 
     ]);
 
-    //  header("Location: " . $payment->getPaymentUrl());
+
+    // This header location should always be a GET, thus we enforce 303 http response code
+    //header("Location: " . $payment->getCheckoutUrl(), true, 303);
 
     echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
        '<span>'.$GATEWAY['description'].'</span><br><br>'.
@@ -89,7 +91,7 @@ function paymentform($array,$shop) {
        '<tr><td style="width: 200px;">Currency: </td><td>'.$SET['shopcurrency'].'</td></tr>'.
        '<tr><td style="width: 200px;">Amount: </td><td>'.$array['amount'].'</td></tr>'.
        '<tr><td style="width: 200px;">Ordernumber: </td><td>'.$array['ordernumber'].'</td></tr>'.
-       '<tr><td style="width: 200px;">Payment Url: </td><td>'.$payment->getPaymentUrl().'</td></tr>'.
+       '<tr><td style="width: 200px;">Payment Url: </td><td>'.$payment->getCheckoutUrl().'</td></tr>'.
        '<tr><td style="width: 200px;">Webhook Url: </td><td>'.$shop->tx($array).'</td></tr>'.
        '</table></div></div>'.
        '<a class="submit btn btn-success" type="button" name="forward" value="'.$GATEWAY['Button_text'].' &nbsp;>" href="#" />';
