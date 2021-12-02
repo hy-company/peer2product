@@ -89,7 +89,7 @@ function paymentform($array,$shop) {
        '<tr><td style="width: 200px;">Currency: </td><td>'.$SET['shopcurrency'].'</td></tr>'.
        '<tr><td style="width: 200px;">Amount: </td><td>'.$array['amount'].'</td></tr>'.
        '<tr><td style="width: 200px;">Ordernumber: </td><td>'.$array['ordernumber'].'</td></tr>'.
-       '<tr><td style="width: 200px;">Payment Url: </td><td>'.$payment->getPaymentUrl().'</td></tr>'.
+       '<tr><td style="width: 200px;">Payment Url: </td><td>'.$payment->getCheckoutUrl().'</td></tr>'.
        '<tr><td style="width: 200px;">Webhook Url: </td><td>'.$shop->tx($array).'</td></tr>'.
        '</table></div></div>'.
        '<a class="submit btn btn-success" type="button" name="forward" value="'.$GATEWAY['Button_text'].' &nbsp;>" href="#" />';
