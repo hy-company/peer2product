@@ -52,7 +52,7 @@ if (isset($array['ordernumber'])) {
       $array=$input[$_SESSION['ordernumber']];
       unset($array['sequence']);
     } else if (file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.json')) {
-      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' ),TRUE );
+      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.json' ),TRUE );
       $array=$input[$_SESSION['ordernumber']];
       unset($array['sequence']);
     }
