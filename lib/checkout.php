@@ -361,6 +361,7 @@ switch($array['sequence']) {
     if (isset($array['orderstatus']) && $array['orderstatus']>=99) {
       // send e-mail to client and shopadministrators
       if($array['orderstatus']==100) {
+        sleep(8);  // wait to avoid collisions writing file
         $users = array(); $users[] = array('e-mail'=>$array['email'],'receive_notifications'=>1);
         $shop->reporting($SET['data/'],$array,$users,'order_complete');
       }
