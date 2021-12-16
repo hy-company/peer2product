@@ -76,7 +76,7 @@ if (isset($_GET['s'])) {
 
   $array['orderstatus'] = $array['orderstatus']?$array['orderstatus']:0;
 
-  if($array['orderstatus'] && $_GET['s']>$array['orderstatus']) {
+  if($_GET['s']>$array['orderstatus']) {
     $array['orderstatus'] = $_GET['s'];
   }
 }
