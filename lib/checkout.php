@@ -74,10 +74,10 @@ if (!isset($array['sequence'])) {
 if (isset($_GET['s'])) {
   $array['sequence'] = 4;
 
+  $array['orderstatus'] = $array['orderstatus']?$array['orderstatus']:0;
+
   if($array['orderstatus'] && $_GET['s']>$array['orderstatus']) {
     $array['orderstatus'] = $_GET['s'];
-  } else {
-    $array['orderstatus'] = 0;
   }
 }
 
