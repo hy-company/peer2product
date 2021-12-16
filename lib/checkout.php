@@ -43,17 +43,25 @@ if(isset($array['gateway'])) {
 }
 
 // give a shopper back his old data at checkout when roaming website
-$array['ordernumber']?$array['ordernumber']:uniqid();
-// retrieve old ordernumber from active session, load order data into array
-if(isset($_SESSION['ordernumber'])) {
-  if(file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending')) {
-    $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' ),TRUE );
-    $array=$input[$_SESSION['ordernumber']];
-    unset($array['sequence']);
+if (isset($array['ordernumber'])) {
+  if(isset($_SESSION['ordernumber'])) {
+    // retrieve old ordernumber from active session
+    // load order data into array
+    if(file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending')) {
+      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' ),TRUE );
+      $array=$input[$_SESSION['ordernumber']];
+      unset($array['sequence']);
+    } else if (file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.json')) {
+      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' ),TRUE );
+      $array=$input[$_SESSION['ordernumber']];
+      unset($array['sequence']);
+    }
+    $array['ordernumber'] = $_SESSION['ordernumber'];
+  } else {
+    // create new ordernumber
+    $array['ordernumber'] = uniqid();
+    $_SESSION['ordernumber'] = $array['ordernumber'];
   }
-  $array['ordernumber'] = $_SESSION['ordernumber'];
-} else {
-  $_SESSION['ordernumber'] = $array['ordernumber'];
 }
 
 if (!isset($array['sequence'])) {
