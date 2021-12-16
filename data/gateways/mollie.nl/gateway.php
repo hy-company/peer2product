@@ -27,6 +27,8 @@ function paymentgate($array,$shop) {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    $array['forwardurl'] = $array['MollieCheckoutURL'];
+
     return $array;
 }
 
@@ -62,17 +64,11 @@ function paymentform($array,$shop) {
 
     ]);
 
-
-
     echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
          '<span>'.$GATEWAY['description'].'</span></div>';
 
-echo $array['forwardurl'].'<br><br>';
-
-    // x array value
-    $array['forwardurl'] = $payment->getCheckoutUrl();
-
-echo $array['forwardurl'].'<br><br>';
+    // make sure we get forwarded to Mollie when the user clicks on Finish...
+    $array['MollieCheckoutURL'] = $payment->getCheckoutUrl();
 
     echo "<input type='hidden' name='x' value='".$shop->tx($array)."' />";
 
