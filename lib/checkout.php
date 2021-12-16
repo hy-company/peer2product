@@ -43,21 +43,12 @@ if(isset($array['gateway'])) {
 }
 
 // give a shopper back his old data at checkout when roaming website
-if (!isset($array['ordernumber'])) {
-  if(isset($_SESSION['ordernumber'])) {
-    // retrieve old ordernumber from active session
-    // load order data into array
-    if(file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending')) {
-      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' ),TRUE );
-      $array=$input[$_SESSION['ordernumber']];
-      unset($array['sequence']);
-    }
-    $array['ordernumber'] = $_SESSION['ordernumber'];
-  } else {
-    // create new ordernumber
-    $array['ordernumber'] = uniqid();
-    $_SESSION['ordernumber'] = $array['ordernumber'];
-  }
+$_SESSION['ordernumber']?$_SESSION['ordernumber']: $array['ordernumber']?$array['ordernumber']:uniqid();
+// retrieve old ordernumber from active session, load order data into array
+if(file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending')) {
+  $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' ),TRUE );
+  $array=$input[$_SESSION['ordernumber']];
+  unset($array['sequence']);
 }
 
 if (!isset($array['sequence'])) {
@@ -355,98 +346,98 @@ switch($array['sequence']) {
   case 4:
     // return values when good payment -> http://example.com/checkout.php?orderId=333316177X1bcc7a&orderStatusId=100&paymentSessionId=333316177
     if (isset($array['orderstatus']) && $array['orderstatus']>=99) {
-        // send e-mail to client and shopadministrators
-        if($array['orderstatus']==100) {
-          $users = array(); $users[] = array('e-mail'=>$array['email'],'receive_notifications'=>1);
-          $shop->reporting($SET['data/'],$array,$users,'order_complete');
-        }
-        $users = $shop->get_users($SET['data/'].$SET['user/']);
+      // send e-mail to client and shopadministrators
+      if($array['orderstatus']==100) {
+        $users = array(); $users[] = array('e-mail'=>$array['email'],'receive_notifications'=>1);
         $shop->reporting($SET['data/'],$array,$users,'order_complete');
-        // adjust stock amounts according to order
-        $remoteorders = array();
-        foreach($jcart->items as $cnt => $item) {
-          $tmp = explode('|',$item);
-          $id = $tmp[0];
-          $vendorid = (isset($tmp[1])?$tmp[1]:FALSE);
-          if(!$vendorid) {
-            // subtract from stock, add to sales
-            $product = $shop->get_product($SET['data/'].$SET['prod/'],$id);
-            if(isset($product[$id])) {
-              if($product[$id]['stock']!=-1) {
-                $product[$id]['stock'] = $product[$id]['stock']-$array['quantities'][$id];
-              }
-              $product[$id]['sales'] = $product[$id]['sales']+$array['quantities'][$id];
-              $shop->put_stocks($SET['data/'].$SET['prod/'],$product);
+      }
+      $users = $shop->get_users($SET['data/'].$SET['user/']);
+      $shop->reporting($SET['data/'],$array,$users,'order_complete');
+      // adjust stock amounts according to order
+      $remoteorders = array();
+      foreach($jcart->items as $cnt => $item) {
+        $tmp = explode('|',$item);
+        $id = $tmp[0];
+        $vendorid = (isset($tmp[1])?$tmp[1]:FALSE);
+        if(!$vendorid) {
+          // subtract from stock, add to sales
+          $product = $shop->get_product($SET['data/'].$SET['prod/'],$id);
+          if(isset($product[$id])) {
+            if($product[$id]['stock']!=-1) {
+              $product[$id]['stock'] = $product[$id]['stock']-$array['quantities'][$id];
             }
-          } else {
-            // add id's to remote order array, thus sorting by vendor
-            $remoteorders[ $vendorid ][] = $id;
+            $product[$id]['sales'] = $product[$id]['sales']+$array['quantities'][$id];
+            $shop->put_stocks($SET['data/'].$SET['prod/'],$product);
           }
-        }
-        // log add total number of sales
-        if(!file_exists($SET['data/'].$SET['stat/'].'sales')) {
-          mkdir($SET['data/'].$SET['stat/'].'sales',0777,TRUE);
         } else {
-          $filename = $SET['data/'].$SET['stat/'].'sales/'.date('Y-m-d').'.asc';
-          if(file_exists($filename)) {
-            $sales = file_get_contents($filename);
-          } else {
-            touch($filename);
-            $sales=0;
-          }
-          $sales++;
-          file_put_contents($filename,$sales);
+          // add id's to remote order array, thus sorting by vendor
+          $remoteorders[ $vendorid ][] = $id;
         }
-        // load list of vendors
-        $vendors = $shop->get_vendors($SET['data/'].$SET['vend/']);
-        // push productid's to create remote orders with vendors, log into settlements
-        $settlements = array();
-        foreach($remoteorders as $vendorid => $ids) {
-            // send remote order
-            $hash = crc32($vendors[ $vendorid ]['secret']);
-            // share array excluding original product table, amount, weight
-            $s_array = $array; unset($s_array['product-table']); unset($s_array['subtotal']); unset($s_array['amount']); unset($s_array['weight']); unset($s_array['size']); unset($s_array['transport']);
-            // add settlement margin percentage value for easy remote calculation
-            $s_array['settlementmargin'] = $vendors[ $vendorid ]['reseller_margin'];
-            $query = $shop->tx( array($hash,'ord',array($ids,$s_array)) );
-            // settlement and total amount is returned and added to settlements list
-            $settlements[$vendorid] = $shop->rx(file_get_contents( $vendors[ $vendorid ]['host'].'?q='.$query ),$vendors[ $vendorid ]['secret']);
+      }
+      // log add total number of sales
+      if(!file_exists($SET['data/'].$SET['stat/'].'sales')) {
+        mkdir($SET['data/'].$SET['stat/'].'sales',0777,TRUE);
+      } else {
+        $filename = $SET['data/'].$SET['stat/'].'sales/'.date('Y-m-d').'.asc';
+        if(file_exists($filename)) {
+          $sales = file_get_contents($filename);
+        } else {
+          touch($filename);
+          $sales=0;
         }
-        // write out settlements
-        foreach($settlements as $vendorid => $data) {
-          // write the settlement with the orderid!
-          $shop->put_settlement($SET['data/'].$SET['sett/'],'d',$vendorid,$array['ordernumber'],$data['subtotal'],$data['settlement'],$data['transport'],$data['modifiers'],$data['margin']);
-        }
-        // display HAPPY face ;)
-        ?>
-        <div class="clear"></div>
-        <div id="checkout-container">
-          <form method="post" action="checkout" name="orderForm" id="orderForm">
-          <?php echo paymentnav($shop->tx($array),$STR['Return'],$STR['Back'],FALSE); ?>
-          <div id="checkout-form">
-            <div class="navsteps">
-              <span class="badge">1. <?=$STR['Delivery'];?></span>
-              <span class="badge">2. <?=$STR['Validation'];?></span>
-              <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
-            </div>
-            <h2><?=$STR['Order_succesful'];?></h2>
-            <center>
-              <?=$STR['Processing_order'];?><br><br>
-              <img src="ui/images/happyface.png"/>
-              <br><br>
-            </center>
+        $sales++;
+        file_put_contents($filename,$sales);
+      }
+      // load list of vendors
+      $vendors = $shop->get_vendors($SET['data/'].$SET['vend/']);
+      // push productid's to create remote orders with vendors, log into settlements
+      $settlements = array();
+      foreach($remoteorders as $vendorid => $ids) {
+          // send remote order
+          $hash = crc32($vendors[ $vendorid ]['secret']);
+          // share array excluding original product table, amount, weight
+          $s_array = $array; unset($s_array['product-table']); unset($s_array['subtotal']); unset($s_array['amount']); unset($s_array['weight']); unset($s_array['size']); unset($s_array['transport']);
+          // add settlement margin percentage value for easy remote calculation
+          $s_array['settlementmargin'] = $vendors[ $vendorid ]['reseller_margin'];
+          $query = $shop->tx( array($hash,'ord',array($ids,$s_array)) );
+          // settlement and total amount is returned and added to settlements list
+          $settlements[$vendorid] = $shop->rx(file_get_contents( $vendors[ $vendorid ]['host'].'?q='.$query ),$vendors[ $vendorid ]['secret']);
+      }
+      // write out settlements
+      foreach($settlements as $vendorid => $data) {
+        // write the settlement with the orderid!
+        $shop->put_settlement($SET['data/'].$SET['sett/'],'d',$vendorid,$array['ordernumber'],$data['subtotal'],$data['settlement'],$data['transport'],$data['modifiers'],$data['margin']);
+      }
+      // display HAPPY face ;)
+      ?>
+      <div class="clear"></div>
+      <div id="checkout-container">
+        <form method="post" action="checkout" name="orderForm" id="orderForm">
+        <?php echo paymentnav($shop->tx($array),$STR['Return'],$STR['Back'],FALSE); ?>
+        <div id="checkout-form">
+          <div class="navsteps">
+            <span class="badge">1. <?=$STR['Delivery'];?></span>
+            <span class="badge">2. <?=$STR['Validation'];?></span>
+            <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
           </div>
-          <?php echo paymentnav($shop->tx($array),$STR['Return'],$STR['Back'],FALSE); ?>
-          </form>
+          <h2><?=$STR['Order_succesful'];?></h2>
+          <center>
+            <?=$STR['Processing_order'];?><br><br>
+            <img src="ui/images/happyface.png"/>
+            <br><br>
+          </center>
         </div>
-        <?php
-        // clean up
-        if(!$TESTMODE) {
-          // empty the cart
-          $jcart->empty_cart();
-          // destroy ordernumber in session
-          unset($_SESSION['ordernumber']);
-        }
+        <?php echo paymentnav($shop->tx($array),$STR['Return'],$STR['Back'],FALSE); ?>
+        </form>
+      </div>
+      <?php
+      // clean up
+      if(!$TESTMODE) {
+        // empty the cart
+        $jcart->empty_cart();
+        // destroy ordernumber in session
+        unset($_SESSION['ordernumber']);
+      }
     } else {
       // no correct data, show checkout error page
       $array['sequence']=$array['sequence']-3;  // Go back to pre-payment status.

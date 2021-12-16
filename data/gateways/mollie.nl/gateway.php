@@ -21,13 +21,6 @@ function paymentgate($array,$shop) {
     die();
   }
 
-  /*
-   * Make sure to disable the display of errors in production code!
-   */
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
-
   try {
     /*
      * Initialize the Mollie API library with API key.
@@ -67,12 +60,13 @@ function paymentgate($array,$shop) {
        '</table></div>'
     */
 
-    return $array;
 
   } catch(Exception $exc) {
-    echo '<p>Error: Exception while trying to instantiate Mollie payment method!</p>'.
-         '<p>'.$exc.'</p>';
+    $array['forwardurl'] = $strReturnUrl.'?orderId='.$array['ordernumber'].'&orderStatusId=0&error='.$exc->getMessage();
+    return $array;
   }
+
+  return $array;
 
 }
 
