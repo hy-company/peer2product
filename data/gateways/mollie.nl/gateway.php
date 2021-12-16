@@ -8,38 +8,25 @@
 
 $array['payment_method']='mollie.nl';
 
+$array['forwardurl'] = $SITE.'?checkout&x='.$array['ordernumber'];
+
 // if(isset($_POST['next']) && $_POST['next']=='Pay') {
 function paymentgate($array,$shop) {
-    global $GATEWAY,$SET,$STR;
-    // get gateway variables
-    require($GATEWAY['directory'].'settings.php');
-
-    if (!isset($array['amount']) || !isset($array['ordernumber'])) {
-      echo 'Missing amount or ordernumber!';
-      die();
-    }
-
-    /*
-     * Make sure to disable the display of errors in production code!
-     */
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
-    return $array;
-}
-
-function paymentform($array,$shop) {
   global $GATEWAY,$SITE,$SET,$STR;
   // get gateway variables
   require($GATEWAY['directory'].'settings.php');
-
-  $array['forwardurl'] = $SITE.'?checkout&x='.$array['ordernumber'];
 
   if (!isset($array['amount']) || !isset($array['ordernumber'])) {
     echo 'Missing amount or ordernumber!';
     die();
   }
+
+  /*
+   * Make sure to disable the display of errors in production code!
+   */
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
 
   try {
     /*
@@ -62,14 +49,7 @@ function paymentform($array,$shop) {
 
     ]);
 
-    echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
-         '<span>'.$GATEWAY['description'].'</span><br><br>'.
-         $STR['Paying_via'].':<br><img src="'.$GATEWAY['directory'].'mollie.jpeg" /></div>';
-
-    // make sure we get forwarded to Mollie when the user clicks on Finish...
     $array['forwardurl'] = $payment->getCheckoutUrl();
-
-    echo "<input type='hidden' name='x' value='".$shop->tx($array)."' />";
 
     /* DEBUG
      * If you want to forward the user:
@@ -86,10 +66,32 @@ function paymentform($array,$shop) {
        '<tr><td style="width: 200px;">Webhook Url: </td><td>'.$array['forwardurl'].'&s=100</td></tr>'.
        '</table></div>'
     */
+
+    return $array;
+
   } catch(Exception $exc) {
     echo '<p>Error: Exception while trying to instantiate Mollie payment method!</p>'.
          '<p>'.$exc.'</p>';
   }
+
+}
+
+function paymentform($array,$shop) {
+  global $GATEWAY,$SET,$STR;
+  // get gateway variables
+  require($GATEWAY['directory'].'settings.php');
+
+  if (!isset($array['amount']) || !isset($array['ordernumber'])) {
+    echo 'Missing amount or ordernumber!';
+    die();
+  }
+
+  echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
+       '<span>'.$GATEWAY['description'].'</span><br><br>'.
+       $STR['Paying_via'].':<br><img src="'.$GATEWAY['directory'].'mollie.jpeg" /></div>';
+
+  echo "<input type='hidden' name='x' value='".$shop->tx($array)."' />";
+
 }
 
 ?>

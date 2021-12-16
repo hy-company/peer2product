@@ -1,6 +1,6 @@
 <?php
 // some hardcoded settings...
-$TESTMODE = TRUE;
+$TESTMODE = FALSE;
 
 $DEBUG = FALSE;
 error_reporting($DEBUG || $TESTMODE ? E_ERROR | E_WARNING | E_PARSE : 0);
