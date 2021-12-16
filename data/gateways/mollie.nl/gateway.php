@@ -30,7 +30,7 @@ function paymentgate($array,$shop) {
 }
 
 function paymentform($array,$shop) {
-  global $GATEWAY,$SET,$STR;
+  global $GATEWAY,$SITE,$SET,$STR;
   // get gateway variables
   require($GATEWAY['directory'].'settings.php');
 
@@ -57,8 +57,8 @@ function paymentform($array,$shop) {
             "value" => $shop->formatn($array['amount'])
         ],
         "description" => $array['ordernumber'],
-        "redirectUrl" => $SITE.$array['forwardurl'].'&s=99',
-        "webhookUrl"  => $SITE.$array['forwardurl'].'&s=100'
+        "redirectUrl" => $array['forwardurl'].'&s=99',
+        "webhookUrl"  => $array['forwardurl'].'&s=100'
 
     ]);
 
