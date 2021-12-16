@@ -88,7 +88,7 @@ function paymentform($array,$shop) {
 
   echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
        '<span>'.$GATEWAY['description'].'</span><br><br>'.
-       $STR['Paying_via'].':<br><img src="'.$GATEWAY['directory'].'mollie.jpeg" /></div>';
+       $STR['Paying_via'].':<br><img style="border-radius: 32px; margin-top: 24px; margin-bottom: 24px;" src="'.$GATEWAY['directory'].'mollie.jpeg" /></div>';
 
   echo "<input type='hidden' name='x' value='".$shop->tx($array)."' />";
 
