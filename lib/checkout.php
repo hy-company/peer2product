@@ -345,7 +345,7 @@ switch($array['sequence']) {
         $output[$orderid] = $array;
         unset($output[$orderid]['ordernumber']);
         file_put_contents($SET['data/'].$SET['ordr/'].$orderid.'.pending',json_encode($output));
-        sleep(1);  // give external processes some time...
+        sleep(2);  // give external processes some time...
         // forward user to payment processor...
         if($TESTMODE) {
           // DEBUG: TEMPORARY FAKE TO SIMULATE SUCCESS OF payment processor Pay.nl...
@@ -361,7 +361,7 @@ switch($array['sequence']) {
     if (isset($array['orderstatus']) && $array['orderstatus']>=99) {
       // send e-mail to client and shopadministrators
       if($array['orderstatus']==100) {
-        sleep(8);  // wait to avoid collisions writing file
+        sleep(2);  // wait to avoid collisions writing file
         $users = array(); $users[] = array('e-mail'=>$array['email'],'receive_notifications'=>1);
         $shop->reporting($SET['data/'],$array,$users,'order_complete');
       }
@@ -485,12 +485,15 @@ switch($array['sequence']) {
     }
     if(!$TESTMODE) {
       // store order in file
-      $array['time'] = time(); // add time of order creation
       $orderid = $array['ordernumber'];
-      $output[$orderid] = $array;
       unset($output[$orderid]['ordernumber']);
-      file_put_contents($SET['data/'].$SET['ordr/'].$orderid.'.json',json_encode($output));
-      unlink($SET['data/'].$SET['ordr/'].$orderid.'.pending');
+      $filenameNoExt = $SET['data/'].$SET['ordr/'].$orderid;
+      if(file_exists($filenameNoExt.'.json')||file_exists($filenameNoExt.'.pending')) {
+        $array['time'] = time(); // add time of order creation
+        $output[$orderid] = $array;
+        file_put_contents($filenameNoExt.'.json',json_encode($output));
+        unlink($SET['data/'].$SET['ordr/'].$orderid.'.pending');
+      }
     }
   break;
   case 5:
