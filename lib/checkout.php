@@ -72,8 +72,13 @@ if (!isset($array['sequence'])) {
 
 // have we returned from an order? route to evaluation of the orderstatus
 if (isset($_GET['s'])) {
-  $array['orderstatus'] = (isset($_GET['s'])?$_GET['s']:0);
   $array['sequence'] = 4;
+
+  if($array['orderstatus'] && $_GET['s']>$array['orderstatus']) {
+    $array['orderstatus'] = $_GET['s'];
+  } else {
+    $array['orderstatus'] = 0;
+  }
 }
 
 function paymentnav($tx,$next = FALSE,$back = FALSE,$enabled = TRUE) {
