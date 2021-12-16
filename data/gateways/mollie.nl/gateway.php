@@ -7,7 +7,7 @@
  */
 
 $array['payment_method']='mollie.nl';
-$array['forwardurl'] = $SITE.'?checkout&x='.$array['ordernumber'].'&s=99';
+$array['forwardurl'] = $SITE.'?checkout&x='.$array['ordernumber'];
 
 //        if(isset($_POST['next']) && $_POST['next']=='Pay') {
 function paymentgate($array,$shop) {
@@ -75,8 +75,8 @@ function paymentform($array,$shop) {
             "value" => $shop->formatn($array['amount'])
         ],
         "description" => $array['ordernumber'],
-        "redirectUrl" => 'https://peer2product.com/redirected',
-        "webhookUrl"  => 'https://peer2product.com/webhook'
+        "redirectUrl" => $array['forwardurl'].'&s=90',
+        "webhookUrl"  => $array['forwardurl'].'&s=99'
 
     ]);
 
