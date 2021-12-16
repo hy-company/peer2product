@@ -43,7 +43,7 @@ if(isset($array['gateway'])) {
 }
 
 // give a shopper back his old data at checkout when roaming website
-if (isset($array['ordernumber'])) {
+if (!isset($array['ordernumber'])) {
   if(isset($_SESSION['ordernumber'])) {
     // retrieve old ordernumber from active session
     // load order data into array
