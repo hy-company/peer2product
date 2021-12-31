@@ -29,6 +29,21 @@ class functions {
     return $notify;
   }
 
+
+  function get_json($file) {
+    // get categories
+    if(file_exists($file)) {
+      $json = json_decode(file_get_contents($file), true);
+    } else { $json = array(); }
+    return $json;
+  }
+
+  function put_json($file,$array) {
+    // write json data - TODO: error checking for successful write?!
+    file_put_contents($file,json_encode($array));
+    return TRUE;
+  }
+
   // update array or merge keys
   function update_array($array,$update) {
     if(is_array($update) && is_array($update)) {
@@ -280,7 +295,7 @@ class functions {
     if($id) {
       $subhandle = opendir($directory.'/'.$id);
       while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
-        $json = json_decode(file_get_contents($directory.'/'.$id.'/'.$file), true);
+        $json = $this->get_json($directory.'/'.$id.'/'.$file)
         foreach($json as $vendorid => $item) {
           if(!isset($item['subtotal'])) { $item['subtotal']=0; }
           if(!isset($item['modifiers'])) { $item['modifiers']=0; }
@@ -296,7 +311,7 @@ class functions {
       while ($subdir = readdir($handle)) if (!in_array($subdir, array('.', '..','README.md'))) {
         $subhandle = opendir($directory.$subdir);
         while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
-          $json = json_decode(file_get_contents($directory.$subdir.'/'.$file), true);
+          $json = $this->get_json($directory.$subdir.'/'.$file);
           foreach($json as $vendorid => $item) {
             if(isset($item['type'])) {
               if(!isset($item['subtotal'])) { $item['subtotal']=0; }
@@ -385,7 +400,7 @@ class functions {
   function get_product($directory,$id) {
     $array = FALSE;
     if(file_exists($directory.$id.'/product.json')) {
-      $array = json_decode(file_get_contents($directory.$id.'/product.json'), true);
+      $array = $this->get_json($directory.$id.'/product.json');
     }
     // load stock amount
     if(file_exists($directory.$id.'/stock.asc')) {
@@ -438,7 +453,7 @@ class functions {
     $handle = opendir($directory);
     while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
       if(file_exists($directory.$file.'/product.json')) {
-        $json = json_decode(file_get_contents($directory.$file.'/product.json'), true);
+        $json = $this->get_json($directory.$file.'/product.json');
         foreach($json as $id => $product) {
           if(isset($product['tags'])) { $categories = explode(',',$product['tags']); } else { $categories=array(); }
           if($tags!=-1) {
@@ -503,7 +518,7 @@ class functions {
     $handle = opendir($directory);
     $vendors = array();
     while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
-      $json = json_decode(file_get_contents($directory.$file.'/vendor.json'), true);
+      $json = $this->get_json($directory.$file.'/vendor.json');
       foreach($json as $id => $vendor) $vendors[$id] = $vendor;
     }
     $vendors = $this->deepsort($vendors,'name',TRUE);
@@ -516,25 +531,11 @@ class functions {
     $handle = opendir($directory);
     $users = array();
     while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
-      $json = json_decode(file_get_contents($directory.$file.'/user.json'), true);
+      $json = $this->get_json($directory.$file.'/user.json')
       foreach($json as $id => $user) $users[$id] = $user;
     }
     closedir($handle);
     return $users;
-  }
-
-  function get_json($file) {
-    // get categories
-    if(file_exists($file)) {
-      $json = json_decode(file_get_contents($file), true);
-    } else { $json = array(); }
-    return $json;
-  }
-
-  function put_json($file,$array) {
-    // write json data - TODO: error checking for successful write?!
-    file_put_contents($file,json_encode($array));
-    return TRUE;
   }
 
   function get_gateways($directory) {
@@ -1057,7 +1058,7 @@ class functions {
   }
 
   function rx($string,$key = '#') {
-    return json_decode($this->net_decode($string,$key.'p4dd%ng#r(jNda3l') ,TRUE);
+    return json_decode($this->net_decode($string,$key.'p4dd%ng#r(jNda3l'), true);
   }
 
 }
