@@ -30,20 +30,16 @@ class functions {
   }
 
   // merge objectB into default objectA
-  function merge_objects($objectA,$objectB) {
-    $merged_object = {};
-    if(is_array($objectA)) {
-      //Assign the values of the first object into new object
-      foreach($objectA as $property => $value) {
-        $merged_object->$property = $value;
+  function merge_arrays($objectA,$objectB) {
+    if(is_array($objectA) && is_array($objectB)) {
+      //mutate or add the values of the second object into first object
+      foreach($objectB as $key => $value) {
+        $objectA[$key] = $value;
       }
-
-      //Append the values of the second object into new object
-      foreach($objectB as $property => $value) {
-        $merged_object->$property = $value;
-      }
+    } else {
+      die('Fatal error: Cannot merge arrays!');
     }
-    return $merged_object;
+    return $objectA;
   }
 
   // update array or merge keys
