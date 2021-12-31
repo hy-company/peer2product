@@ -1,4 +1,4 @@
-<?php	
+<?php
 	include('lib/init.php');
 	// if going through payment gateway forwarding, do not display html
 	if(isset($_GET['q']) || (isset($_POST['next']) && $_POST['next']=='Pay')) {
