@@ -507,7 +507,7 @@ class functions {
   /*function get_vendor($directory,$id) {
     // get vendor
     $vendors = array();
-    $json = json_decode(file_get_contents($directory.$id.'/vendor.json'), true);
+    $json = $this->get_json($directory.$id.'/vendor.json');
     foreach($json as $id => $vendor) $vendors[$id] = $vendor;
     $vendor = $vendors[$id];
     return $vendor;

@@ -13,7 +13,7 @@ try {
   } else {
     // on return from payment gateway, restore order from file storage
     if(file_exists($SET['data/'].$SET['ordr/'].$_GET['x'].'.pending')) {
-      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_GET['x'].'.pending' ),TRUE );
+      $input=$shop->get_json( $SET['data/'].$SET['ordr/'].$_GET['x'].'.pending' );
       $array=$input[$_GET['x']];
       $array['ordernumber'] = $_GET['x'];
     }
@@ -48,11 +48,11 @@ if (!isset($array['ordernumber'])) {
     // retrieve old ordernumber from active session
     // load order data into array
     if(file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending')) {
-      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' ),TRUE );
+      $input=$shop->get_json( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.pending' );
       $array=$input[$_SESSION['ordernumber']];
       unset($array['sequence']);
     } else if (file_exists($SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.json')) {
-      $input=json_decode( file_get_contents( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.json' ),TRUE );
+      $input=$shop->get_json( $SET['data/'].$SET['ordr/'].$_SESSION['ordernumber'].'.json' );
       $array=$input[$_SESSION['ordernumber']];
       unset($array['sequence']);
     }
