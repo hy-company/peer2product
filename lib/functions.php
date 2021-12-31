@@ -29,28 +29,14 @@ class functions {
     return $notify;
   }
 
-  // merge objectB into default objectA
-  function merge_arrays($objectA,$objectB) {
-    if(is_array($objectA) && is_array($objectB)) {
-      //mutate or add the values of the second object into first object
-      foreach($objectA as $key => $value) {
-        $object_new[$key] = $value;
-      }
-      foreach($objectB as $key => $value) {
-        $object_new[$key] = $value;
-      }
-    } else {
-      die('Fatal error: Cannot merge arrays!');
-    }
-    return $object_new;
-  }
-
   // update array or merge keys
   function update_array($array,$update) {
-    if(is_array($update)) {
+    if(is_array($update) && is_array($update)) {
       foreach($update as $key => $value) {
         $array[$key]=$value;
       }
+    } else {
+      die('Fatal error: cannot merge array data!');
     }
     return $array;
   }

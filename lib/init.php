@@ -25,9 +25,9 @@
   $shop = new functions;
   // get and merge settings
   $DEF = $shop->get_json($SET['data/'].'settings.def');
-  $SET = $shop->merge_arrays($SET,$shop->get_json($SET['data/'].'settings.json'));
+  $SET = $shop->update_array($SET,$shop->get_json($SET['data/'].'settings.json'));
   // NOT NEEDED: $SET = $shop->merge_arrays($DEF,$SET);
 
   // merge translation default and customizations
-  $STR = $shop->merge_arrays($shop->get_json($SET['data/'].'translation.def'),$shop->get_json($SET['data/'].'translation.json'));
+  $STR = $shop->update_array($shop->get_json($SET['data/'].'translation.def'),$shop->get_json($SET['data/'].'translation.json'));
 ?>
