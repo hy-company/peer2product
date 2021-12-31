@@ -27,7 +27,7 @@
   $DEF = json_decode(file_get_contents( $SET['data/'].'settings.def' ), true);
   $SET = $shop->update_array($SET,$shop->get_json($SET['data/'].'settings.json'));
   // merge translation-default and customizations
-  $langDefault = json_decode(file_get_contents( 'translation-default.json' ), true);
+  $langDefault = json_decode(file_get_contents( $SET['data/'].'translation.def' ), true);
   $langCustom = json_decode(file_get_contents( $SET['data/'].'translation.json' ), true);
   $STR = $shop->merge_objects($langDefault,$langCustom);
 ?>
