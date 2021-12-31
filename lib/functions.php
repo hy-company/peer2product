@@ -295,7 +295,7 @@ class functions {
     if($id) {
       $subhandle = opendir($directory.'/'.$id);
       while ($file = readdir($subhandle)) if (!in_array($file, array('.', '..','README.md'))) {
-        $json = $this->get_json($directory.'/'.$id.'/'.$file)
+        $json = $this->get_json($directory.'/'.$id.'/'.$file);
         foreach($json as $vendorid => $item) {
           if(!isset($item['subtotal'])) { $item['subtotal']=0; }
           if(!isset($item['modifiers'])) { $item['modifiers']=0; }
@@ -531,7 +531,7 @@ class functions {
     $handle = opendir($directory);
     $users = array();
     while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
-      $json = $this->get_json($directory.$file.'/user.json')
+      $json = $this->get_json($directory.$file.'/user.json');
       foreach($json as $id => $user) $users[$id] = $user;
     }
     closedir($handle);
