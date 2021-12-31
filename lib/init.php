@@ -24,10 +24,7 @@
   include_once('lib/functions.php');  // quick 'n dirty injection of shop/product functions class
   $shop = new functions;
   // get settings
-  $DEF = json_decode(file_get_contents( $SET['data/'].'settings.def' ), true);
-  $SET = $shop->update_array($SET,$shop->get_json($SET['data/'].'settings.json'));
-  // merge translation-default and customizations
-  $langDefault = json_decode(file_get_contents( $SET['data/'].'translation.def' ), true);
-  $langCustom = json_decode(file_get_contents( $SET['data/'].'translation.json' ), true);
-  $STR = $shop->merge_objects($langDefault,$langCustom);
+  $SET = $shop->update_array($shop->get_json($SET['data/'].'settings.def'), $shop->get_json($SET['data/'].'settings.json'));
+  // merge translation default and customizations
+  $STR = $shop->update_array($shop->get_json($SET['data/'].'translation.def'),$shop->get_json($SET['data/'].'translation.json'));
 ?>

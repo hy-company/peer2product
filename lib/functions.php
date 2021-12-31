@@ -942,18 +942,9 @@ class functions {
     return number_format($number , 2, '.', '');
   }
 
-  function merge_objects($object1, $object2) {
-      // merge two objects using array_merge_recursive()
-      $Obj1 = (array) $object1;
-      $Obj2 = (array) $object2;
-      $merged = array_merge_recursive($Obj1, $Obj2);
-      return (object) $merged;
-  }
-
   function reporting($directory,$array,$users,$type) {
     // get settings
-    $DEF = $this->get_json($directory.'settings.def');
-    $SET = $this->update_array($DEF,$this->get_json($directory.'settings.json'));
+    $SET = $this->update_array($this->get_json($directory.'settings.def'), $this->get_json($directory.'settings.json'));
     $reporting = $this->get_json($directory.'reporting.json');
     if($reporting) {
       $style = '<style>.table {width: 100%;} .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding: 8px;line-height: 1.42857;vertical-align: top;border-top: 1px solid #DDD;} .checkout-table-modif {color: #FFF;background-color: #6A6A6A !important;} .checkout-table-total {color: #FFF;background-color: #555 !important;} </style>';
