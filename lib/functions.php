@@ -29,6 +29,23 @@ class functions {
     return $notify;
   }
 
+  // merge objectB into default objectA
+  function merge_objects($objectA,$objectB) {
+    $merged_object = {};
+    if(is_array($objectA)) {
+      //Assign the values of the first object into new object
+      foreach($objectA as $property => $value) {
+        $merged_object->$property = $value;
+      }
+
+      //Append the values of the second object into new object
+      foreach($objectB as $property => $value) {
+        $merged_object->$property = $value;
+      }
+    }
+    return $merged_object;
+  }
+
   // update array or merge keys
   function update_array($array,$update) {
     if(is_array($update)) {
