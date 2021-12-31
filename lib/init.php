@@ -23,8 +23,9 @@
   // requires and includes
   include_once('lib/functions.php');  // quick 'n dirty injection of shop/product functions class
   $shop = new functions;
-  // get settings
-  $SET = $shop->merge_arrays($shop->get_json($SET['data/'].'settings.def'), $shop->get_json($SET['data/'].'settings.json'));
+  // get and merge settings
+  $DEF = $shop->merge_arrays($shop->get_json($SET['data/'].'settings.def'), $shop->get_json($SET['data/'].'settings.json'));
+  $SET = $shop->merge_arrays($SET,$DEF);
   // merge translation default and customizations
   $STR = $shop->merge_arrays($shop->get_json($SET['data/'].'translation.def'),$shop->get_json($SET['data/'].'translation.json'));
 ?>
