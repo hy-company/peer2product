@@ -33,13 +33,16 @@ class functions {
   function merge_arrays($objectA,$objectB) {
     if(is_array($objectA) && is_array($objectB)) {
       //mutate or add the values of the second object into first object
+      foreach($objectA as $key => $value) {
+        $object_new[$key] = $value;
+      }
       foreach($objectB as $key => $value) {
-        $objectA[$key] = $value;
+        $object_new[$key] = $value;
       }
     } else {
       die('Fatal error: Cannot merge arrays!');
     }
-    return $objectA;
+    return $object_new;
   }
 
   // update array or merge keys
