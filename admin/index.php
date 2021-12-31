@@ -20,7 +20,7 @@ $f3->set('DATA', '../'.$f3->get('DATA') );
 // get authentication levels
 $AUTH = $f3->get('AUTH');
 // get translation data
-$LANG = $func->get_json( $f3->get('DATA').'translation.json' );
+$LANG = $func->merge_arrays( $func->get_json($f3->get('DATA').'translation.def'), $func->get_json($f3->get('DATA').'translation.json') );
 
 // check if authenticated
 $session = $f3->get('SESSION');
@@ -1462,7 +1462,8 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
 				$f3->set('sidebar',$f3->get('SETTINGSBAR'));
 				$f3->set('sidebar_active','settings/translate');
 				// load frontend translation... set all mappings as string
-				$json = $func->get_json( $f3->get('DATA').'translation.json' );
+                                $json = $func->merge_arrays( $func->get_json($f3->get('DATA').'translation.def'), $func->get_json($f3->get('DATA').'translation.json') );
+
 				$map = array();
 				foreach($json as $key => $val) {
 					$map[$key] = 'string';
