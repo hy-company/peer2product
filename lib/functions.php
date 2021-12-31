@@ -960,7 +960,7 @@ class functions {
                  '.$array['city'].'<br>
                  '.$array['country'].'</p>';
           $message = '<html><body>'.$style;
-          $message .= str_replace( array('{ordernumber}','{shopname}','{user}','{address}','{product-table}','{date}','{duedate}'), array($array['ordernumber'],$SET['shopname'],$username,$address,$array['product-table'],date('d-m-Y'),date('d-m-Y',strtotime('now +14 days'))), $reporting['order_complete_message'] );
+          $message .= str_replace(array('{ordernumber}','{shopname}','{user}','{address}','{product-table}','{date}','{duedate}'), array($array['ordernumber'],$SET['shopname'],$username,$address,$array['product-table'],date('d-m-Y'),date('d-m-Y',strtotime('now +14 days'))), $reporting['order_complete_message']);
           $message .= '</body></html>';
           $subject = str_replace(array('{ordernumber}','{shopname}'),array($array['ordernumber'],$SET['shopname']),$reporting['order_complete_subject']);
         break;
@@ -972,7 +972,7 @@ class functions {
                  '.$array['city'].'<br>
                  '.$array['country'].'</p>';
           $message = '<html><body>'.$style;
-          $message .= str_replace( array('{ordernumber}','{shopname}','{user}','{address}','{product-table}','{date}','{duedate}'), array($array['ordernumber'],$SET['shopname'],$username,$address,$array['product-table'],date('d-m-Y'),date('d-m-Y',strtotime('now +14 days'))), $reporting['order_sent_message'] );
+          $message .= str_replace(array('{ordernumber}','{shopname}','{user}','{address}','{product-table}','{date}','{duedate}'), array($array['ordernumber'],$SET['shopname'],$username,$address,$array['product-table'],date('d-m-Y'),date('d-m-Y',strtotime('now +14 days'))), $reporting['order_sent_message']);
           $message .= '</body></html>';
           $subject = str_replace(array('{ordernumber}','{shopname}'),array($array['ordernumber'],$SET['shopname']),$reporting['order_sent_subject']);
         break;

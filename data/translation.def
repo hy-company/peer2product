@@ -1,16 +1,16 @@
 {
  "ABOUT_THIS_TRANSLATION":"This is the standard English translation for Peer2Product.",
 
-"_Webshop Front-End":"",
+"_Webshop_Front-End":"",
  "Store":"Store","Checkout":"Checkout","About":"About","Terms":"Terms","Contact":"Contact","Sort_items_by":"Sort items by","sortbutton_name":"name","sortbutton_price":"price","sortbutton_date":"date","Add_to_cart":"+ Add to cart","Price":"Price:","Price_NoTax":"excl. tax","Stock":"Stock:","Origin":"Origin:","local":"local","Shopping_cart":"Shopping cart","item":"item","items":"items","origin":"origin:","Subtotal":"Subtotal","Transport":"Transport","TOTAL":"TOTAL","Update":"Update","remove_item":"remove","Empty_cart":"Empty cart","Your_cart_is_empty":"Your cart is empty.","Invalid_price_format":"Invalid price format!","Quantities_whole_numbers":"Quantities must be whole numbers!","Back":"Back","Next":"Next","Finish":"Finish","Return":"Return","Retry":"Retry","Delivery":"Delivery","Validation":"Validation","Payment":"Payment","mandatory_field":"mandatory field","Please_fill_in_address":"Please fill in your address.","Address":"Address","Ordernumber":"Ordernumber","Company":"Company","Taxnumber":"Tax number","Firstname":"Firstname","Preposition":"Preposition","Lastname":"Lastname","Streetname":"Streetname","Housenumber":"Housenumber","Zipcode":"Zipcode","City":"City","Country":"Country","E-mail":"E-mail","Telephone":"Telephone number","Comments":"Comments","RequiredFields":"You failed to enter all required (*) fields!","Ensure_order_correct":"For a proper checkout, make sure your order is correct.","Product_list":"Product list","Destination_address":"Destination address","Transport_method":"Transport method","Payment_gateway":"Payment gateway","Almost_ready_to_pay":"Almost finished! This is where the payment process starts.","Order_succesful":"Order successful","Processing_order":"Thankyou! We are processing your order.","Order_failed":"Order processing went wrong!","Please_try_again":"Sorry! Just click Retry to try again, or Back to review all your transaction steps.","Or_contact_us":"If you run into any more problems, please don't hesitate to <a href='contact'>contact us<\/a>!","Amount_to_pay":"Amount to pay","Paying_via":"You will be paying using the following intermediary","Bank":"Bank","Account":"Account","Beneficiary":"Beneficiary","TransportMethod":"Change transportation method","NoTransport":"Don't send, please. I'll come to get the package.",
 
-"_Administrator: top bar":"",
+"_Administrator:_top_bar":"",
  "topbar:Shop":"Shop↪",
  "topbar:Manage":"Manage",
  "topbar:Settings":"Settings",
  "topbar:Logout":"Logout",
 
-"_Administrator: settings menu":"",
+"_Administrator:_settings_menu":"",
  "sidebar:General":"General",
  "sidebar:Reporting":"Reporting",
  "sidebar:Modifiers":"Modifiers",
@@ -20,7 +20,7 @@
  "sidebar:Users":"Users",
  "sidebar:Translate":"Translate",
 
-"_Administrator: manage menu":"",
+"_Administrator:_manage_menu":"",
  "sidebar:Dashboard":"Dashboard",
  "sidebar:Orders":"Orders",
  "sidebar:Settlements":"Settlements",
@@ -28,7 +28,7 @@
  "sidebar:Categories":"Categories",
  "sidebar:Vendors":"Vendors",
 
-"_Administrator: generic":"",
+"_Administrator:_generic":"",
  "button-submit":"Submit",
  "button-cancel":"Cancel",
  "button-back":"Back",
@@ -42,14 +42,14 @@
  "generic-unknown":"unknown",
  "generic-details":"details",
 
-"_Administrator: login":"",
+"_Administrator:_login":"",
  "login:please-sign-in":"Please sign in",
  "login:mail-address":"E-mail address",
  "login:password":"Password",
  "login:button-submit":"Sign in",
  "login:bad-login-message":"BAD USERNAME OR PASSWORD! YOU SHALL NOT PASS!",
 
-"_Administrator: manage -> categories":"",
+"_Administrator:_manage_->_categories":"",
  "categories:title":"Categories",
  "categories:description":"The categories below appear as buttons in the webshop, which users can use to more easily find what they are looking for. Adding the tag word in the tags section of a product adds that product to a category. Using tags, a product can be added to multiple categories. The arrows in this list change the order of the items.",
  "categories:add-category":"Add category",
@@ -59,7 +59,7 @@
  "categories:action-edit":"Edit",
  "categories:action-delete":"Delete",
 
-"_Administrator: manage -> dashboard":"",
+"_Administrator:_manage_->_dashboard":"",
  "dashboard:title":"Dashboard",
  "dashboard:description":"This is the back-office of Peer2Product from where you can administer your webshop. This dashboard shows you some statistics about your webshop.",
  "dashboard:visitors":"Amount of visitors",
@@ -67,7 +67,7 @@
  "dashboard:toptags":"Most popular tags",
  "dashboard:mostsold":"Most sold products",
 
-"_Administrator: manage -> orders":"",
+"_Administrator:_manage_->_orders":"",
  "orders:title":"Orders",
  "orders:description":"All shop orders and their status are listed here.",
  "orders:th-ordernumber":"Ordernumber",
@@ -80,7 +80,7 @@
  "orders:th-status":"Status",
  "orders:type-local":"local",
 
-"_Administrator: manage -> orderview":"",
+"_Administrator:_manage_->_orderview":"",
  "orderview:title":"View order",
  "orderview:address":"Address",
  "orderview:properties":"Properties",
@@ -97,7 +97,7 @@
  "orderview:changing-status":"Changing status...",
  "orderview:error-status-message":"Error: cannot get status!",
 
-"_Administrator: manage -> products":"",
+"_Administrator:_manage_->_products":"",
  "products:title":"Products",
  "products:description":"Here are listed all the products you have in your webshop.",
  "products:button-add":"Add product",
@@ -107,21 +107,21 @@
  "products:th-sales":"Sales",
  "products:th-time":"Time",
 
-"_Administrator: settings -> countries":"",
+"_Administrator:_settings_->_countries":"",
  "countries:title":"Countries",
  "countries:description":"This is the list of countries where users can order their products to be delivered. Country codes can be used in transport formula's to calculate international transport/shipping rates.",
  "countries:button-add":"Add country",
  "countries:th-country":"Country",
  "countries:th-code":"Code",
 
-"_Administrator: settings -> gateways":"",
+"_Administrator:_settings_->_gateways":"",
  "gateways:title":"Gateways",
  "gateways:description":"Gateways connect your shop to payment services. Some gateways handle a payment internally, like a Bitcoin gateway for example.",
  "gateways:th-gateway":"Gateway",
  "gateways:th-description":"Description",
  "gateways:th-status":"Status",
 
-"_Administrator: settings -> modifiers":"",
+"_Administrator:_settings_->_modifiers":"",
  "modifiers:title":"Modifiers",
  "modifiers:description":"Modifiers make it possible to automatically add to or subtract from the final price of a product according to variables and cases. For example, this is useful for adding tax to a product or providing a discount. Other than transport rules, each modifier is calculated per product, and not over the whole of all products. Modifiers for products are calculated locally and results are shared via peer-to-peer links between Peer2Product shops.",
  "modifiers:button-add":"Add modifier",
@@ -129,7 +129,7 @@
  "modifiers:th-title":"Title",
  "modifiers:th-formula":"Formula",
 
-"_Administrator: settings -> transport":"",
+"_Administrator:_settings_->_transport":"",
  "transport:title":"Transport",
  "transport:description":"Transport rules make it possible to automatically calculate the correct costs for sending packages or services by post or other forms of transport. Transport for products is calculated locally and results are shared via peer-to-peer links between Peer2Product shops. Combined rules enable you to approximate for your all product's transport costs. The sequence of the rules below define in what order they are handled. First entries are calculated first, and the last entries are calculated last.",
  "transport:button-add":"Add rule",
@@ -137,7 +137,7 @@
  "transport:th-title":"Title",
  "transport:th-formula":"Formula",
 
-"_Administrator: settings -> users":"",
+"_Administrator:_settings_->_users":"",
  "users:title":"Users",
  "users:description":"These are the users that can log in to administrate the webshop.",
  "users:button-add":"Add user",
@@ -145,7 +145,7 @@
  "users:th-mail":"E-mail",
  "users:th-notifications":"Notifications",
 
-"_Administrator: manage -> settlements":"",
+"_Administrator:_manage_->_settlements":"",
  "settlements:title":"Settlements",
  "settlements:description":"This is an overview of the pending settlements per vendor. You can balance an amount on the books by adding a clearing.",
  "settlements:button-add":"Add clearing",
@@ -176,7 +176,7 @@
  "settlements-details:sent":"sent",
  "settlements-details:received":"recv",
 
-"_Administrator: manage -> vendors":"",
+"_Administrator:_manage_->_vendors":"",
  "vendors:title":"Vendors",
  "vendors:description":"Add remote vendors to add their products to your webshop, and give them access as reseller to your products.",
  "vendors:button-add":"Add vendor",
