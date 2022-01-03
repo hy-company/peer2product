@@ -1476,8 +1476,10 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
           $id = $post['id'];
           unset($post['id']);
           $directory = $f3->get('DATA');
+          $jsonWrite = $func->diff_array( $func->get_json($f3->get('DATA').'translation.def') , $post);
+          file_put_contents($directory.'translation.json',json_encode($jsonWrite));
+          // again update our json object to reflect changes made in front-end
           $json = $func->update_array($json,$post);
-          file_put_contents($directory.'translation.json',json_encode($json));
         }
         $f3->set('id',FALSE);
         $f3->set('dir',$f3->get('DATA'));

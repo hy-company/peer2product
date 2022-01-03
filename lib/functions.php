@@ -68,6 +68,21 @@ class functions {
     return $this->update_array($array,$update);
   }
 
+  // create array of differences between original and updated array
+  function diff_array($array,$update) {
+    $result = array();
+    if(is_array($update) && is_array($update)) {
+      foreach($update as $key => $value) {
+        if($array[$key]!==$value) {
+          $result[$key]=$value;
+        }
+      }
+    } else {
+      die('Fatal error: cannot diff array data!');
+    }
+    return $result;
+  }
+
   // trims and sorts a string of comma-separated elements
   function trimsortstring($string) {
     $tmp = explode(',',$string);
