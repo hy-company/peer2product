@@ -9,9 +9,10 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // REQUIRED SETTINGS
+error_reporting(E_ALL & ~E_NOTICE);
+
 // Path to your jcart files
-$config['jcartPath']              = dirname($_SERVER['PHP_SELF']).'lib/jcart';
-//$config['jcartPath']                = realpath(dirname(__FILE__));
+$config['jcartPath']              = dirname($_SERVER['PHP_SELF']);  // DEPRECATED: $config['jcartPath']                = realpath(dirname(__FILE__));
 
 global $SET,$DEF,$STR;
 
@@ -90,8 +91,8 @@ if (!isset($config['text']['quantityError']) || !$config['text']['quantityError'
 */
 
 if ($_GET['ajax'] == 'true') {
-	header('Content-type: application/json; charset=utf-8');
-	echo json_encode($config);
+  header('Content-type: application/json; charset=utf-8');
+  echo json_encode($config);
 }
 
 ?>
