@@ -12,18 +12,8 @@
   $tmp = dirname($_SERVER['PHP_SELF']);
   $SITE .= (isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'').($tmp=='/'?'/':$tmp.'/');
 
-  // set static settings and directories
-  $SET['data/'] = 'data/';
-  $SET['stat/'] = 'statistics/';
-  $SET['user/'] = 'users/';
-  $SET['prod/'] = 'products/';
-  $SET['ordr/'] = 'orders/';
-  $SET['vend/'] = 'vendors/';
-  $SET['gate/'] = 'gateways/';
-  $SET['sett/'] = 'settlements/';
-  $SET['them/'] = 'themes/';
-
   // requires and includes
+  include_once('lib/paths.php');      // static paths
   include_once('lib/functions.php');  // quick 'n dirty injection of shop/product functions class
   $shop = new functions;
 
