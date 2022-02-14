@@ -47,13 +47,13 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 
 /* Item forms */
 .jcart {
- margin:0 10px 10px 0; padding-top:10px; border:dashed 2px #66cc66; background:#fff; text-align:center;
+ margin:0 10px 10px 0; padding-top:10px; background:#fff; text-align:center;
  border-radius: 12px;
  min-width: 170px;
  max-width: 240px;
  display: inline-block;
 }
-.jcart img{ padding: 8px; height: 128px; max-width: 320px; }
+.jcart img{ }
 .jcart ul { margin:0; list-style:none; padding:0 20px; text-align:left; }
 .jcart fieldset { border:0; }
 .jcart strong { color:#000066; }
@@ -63,10 +63,10 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 .jcart .add-to-cart { margin:10px; }
 
 .jcart.slider {
-	width: 80%;
-	max-width: 80%;
-	height: 90%;
-	max-height: 90%;
+	width: 90%;
+	max-width: 90%;
+	height: 80%;
+	max-height: 80%;
 	padding-top: 0;
 }
 .jcart.slider h3 {
@@ -103,12 +103,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 	padding: 16px;
 }
 .jcart.slider .add-to-cart-slider {
-	background: #FFF;
-	position: absolute;
-	bottom: 5%;
-	right: 12%;
-	padding-left: 16px;
-	margin: 12px auto;
+	float:left;
 }
 
 /* Main front */
