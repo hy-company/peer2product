@@ -54,6 +54,7 @@
 			?>
 			<div id="footer">Powered by <a href="http://peer2product.com">Peer2Product</a></div>
 		</div>
+	</div>
 		<?php include('ui/footer.htm'); ?>
 	</body>
 </html>
