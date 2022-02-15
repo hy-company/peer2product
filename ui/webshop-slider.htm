@@ -10,9 +10,9 @@
 							<input type="hidden" name="my-item-qty" value="1" />
 							<a class="lightbox-image-link" href="<?=($product['img']?$product['img']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['description']?><small><?=$STR['Origin']?> <?=(isset($product['vendorname'])?$product['vendorname']:$STR['local'])?></small>">
 							<div class="col-xs-12 col-md-6">
-									<h3 id="sliderProductName"><?=$product['name']?></h3>
 								<img lass="img-responsive" src="<?=($product['img']?$product['img']:'ui/images/product.png')?>" alt=""/>
 							</div>	
+							</a>
 								<? if($product['imgA']) { ?>
 									<a class="lightbox-image-link" href="<?=($product['imgA']?$product['imgA']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_A']?>"></a>
 								<? } ?>
@@ -20,9 +20,9 @@
 									<a class="lightbox-image-link" href="<?=($product['imgB']?$product['imgB']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_B']?>"></a>
 								<? } ?>	
 							<div class="col-xs-12 col-md-6">
+								<h3 id="sliderProductName"><?=$product['name']?></h3> 
 									<div class="slider-description">
-									  <div class="slider-description-p"><br><br><?=$product['description']?></div><div class="fadeout"></div>
-									
+									  <div class="slider-description-p"><?=$product['description']?></div><div class="fadeout"></div>
 							</div>
 							<div class="add-to-cart-slider">
 								<div style="display: inline-block; text-align: left; vertical-align: middle; margin-right: 12px;">

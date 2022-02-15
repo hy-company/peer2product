@@ -1,4 +1,9 @@
 <div id="topbar">
+	<br>
+	<?php if($content['description']) { 
+	    echo '<div id="'.($SET['shopslider'] && !$category?'':'cat-').'description">
+		        <div id="shopcta" class="col-xs-12">'.$content['description'].'</div>
+	          </div><br><br>';		 } ?>
 	<form action="" method="POST">
 		<div id="sorting" class="col-xs-12 col-md-4" style="color: grey;padding-left: 0px;"><?=$STR['Sort_items_by'];?>&nbsp;&nbsp;
 			<button class="btn btn-xs btn-<?php echo ($sort=='name'?'info':'default'); ?>" type="submit" name="sort" value="name"><?=$STR['sortbutton_name'];?></button>
@@ -9,15 +14,7 @@
 	</form>
 	<div id="categories" class="col-xs-12 col-md-8" style="color: grey; padding-left: 0px;">
 	  <?php echo "Categories: &nbsp;&nbsp;&nbsp;&nbsp;" . $content['categories']; ?>
-	</div>
-
-
-
-
-	<?php if($content['description']) { 
-	    echo '<div id="'.($SET['shopslider'] && !$category?'':'cat-').'description">
-		        <div id="shopcta" class="col-xs-12">'.$content['description'].'</div>
-	          </div><br>';		 } ?>	
+	</div>	
 </div>
 	
 		<?php if(!$SET['shopslider'] || $category) { ?>
