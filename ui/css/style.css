@@ -47,21 +47,23 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 
 /* Item forms */
 .jcart {
-	margin: auto;
-margin-bottom: 24px;
- min-width: 49%;
- max-width: 49%;
- display: inline-block;
- box-sizing: border-box;
-}
+	margin: 0 auto;
+	margin-bottom: 24px;
+	min-width: 100%;
+	max-width: 100%;
+	display: inline-block;
+	box-sizing: border-box;
+	border: solid #FFFFFF 12px;;
+   }
 .jcart img{max-width: 100% }
-.jcart ul { margin:0; list-style:none; padding:0 20px; text-align:left; }
+.jcart h5{text-align: center;}
+.jcart ul { margin:0; list-style:none; padding:0 20px; text-align:justify; }
 .jcart fieldset { border:0; }
 .jcart strong { color:#000066; }
-.jcart .button { margin:20px; padding:5px; }
+.jcart .button { margin:20px; padding:5px; text-align: left; }
 #jcart th, #jcart td { border: 1px solid #4CAE4C; }
 #jcart th { background: #7EE07E none repeat scroll 0% 0%; }
-.jcart .add-to-cart { margin:10px; }
+.jcart .add-to-cart { margin:10px; width: 100%;}
 
 .jcart.slider {
 	width: 80%;
@@ -121,10 +123,10 @@ margin-bottom: 24px;
 #content p { font-size: 1.2em; margin-bottom: 0.7em; }
 
 #categories { padding-top: 0; padding-bottom: 4px; float: left; }
-#categories button { margin: 3px; }
+#categories button { margin: 3px; height: 56px; min-width: 96px; }
 #sorting { padding: 5px; float: right; }
 
-.nobutton { border: 0; background-color: transparent; border-color: transparent; line-height: 1em; font-size: 1.5em; margin-top: -0.1em; margin-bottom: 0.1em; }
+.nobutton { border: 0; background-color: transparent; border-color: transparent; line-height: 1em; font-size: 18px; }
 
 /* Checkout */
 .navsteps { text-align: center; }
@@ -168,3 +170,20 @@ label { margin-top: 12px; }
 	color: #FFF;
 	background-color: #6A6A6A !important;
 }
+
+
+@media only screen and (min-width: 480px) {
+	.jcart{min-width: 49%; max-width: 49%;}
+	}
+
+@media only screen and (min-width: 600px) {
+	.jcart{min-width: 32%; max-width: 32%;}
+	}
+
+@media only screen and (min-width: 768px) {
+	.jcart{min-width: 23%; max-width: 23%;}
+	}
+
+@media only screen and (min-width: 1201px) {
+	.jcart{min-width: 19%; max-width: 19%;}
+	}

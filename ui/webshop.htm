@@ -14,9 +14,8 @@
 
 	<?php if(!$SET['shopslider'] || $category) { ?>
 		<div class="col-xs-12">
-			<button style="float: right;">+</button>
-			<button style="float: right;">-</button>
-			</div>
+			<button class="btn btn-link"  style="float: right;" onclick="toggleCart();" ><i class="fa fa-shopping-cart"></i></button>
+		</div>
 		<div id="sidebar" class="col-xs-12">
 			<div id="jcart"><?php $jcart->display_cart();?></div>
 		</div>
