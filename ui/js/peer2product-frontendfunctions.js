@@ -1,5 +1,5 @@
 var navbarAboutDropDownState = "inactive";	//value determines behaviour of navbarAboutDropDown onclick event 
-var cartToggleState = 1;
+var cartToggleState = 0;
 
 function navbarAboutDropDown(){			//onlick event
 
@@ -16,12 +16,12 @@ function navbarAboutDropDown(){			//onlick event
 }
 
 function toggleCart(){      //onclick event
-    if(cartToggleState == 1){
-        document.getElementById('sidebar').style.display = "none";
-        cartToggleState= 0;
-    }else{
+    if(cartToggleState == 0){
         document.getElementById('sidebar').style.display = "block";
-        cartToggleState = 1;
+        cartToggleState= 1;
+    }else{
+        document.getElementById('sidebar').style.display = "none";
+        cartToggleState = 0;
     }
 
 }
