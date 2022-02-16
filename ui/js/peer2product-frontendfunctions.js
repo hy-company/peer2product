@@ -4,11 +4,21 @@ var cartToggleState = 0;
 function navbarAboutDropDown(){			//onlick event
 
     if(navbarAboutDropDownState == "inactive"){
-         document.getElementById('aboutLinks').style.display = "block";
-         navbarAboutDropDownState = "active";
+        $("#aboutLinks").fadeIn(); 
+        navbarAboutDropDownState = "active";
+         
+           
+             
+            
+         
+          
+          
+          
+          
          // console.log("state: 1");
     }else{
-        document.getElementById('aboutLinks').style.display = "none";
+        // document.getElementById('aboutLinks').style.display = "none";
+        $("#aboutLinks").fadeOut();
         navbarAboutDropDownState = "inactive";
         // console.log("state: 0");
     }
@@ -17,10 +27,10 @@ function navbarAboutDropDown(){			//onlick event
 
 function toggleCart(){      //onclick event
     if(cartToggleState == 0){
-        document.getElementById('sidebar').style.display = "block";
+        $("#sidebar").fadeIn();
         cartToggleState= 1;
     }else{
-        document.getElementById('sidebar').style.display = "none";
+       $("#sidebar").fadeOut();
         cartToggleState = 0;
     }
 
