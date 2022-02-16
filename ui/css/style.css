@@ -47,13 +47,14 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 
 /* Item forms */
 .jcart {
- margin:0 10px 10px 0; padding-top:10px; background:#fff; text-align:center;
- border-radius: 12px;
- min-width: 170px;
- max-width: 240px;
+	margin: auto;
+margin-bottom: 24px;
+ min-width: 49%;
+ max-width: 49%;
  display: inline-block;
+ box-sizing: border-box;
 }
-.jcart img{ }
+.jcart img{max-width: 100% }
 .jcart ul { margin:0; list-style:none; padding:0 20px; text-align:left; }
 .jcart fieldset { border:0; }
 .jcart strong { color:#000066; }
@@ -79,7 +80,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 	overflow: hidden;
 }
 .jcart.slider .slider-description-p {
-	overflow: hidden;
+	overflow-y: scroll;
 	height: auto;
 	max-height: 145px;	
 	text-align: left;
@@ -114,7 +115,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 #navbar { display: inline-block; font-size: 1.1em; margin-top: 24px;width: 100%; text-align: center; }
 #navbar a { padding-left: 16px; padding-right: 16px; text-decoration: none; }
 #footer { float: right; margin-top: 24px; margin-bottom: 16px; }
-#sidebar { width:35%; float:right; margin-left: 20px; margin-left: 20px; }
+#sidebar { width:100%; float:right; margin-left: 20px; margin-left: 20px; padding-bottom: 24px; }
 #bottombar { width:70%; max-width: 780px; margin: auto; margin-top: 48px; margin-bottom: 36px; }
 #content { min-height: 480px; }
 #content p { font-size: 1.2em; margin-bottom: 0.7em; }
