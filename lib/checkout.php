@@ -234,7 +234,7 @@ switch($array['sequence']) {
       <h2><?=$STR['Ordernumber'];?></h2>
       <?php echo $array['ordernumber']; ?>
     </div>
-    <div class="col-xs-12"><br></div>
+    <div class="col-xs-12"><br></div>    
      <div class="col-xs-12 col-md-6">
             <div class="col-xs-12" style="padding: 0;">
               <h2><?=$STR['Destination_address'];?></h2>
@@ -265,7 +265,8 @@ switch($array['sequence']) {
                 }
                   ?>
                 </select>
-            </div>    
+            </div>
+     
   </div>
   </div>
   </div>
