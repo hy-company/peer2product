@@ -73,8 +73,8 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 	padding-top: 0;
 }
 .jcart.slider h3 {
-	text-align: left;
-	padding-left: 24px;
+	text-align: center;
+	/* padding-left: 24px; */
 	/*margin-right: 24px;*/
 }
 .jcart.slider .slider-description {
@@ -85,7 +85,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 	overflow-y: scroll;
 	height: auto;
 	max-height: 145px;	
-	text-align: left;
+	text-align: justify;
 }
 .jcart.slider .slider-description-p p {
 	text-align: left;
@@ -183,6 +183,10 @@ label { margin-top: 12px; }
 @media only screen and (min-width: 768px) {
 	.jcart{min-width: 23%; max-width: 23%;}
 	}
+
+@media only screen and (min-width: 990px){
+	.jcart.slider h3 {text-align: left;}
+}
 
 @media only screen and (min-width: 1201px) {
 	.jcart{min-width: 19%; max-width: 19%;}
