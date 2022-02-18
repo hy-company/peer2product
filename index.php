@@ -29,7 +29,7 @@
 					  <a href="<?=$SITE;?>checkout"><?=$STR['Checkout'];?></a>
 					</div>
 					<div class="col-xs-4">
-					 <a href="#" id="aboutDropDown" onclick="navbarAboutDropDown();">More</a>
+					 <a href="#" id="aboutDropDown" onclick="navbarAboutDropDown();"><?=$STR['More'];?></a>
 					</div>
 					<div class="col-xs-12"><br></div>
 						<div class="col-xs-12" id="aboutLinks" style="display: none;">
