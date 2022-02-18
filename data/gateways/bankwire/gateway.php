@@ -41,48 +41,32 @@ function paymentform($array,$shop) {
 			 '<div class="col-xs-12 col-sm-4">' .
 			   	$STR['Bank'] . ':' .
 		     '</div>';
-				
-
 		echo '<div class="col-xs-12 col-sm-8">' .
 				$GATEWAY['Bank_name'] . 
 			 	'<br><br>'.
 			 '</div>';
-			
 		echo '<div class="col-xs-12 col-sm-4">' .
 			        $STR['Account'] . ':' .
 			 '</div>' ;
-
 		echo '<div class="col-xs-12 col-sm-8">' .
 				   $GATEWAY['Bank_account'] .
 				   '<br><br>'.
 			 '</div>';
-
 		echo '<div class="col-xs-12 col-sm-4">' .
 				$STR['Beneficiary'] . ':' .
 			 '</div>';
-		
 		echo '<div class="col-xs-12 col-sm-8">' .
 				$GATEWAY['Bank_beneficiary'] .
 				'<br><br>'. 
 			 '</div>';
-
 		echo '<div class="col-xs-12 col-sm-4">' . 
 				$STR['Ordernumber'] . ':' .
 		 	 '</div>';
-		
 		echo '<div class="col-xs-12 col-sm-8">' . 
 				$array['ordernumber'] . 
 				'<br><br>' . 
 			 '</div>';
-
 		echo '</div>';
-			//  '<tr><td>'..': </td><td>'.'</td></tr>'.
-			//  '<tr><td>'.$STR['Beneficiary'].': </td><td>'.$GATEWAY['Bank_beneficiary'].'</td></tr>'.
-			 
-			
-			// '</div>
-			//  </div>
-			//  </div>';
 		// simply forward all other data
 		echo '<input type="hidden" name="amount" value="' . ($array['amount']*100) . '" />';
 		echo '<input type="hidden" name="x" value="'.$shop->tx($array).'" />';
