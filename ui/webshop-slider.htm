@@ -26,8 +26,9 @@
 									  <!-- <div class="fadeout"></div> -->
 							</div>
 							<div class="add-to-cart-slider">
-								<div style="display: inline-block; text-align: left; vertical-align: middle; margin-right: 12px;">
-									<h4 style="margin-bottom: 0; margin-top: 3px;"><?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price'])?></h4>
+								<br>
+								<div style="">
+									<h4 style=""><?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price'])?></h4>
 									<span style="color: gray;"><?=$STR['Stock']?> <?=($product['stock']!=-1?$product['stock']:'∞')?></span>
 								</div>
 								<button type="submit" name="my-add-button" value="add-to-cart" class="btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button>
