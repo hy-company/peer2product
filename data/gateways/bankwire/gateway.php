@@ -26,14 +26,63 @@ function paymentform($array,$shop) {
 			echo 'Missing amount or ordernumber!';
 			die();
 		}
+		
+		echo '<div class="row">
+			  <div class="col-xs-12">
+			    <h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4>
+			    <br>'.
+			   '<span>'.$GATEWAY['Payment_instructions'].'</span><br><br>'.
+		     '</div>
+			  </div>';
+		
+			 
+		echo '<div class="row" id="user-paymentdata" style="background: #FFF; border: 3px dashed #777;">'. 
+			'<div class="col-xs-12"><br></div>' .
+			 '<div class="col-xs-12 col-sm-4">' .
+			   	$STR['Bank'] . ':' .
+		     '</div>';
+				
 
-		echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
-			 '<span>'.$GATEWAY['Payment_instructions'].'</span><br><br>'.
-			 '<div style="display: inline-block; text-align: left; background: #FFF none repeat scroll 0% 0%; font-weight: bold; margin: 12px 0; padding: 12px; min-width: 320px; border: 3px dashed #777;"><table>'.
-			 '<tr><td style="width: 200px;">'.$STR['Bank'].': </td><td>'.$GATEWAY['Bank_name'].'</td></tr>'.
-			 '<tr><td>'.$STR['Account'].': </td><td>'.$GATEWAY['Bank_account'].'</td></tr>'.
-			 '<tr><td>'.$STR['Beneficiary'].': </td><td>'.$GATEWAY['Bank_beneficiary'].'</td></tr>'.
-			 '</table></div></div>';
+		echo '<div class="col-xs-12 col-sm-8">' .
+				$GATEWAY['Bank_name'] . 
+			 	'<br><br>'.
+			 '</div>';
+			
+		echo '<div class="col-xs-12 col-sm-4">' .
+			        $STR['Account'] . ':' .
+			 '</div>' ;
+
+		echo '<div class="col-xs-12 col-sm-8">' .
+				   $GATEWAY['Bank_account'] .
+				   '<br><br>'.
+			 '</div>';
+
+		echo '<div class="col-xs-12 col-sm-4">' .
+				$STR['Beneficiary'] . ':' .
+			 '</div>';
+		
+		echo '<div class="col-xs-12 col-sm-8">' .
+				$GATEWAY['Bank_beneficiary'] .
+				'<br><br>'. 
+			 '</div>';
+
+		echo '<div class="col-xs-12 col-sm-4">' . 
+				$STR['Ordernumber'] . ':' .
+		 	 '</div>';
+		
+		echo '<div class="col-xs-12 col-sm-8">' . 
+				$array['ordernumber'] . 
+				'<br><br>' . 
+			 '</div>';
+
+		echo '</div>';
+			//  '<tr><td>'..': </td><td>'.'</td></tr>'.
+			//  '<tr><td>'.$STR['Beneficiary'].': </td><td>'.$GATEWAY['Bank_beneficiary'].'</td></tr>'.
+			 
+			
+			// '</div>
+			//  </div>
+			//  </div>';
 		// simply forward all other data
 		echo '<input type="hidden" name="amount" value="' . ($array['amount']*100) . '" />';
 		echo '<input type="hidden" name="x" value="'.$shop->tx($array).'" />';

@@ -227,46 +227,55 @@ switch($array['sequence']) {
       unset($output[$orderid]['ordernumber']);
       file_put_contents($SET['data/'].$SET['ordr/'].$orderid.'.pending',json_encode($output));
       // display destination address and gateway choice
-        ?><br />
-          <table border=0 style="width: 100%">
-            <tr><td style="vertical-align: top;">
-              <h2><?=$STR['Destination_address'];?></h2>
-              <br /><div style="display: inline-block; margin-left: 20px; text-align: right; vertical-align: top;">To:&nbsp;&nbsp;&nbsp;</div>
-              <div id="address-container">
-                <div style="display: inline-block;">
-                  <?php echo (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']); ?>
-                </div><br />
-                <div style="display: inline-block;">
-                  <?php echo $array['streetname'].' '.$array['housenumber']; ?>
-                </div><br />
-                <div style="display: inline-block;">
-                  <?php echo $array['zipcode']; ?>
-                </div><br />
-                <div style="display: inline-block;">
-                  <?php echo $array['city']; ?>
-                </div><br />
-                <div style="display: inline-block;">
-                  <?php echo $array['country']; ?>
-                </div>
-              </div>
-              </td><td style="vertical-align: top; width: 30%;">
-                <h2><?=$STR['Payment_gateway'];?></h2>
-                <select name="gateway" class="form-control">
-                  <?php
-                    $gateways = $shop->get_gateways($SET['data/'].$SET['gate/']);
-                    foreach($gateways as $key => $val) {
-                      if($val['active']) {
-                        echo '<option value="'.$key.'"'.(isset($array['gateway']) && $array['gateway']==$key?' selected':'').'>'.$val['description'].' | '.$val['name'].'</option>';
-                      }
-                    }
-                  ?>
-                </select>
-                <br />
-                <h2><?=$STR['Ordernumber'];?></h2>
-                <div style="display: inline-block; width: 32px;"></div><?php echo $array['ordernumber']; ?>
-            </td><td style="vertical-align: top; width: 15%;">
-            </td></tr>
-          </table>
+        ?>
+
+
+
+<div class="row"> 
+    <div class="col-xs-12">
+      <h2><?=$STR['Ordernumber'];?></h2>
+      <?php echo $array['ordernumber']; ?>
+    </div>
+    <div class="col-xs-12"><br></div>  
+    <div class="col-xs-12 col-md-6">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2><?=$STR['Destination_address'];?></h2>
+        </div>
+        <div class="col-xs-12" style="border: 3px dotted #337AB7; background: #FFF;">
+        <br>
+        <?php echo (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']); ?>
+        <br> 
+        <?php echo $array['streetname'].' '.$array['housenumber']; ?>
+        <br>
+        <?php echo $array['zipcode']; ?>
+        <br>
+        <?php echo $array['city']; ?>
+        <br>
+        <?php echo $array['country']; ?>
+        <br><br>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-xs-12 col-md-6">
+      <h2><?=$STR['Payment_gateway'];?></h2>
+    
+      <select name="gateway" class="form-control">
+        <?php
+        $gateways = $shop->get_gateways($SET['data/'].$SET['gate/']);
+        foreach($gateways as $key => $val) {
+            if($val['active']) {
+            echo '<option value="'.$key.'"'.(isset($array['gateway']) && $array['gateway']==$key?' selected':'').'>'.$val['description'].' | '.$val['name'].'</option>';
+            }
+        }
+        ?>
+      </select>
+    </div>
+
+</div>
           <br /><br />
         </div>
         <div class="clear"></div>
@@ -292,7 +301,7 @@ switch($array['sequence']) {
               <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
             </div>
             <div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Almost_ready_to_pay'];?></div>
-            <div style="height:32px; margin-top: 40px; margin-bottom: -80px; width: 100%; text-align: center;"><img class="loading" style="display: none;" src="ui/images/loading.gif" /></div>
+            <div style="height:32px; margin-top: 40px; margin-bottom: -80px; width: 100%; text-align: center;"><img class="imgloading" style="display: none;" src="ui/images/loading.gif" /></div>
             <h2><?=$STR['Payment'];?></h2>
             <?php
               paymentform($array,$shop);
