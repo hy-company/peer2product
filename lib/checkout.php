@@ -233,9 +233,12 @@ switch($array['sequence']) {
       <h2><?=$STR['Ordernumber'];?></h2>
       <?php echo $array['ordernumber']; ?>
     </div>
+
     <div class="col-xs-12"><br></div>    
-    <div class="col-xs-12 col-md-6">
-      <div class="row">
+    
+    
+     <div class="col-xs-12 col-md-6">
+       <div class="row">
             <div class="col-xs-12">
               <h2><?=$STR['Destination_address'];?></h2>
             </div>
@@ -252,23 +255,23 @@ switch($array['sequence']) {
               <?php echo $array['country']; ?>
               <br><br>
             </div>
+        </div>
       </div>
-    <div class="col-xs-12 col-md-6">
-      <h2><?=$STR['Payment_gateway'];?></h2>
-      <select name="gateway" class="form-control">
-        <?php
-        $gateways = $shop->get_gateways($SET['data/'].$SET['gate/']);
-        foreach($gateways as $key => $val) {
-            if($val['active']) {
-            echo '<option value="'.$key.'"'.(isset($array['gateway']) && $array['gateway']==$key?' selected':'').'>'.$val['description'].' | '.$val['name'].'</option>';
-            }
-        }
-        ?>
-      </select>
-    </div>
-  </div>
+        <div class="col-xs-12 col-md-6">
+            <h2><?=$STR['Payment_gateway'];?></h2>
+            <select name="gateway" class="form-control">
+              <?php
+              $gateways = $shop->get_gateways($SET['data/'].$SET['gate/']);
+              foreach($gateways as $key => $val) {
+                if($val['active']) {
+                echo '<option value="'.$key.'"'.(isset($array['gateway']) && $array['gateway']==$key?' selected':'').'>'.$val['description'].' | '.$val['name'].'</option>';
+                }
+             }
+              ?>
+            </select>
+        </div>
+   </div>
           <br /><br />
-        
         <div class="clear"></div>
         <?php echo paymentnav($shop->tx($array)); ?>
       </form></div><?php
