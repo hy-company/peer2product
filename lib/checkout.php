@@ -228,41 +228,33 @@ switch($array['sequence']) {
       file_put_contents($SET['data/'].$SET['ordr/'].$orderid.'.pending',json_encode($output));
       // display destination address and gateway choice
         ?>
-
-
-
-<div class="row"> 
+  <div class="row"> 
     <div class="col-xs-12">
       <h2><?=$STR['Ordernumber'];?></h2>
       <?php echo $array['ordernumber']; ?>
     </div>
-    <div class="col-xs-12"><br></div>  
+    <div class="col-xs-12"><br></div>    
     <div class="col-xs-12 col-md-6">
       <div class="row">
-        <div class="col-xs-12">
-          <h2><?=$STR['Destination_address'];?></h2>
-        </div>
-        <div class="col-xs-12" style="border: 3px dotted #337AB7; background: #FFF;">
-        <br>
-        <?php echo (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']); ?>
-        <br> 
-        <?php echo $array['streetname'].' '.$array['housenumber']; ?>
-        <br>
-        <?php echo $array['zipcode']; ?>
-        <br>
-        <?php echo $array['city']; ?>
-        <br>
-        <?php echo $array['country']; ?>
-        <br><br>
-        </div>
+            <div class="col-xs-12">
+              <h2><?=$STR['Destination_address'];?></h2>
+            </div>
+            <div class="col-xs-12" style="border: 3px dotted #337AB7; background: #FFF;">
+              <br>
+              <?php echo (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']); ?>
+              <br> 
+              <?php echo $array['streetname'].' '.$array['housenumber']; ?>
+              <br>
+              <?php echo $array['zipcode']; ?>
+              <br>
+              <?php echo $array['city']; ?>
+              <br>
+              <?php echo $array['country']; ?>
+              <br><br>
+            </div>
       </div>
-
-    </div>
-
-
     <div class="col-xs-12 col-md-6">
       <h2><?=$STR['Payment_gateway'];?></h2>
-    
       <select name="gateway" class="form-control">
         <?php
         $gateways = $shop->get_gateways($SET['data/'].$SET['gate/']);
@@ -274,10 +266,9 @@ switch($array['sequence']) {
         ?>
       </select>
     </div>
-
-</div>
+  </div>
           <br /><br />
-        </div>
+        
         <div class="clear"></div>
         <?php echo paymentnav($shop->tx($array)); ?>
       </form></div><?php
