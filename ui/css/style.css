@@ -124,7 +124,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 
 #categories { padding-top: 0; padding-bottom: 4px; float: left; }
 #categories button { margin: 3px; height: 56px; min-width: 96px; }
-#sorting { padding: 5px; float: right; }
+#sorting { padding: 5px; float: right; padding-top: 20px; }
 
 .nobutton { border: 0; background-color: transparent; border-color: transparent; line-height: 1em; font-size: 18px; }
 
