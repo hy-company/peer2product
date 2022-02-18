@@ -18,7 +18,6 @@
 				<div class="col-xs-12" id='shopbanner'>
 				  <a href="<?=$SITE;?>"><img class='img-responsive' src="<?php echo ($SET['shopmainlogo']?$SET['data/'].$SET['shopmainlogo']:$DEF['shopmainlogo']); ?>"/></a>
 				</div>
-
 				<div id="navbar">
 					<div class="col-xs-12">
 					  <a href="<?=$SITE;?>admin" target="_blank" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'" style="display: inline-block; opacity: 0; transition: opacity 3s;">&#9881;</a>
@@ -29,7 +28,6 @@
 					<div class="col-xs-4">
 					  <a href="<?=$SITE;?>checkout"><?=$STR['Checkout'];?></a>
 					</div>
-
 					<div class="col-xs-4">
 					 <a href="#" id="aboutDropDown" onclick="navbarAboutDropDown();">More</a>
 					</div>
@@ -49,14 +47,11 @@
 						</div>
 				</div>
 			</div>
-			<?php
-				include('lib/main.php');
-			?>
+			<?php include('lib/main.php');?>
 			<div id="footer">Powered by <a href="http://peer2product.com">Peer2Product</a></div>
 		</div>
 	</div>
 		<?php include('ui/footer.htm'); ?>
 	</body>
 </html>
-
 <?php } ?>
