@@ -1,16 +1,16 @@
-/** 
+/**
  * Slideshow style rules.
  */
 #slideshow {
-	margin:0px auto;
-	width:100%;
-	max-width: 2560px;
-	height:auto;
-  	position:relative;
-  	text-align: center;
-	display: inline-block;
-	/* background:transparent url(../images/bg_slideshow.jpg) no-repeat 0 0; */
-	border-radius: 24px;
+  margin:0px auto;
+  width:100%;
+  max-width: 2560px;
+  height:auto;
+    position:relative;
+    text-align: center;
+  display: inline-block;
+  /* background:transparent url(../images/bg_slideshow.jpg) no-repeat 0 0; */
+  border-radius: 24px;
 }
 
 #slideshow #slidesContainer {
@@ -31,7 +31,7 @@
 
 }
 
-/** 
+/**
  * Slideshow controls style rules.
  */
 .control {
@@ -47,11 +47,13 @@
   top:0;
   left:0;
   background:transparent url(../images/prev.png) no-repeat center center;
+  min-width: 64px;
 }
 #rightControl {
   top:0;
   right:0;
   background:transparent url(../images/next.png) no-repeat center center;
+  min-width: 64px;
 }
 
 
