@@ -1,19 +1,19 @@
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?=($SET['shopname']?$SET['shopname']:$DEF['shopname']); ?></title>
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/bootstrap.min.css" />
-	<?php if(!isset($_GET['checkout'])) { ?>
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="lib/jcart/css/jcart.css" />
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/lightbox.css">
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/slider.css" />
-	<?php } ?>
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="admin/ui/css/awesome.css"/>
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/style.css" />
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?=$SET['data/'].$SET['them/'].($SET['shoptheme']?$SET['shoptheme']:$DEF['shoptheme'])?>.css" />
-	<script type="text/javascript" src="ui/js/jquery.min.js"></script>
-	<style>
-		body { background: url('<?=($SET['shopbackdrop']?$SET['data/'].$SET['shopbackdrop']:$DEF['shopbackdrop']);?>'); }
-	</style>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?=(isset($SET['shopname'])?$SET['shopname']:$DEF['shopname']); ?></title>
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/bootstrap.min.css" />
+  <?php if(!isset($_GET['checkout'])) { ?>
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="lib/jcart/css/jcart.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/lightbox.css">
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/slider.css" />
+  <?php } ?>
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="admin/ui/css/awesome.css"/>
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/style.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="<?=$SET['data/'].$SET['them/'].(isset($SET['shoptheme'])?$SET['shoptheme']:$DEF['shoptheme'])?>.css" />
+  <script type="text/javascript" src="ui/js/jquery.min.js"></script>
+  <style>
+    body { background: url('<?=(isset($SET['shopbackdrop'])?$SET['data/'].$SET['shopbackdrop']:$DEF['shopbackdrop']);?>'); }
+  </style>
 </head>
 
