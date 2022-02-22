@@ -1,5 +1,6 @@
 			<div class="slide">
 				<div class="slidecontent">
+				  <div class="row">	
 					<form method="post" action="" class="jcart slider">
 						<fieldset>
 							<input type="hidden" name="jcartToken" value="<?php echo $_SESSION['jcartToken'];?>" />
@@ -7,26 +8,35 @@
 							<input type="hidden" name="my-item-name" value="<?=$product['name']?>" />
 							<input type="hidden" name="my-item-price" value="<?=$product['price']?>" />
 							<input type="hidden" name="my-item-qty" value="1" />
-							<a class="lightbox-image-link" href="<?=($product['img']?$product['img']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['description']?><br><br><small><?=$STR['Origin']?> <?=(isset($product['vendorname'])?$product['vendorname']:$STR['local'])?></small>">
-								<div class="imgdiv"><img src="<?=($product['img']?$product['img']:'ui/images/product.png')?>" alt=""/></div>
-								<h3><strong><?=$product['name']?></strong></h3>
+							<a class="lightbox-image-link" href="<?=($product['img']?$product['img']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['description']?><small><?=$STR['Origin']?> <?=(isset($product['vendorname'])?$product['vendorname']:$STR['local'])?></small>">
+							<div class="col-xs-12 col-md-6">
+								<img lass="img-responsive" src="<?=($product['img']?$product['img']:'ui/images/product.png')?>" alt=""/>
+							</div>	
 							</a>
-							<? if($product['imgA']) { ?>
-								<a class="lightbox-image-link" href="<?=($product['imgA']?$product['imgA']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_A']?>"></a>
-							<? } ?>
-							<? if($product['imgB']) { ?>
-								<a class="lightbox-image-link" href="<?=($product['imgB']?$product['imgB']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_B']?>"></a>
-							<? } ?>
-							<div class="slider-description"><div class="slider-description-p"><?=$product['description']?></div><div class="fadeout"></div></div>
+								<? if($product['imgA']) { ?>
+									<a class="lightbox-image-link" href="<?=($product['imgA']?$product['imgA']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_A']?>"></a>
+								<? } ?>
+								<? if($product['imgB']) { ?>
+									<a class="lightbox-image-link" href="<?=($product['imgB']?$product['imgB']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_B']?>"></a>
+								<? } ?>	
+							<div class="col-xs-12 col-md-6">
+								<h3 id="sliderProductName"><?=$product['name']?></h3> 
+									<div class="slider-description">
+									  <div class="slider-description-p"><?=$product['description']?></div>
+									  <!-- <div class="fadeout"></div> -->
+							</div>
 							<div class="add-to-cart-slider">
-								<div style="display: inline-block; text-align: left; vertical-align: middle; margin-right: 12px;">
-									<h4 style="margin-bottom: 0; margin-top: 3px;"><?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price'])?></h4>
+								<br>
+								<div style="">
+									<h4 style=""><?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price'])?></h4>
 									<span style="color: gray;"><?=$STR['Stock']?> <?=($product['stock']!=-1?$product['stock']:'∞')?></span>
 								</div>
 								<button type="submit" name="my-add-button" value="add-to-cart" class="btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button>
-							</div>
+							</div>	
 						</fieldset>
 					</form>
+				  </div>					
 				</div>
 			</div>
-
+	
+	

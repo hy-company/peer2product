@@ -230,7 +230,7 @@ if(isset($_GET['checkout'])) {
       }
     }
   }
-  $content['categories'] .= '&nbsp;'.($category?'<a href="'.dirname($_SERVER['PHP_SELF']).'"><button class="btn btn-xs btn-danger">X</button></a>':'');  // <button class="btn btn-xs btn-default"><span style="color: grey;">X</span></button>
+  $content['categories'] .= '&nbsp;'.($category?'<a href="'.dirname($_SERVER['PHP_SELF']).'"><button class="btn btn-xs btn-danger"><i class="fa fa-close"></i>  </button></a>':'');  // <button class="btn btn-xs btn-default"><span style="color: grey;">X</span></button>
 
   // sort products by {name, price, stock, newest}
   if(isset($_POST['sort'])) {
