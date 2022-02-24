@@ -44,11 +44,13 @@ class functions {
     return TRUE;
   }
 
-  // update array or merge keys
+  // update array or merge keys if not empty (string)
   function update_array($array,$update) {
     if(is_array($update) && is_array($update)) {
       foreach($update as $key => $value) {
-        $array[$key]=$value;
+        if($value !== '') {
+          $array[$key]=$value;
+        }
       }
     } else {
       die('Fatal error: cannot merge array data!');
@@ -64,6 +66,8 @@ class functions {
           $array[$key]=FALSE;
         }
       }
+    } else {
+      die('Fatal error: cannot mapfill array data!');
     }
     return $this->update_array($array,$update);
   }

@@ -13,13 +13,11 @@
   $SITE .= (isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'').($tmp=='/'?'/':$tmp.'/');
 
   // requires and includes
-  include_once('lib/paths.php');      // static paths
   include_once('lib/functions.php');  // quick 'n dirty injection of shop/product functions class
+  include_once('lib/paths.php');      // define static paths
   $shop = new functions;
-
-  // get and merge settings
-  $DEF = $shop->get_json($SET['data/'].'settings.def');
-  $SET = $shop->update_array($SET,$shop->get_json($SET['data/'].'settings.json'));
+  $DEF = $shop->get_json($SET['data/'].'settings.def');  // get default settings
+  $SET = $shop->update_array($SET,$shop->get_json($SET['data/'].'settings.json')); // get custom settings
 
   // merge translation default and customizations
   $STR = $shop->update_array($shop->get_json($SET['data/'].'translation.def'),$shop->get_json($SET['data/'].'translation.json'));
