@@ -26,7 +26,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
     background: -webkit-linear-gradient(
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 1) 100%
-    ); 
+    );
     background-image: -moz-linear-gradient(
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 1) 100%
@@ -47,13 +47,13 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 
 /* Item forms */
 .jcart {
-	margin: 0 auto;
-	margin-bottom: 24px;
-	min-width: 100%;
-	max-width: 100%;
-	display: inline-block;
-	box-sizing: border-box;
-	border: solid #FFFFFF 12px;;
+  margin: 0 auto;
+  margin-bottom: 24px;
+  min-width: 100%;
+  max-width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: solid #FFFFFF 12px;;
    }
 .jcart img{max-width: 100% }
 .jcart h5{text-align: center;}
@@ -66,47 +66,49 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 .jcart .add-to-cart { margin:10px; width: 100%;}
 
 .jcart.slider {
-	width: 80%;
-	max-width: 80%;
-	height: auto;
-	max-height: 80%;
-	padding-top: 0;
+  width: 80%;
+  max-width: 80%;
+  height: auto;
+  max-height: 80%;
+  padding-top: 0;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .jcart.slider h3 {
-	text-align: center;
-	/* padding-left: 24px; */
-	/*margin-right: 24px;*/
+  text-align: center;
+  /* padding-left: 24px; */
+  /*margin-right: 24px;*/
 }
 .jcart.slider .slider-description {
-	margin-right: 24px;
-	overflow: hidden;
+  margin-right: 24px;
+  overflow: hidden;
 }
 .jcart.slider .slider-description-p {
-	overflow-y: scroll;
-	height: auto;
-	max-height: 145px;	
-	text-align: justify;
+  overflow-y: scroll;
+  height: auto;
+  max-height: 145px;
+  text-align: justify;
 }
 .jcart.slider .slider-description-p p {
-	text-align: left;
-	font-size: 1.1em !important;
+  text-align: left;
+  font-size: 1.1em !important;
 }
 .jcart.slider .imgdiv {
-	height: 280px;
-	width: 50%;
-	float: left;
-	text-align: center;
-	align-content: center;
-	vertical-align: middle;
-	overflow: hidden;
+  height: 280px;
+  width: 50%;
+  float: left;
+  text-align: center;
+  align-content: center;
+  vertical-align: middle;
+  overflow: hidden;
 }
 .jcart.slider img {
-	height: 280px;
-	max-width: 100%;
-	padding: 16px;
+  height: 280px;
+  max-width: 100%;
+  padding: 16px;
 }
 .jcart.slider .add-to-cart-slider {
-	float:left;
+  float:left;
 }
 
 /* Main front */
@@ -139,55 +141,55 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 label { margin-top: 12px; }
 
 #checkout-container {
-	margin-left: 12px;
-	margin-right: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 #address-container {
-	display: inline-block; background: #FFF; margin-top: -12px; padding: 12px; min-width: 320px;
-	border: 3px dashed #337AB7;
+  display: inline-block; background: #FFF; margin-top: -12px; padding: 12px; min-width: 320px;
+  border: 3px dashed #337AB7;
 }
 
 #checkout-form {
-	padding: 24px;
-	margin-top: 12px;
-	margin-bottom: 12px;
-	background-color: #EEFFEE;
-	border: 1px solid #4CAE4C;
-	border-radius: 5px;
+  padding: 24px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: #EEFFEE;
+  border: 1px solid #4CAE4C;
+  border-radius: 5px;
 }
 
 #checkout-table {
-	background-color: #FFF;
+  background-color: #FFF;
 }
 
 .checkout-table-total {
-	color: #FFF;
-	background-color: #555 !important;
+  color: #FFF;
+  background-color: #555 !important;
 }
 
 .checkout-table-modif {
-	color: #FFF;
-	background-color: #6A6A6A !important;
+  color: #FFF;
+  background-color: #6A6A6A !important;
 }
 
 
 @media only screen and (min-width: 480px) {
-	.jcart{min-width: 49%; max-width: 49%;}
-	}
+  .jcart{min-width: 49%; max-width: 49%;}
+  }
 
 @media only screen and (min-width: 600px) {
-	.jcart{min-width: 32%; max-width: 32%;}
-	}
+  .jcart{min-width: 32%; max-width: 32%;}
+  }
 
 @media only screen and (min-width: 768px) {
-	.jcart{min-width: 23%; max-width: 23%;}
-	}
+  .jcart{min-width: 23%; max-width: 23%;}
+  }
 
 @media only screen and (min-width: 990px){
-	.jcart.slider h3 {text-align: left;}
+  .jcart.slider h3 {text-align: left;}
 }
 
 @media only screen and (min-width: 1201px) {
-	.jcart{min-width: 19%; max-width: 19%;}
-	}
+  .jcart{min-width: 19%; max-width: 19%;}
+  }
