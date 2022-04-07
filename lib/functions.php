@@ -771,7 +771,7 @@ class functions {
     $array['quantity']=0;
     $array['modifiers']=array();
     // construct producttable
-    $producttable='<table id="checkout-table" class="table table-striped"><tbody>';
+    $producttable='<div class="table-responsive"><table id="checkout-table" class="table table-striped"><tbody></div>';
     foreach ($products as $id => $product) {
       // apply local and remote modifiers per product
       if(isset($product['modifiers'])) {

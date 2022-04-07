@@ -1,31 +1,35 @@
-		<div id="topbar">
-			<form action="" method="POST">
-				<div id="sorting" style="color: grey;"><?=$STR['Sort_items_by'];?>&nbsp;&nbsp;
-					<button class="btn btn-xs btn-<?php echo ($sort=='name'?'info':'default'); ?>" type="submit" name="sort" value="name"><?=$STR['sortbutton_name'];?></button>
-					<button class="btn btn-xs btn-<?php echo ($sort=='price'?'info':'default'); ?>" type="submit" name="sort" value="price"><?=$STR['sortbutton_price'];?></button>
-					<button class="btn btn-xs btn-<?php echo ($sort=='time'?'info':'default'); ?>" type="submit" name="sort" value="time"><?=$STR['sortbutton_date'];?></button>
-					<input class="btn btn-xs nobutton" type="submit" name="sortasc" value="<?php echo ($sortasc?'&darr;':'&uarr;'); ?>"/>
-				</div>
-			</form>
-			<div id="categories"><?php echo $content['categories']; ?></div>
+<div id="topbar" class="row">
+	<br>
+	<form action="" method="POST">
+		<div id="sorting" class="col-xs-12 col-md-4" style="color: grey;padding-left: 0px;"><?=$STR['Sort_items_by'];?>&nbsp;&nbsp;
+			<button class="btn btn-xs btn-<?php echo ($sort=='name'?'info':'default'); ?>" type="submit" name="sort" value="name"><?=$STR['sortbutton_name'];?></button>
+			<button class="btn btn-xs btn-<?php echo ($sort=='price'?'info':'default'); ?>" type="submit" name="sort" value="price"><?=$STR['sortbutton_price'];?></button>
+			<button class="btn btn-xs btn-<?php echo ($sort=='time'?'info':'default'); ?>" type="submit" name="sort" value="time"><?=$STR['sortbutton_date'];?></button>
+			<input class="btn btn-xs nobutton" type="submit" name="sortasc" value="<?php echo ($sortasc?'&darr;':'&uarr;'); ?>"/>
 		</div>
-		
-		<?php if(!$SET['shopslider'] || $category) { ?>
-		<div id="sidebar">
+	</form>
+	<div id="categories" class="col-xs-12 col-md-8" style="color: grey; padding-left: 0px;">
+	  <?php echo "Categories: &nbsp;&nbsp;&nbsp;&nbsp;" . $content['categories']; ?>
+	</div>	
+	<?php if(!$SET['shopslider'] || $category) { ?>
+		<div class="col-xs-12">
+			<button class="btn btn-link" onclick="toggleCart();" ><i class="fa fa-shopping-cart"></i></button>
+		</div>
+		<div id="sidebar" class="col-xs-12" style="display: none;">
 			<div id="jcart"><?php $jcart->display_cart();?></div>
 		</div>
 		<?php } ?>
-
-		<div id="content" <?php if($SET['shopslider'] && !$category) { echo 'style="text-align: center;"'; } ?>>
-
-			<?php if($content['description']) { echo '<div id="'.($SET['shopslider'] && !$category?'':'cat-').'description">'.$content['description'].'</div><br>'; } ?>
-			<?php echo $content['forms']; ?>
-			
-			<?php if($SET['shopslider'] && !$category) { ?>
-			<div id="bottombar">
-				<div id="jcart"><?php $jcart->display_cart();?></div>
-			</div>
-			<?php } ?>
-			<div class="clear"></div>
-
-		</div>
+		<?php if($content['description']) { 
+			echo '<div id="'.($SET['shopslider'] && !$category?'':'cat-').'description">
+					<div id="shopcta" class="col-xs-12">'.$content['description'].'</div>
+				  </div><br><br>';		 } ?>
+</div>	
+<div class="row" id="content"<?php if($SET['shopslider'] && !$category) { echo ' style="text-align: center;"'; } ?>>	
+	<?php echo $content['forms']; ?>	
+	<?php if($SET['shopslider'] && !$category) { ?>
+<div id="bottombar">
+	<div id="jcart"><?php $jcart->display_cart();?></div>
+</div>
+<?php } ?>
+<div class="clear"></div>
+</div>
