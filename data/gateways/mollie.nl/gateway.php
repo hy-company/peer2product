@@ -83,9 +83,9 @@ function paymentform($array,$shop) {
   echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
        '<span>'.$GATEWAY['description'].'</span><br><br>'.
        $STR['Paying_via'].':<br><img class="img-responsive" style="margin: 0 auto;" src="'.$GATEWAY['directory'].'mollie.jpeg" /></div>';
-
   echo "<input type='hidden' name='x' value='".$shop->tx($array)."' />";
-
+  // [!] click submit to forward user to Mollie's own gateway in 3000ms
+  echo "<script>setTimeout( () => { document.querySelector('.submit').click(); }, 3000);</script>";
 }
 
 ?>
