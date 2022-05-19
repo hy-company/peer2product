@@ -2,32 +2,25 @@
 
 /*
  *
- *  GATEWAY FOR PAYING BY MOLLIE.NL
+ *  GATEWAY FOR PAYING WITH MOLLIE.NL
  *
  */
 
 $array['payment_method']='mollie.nl';
-
 $array['forwardurl'] = $SITE.'?checkout&x='.$array['ordernumber'];
 
-// if(isset($_POST['next']) && $_POST['next']=='Pay') {
-function paymentgate($array,$shop) {
-  global $GATEWAY,$SITE,$SET,$STR;
-  // get gateway variables
+function paymentgate($array,$shop) {    // TODO: if(isset($_POST['next']) && $_POST['next']=='Pay') {
+  global $GATEWAY,$SITE,$SET,$STR; // get gateway variables
   require($GATEWAY['directory'].'settings.php');
-
   if (!isset($array['amount']) || !isset($array['ordernumber'])) {
     echo 'Missing amount or ordernumber!';
     die();
   }
 
+  /*
+   * Initialize the Mollie API library with API key.  https://www.mollie.com/dashboard/developers/api-keys
+   */
   try {
-    /*
-     * Initialize the Mollie API library with API key.
-     *
-     * See: https://www.mollie.com/dashboard/developers/api-keys
-     */
-    // === MOLLIE INIT === //
     require($GATEWAY['directory'].'lib/vendor/autoload.php');
     $mollie = new \Mollie\Api\MollieApiClient();
     $mollie->setApiKey($GATEWAY['API_Key']);
@@ -59,27 +52,20 @@ function paymentgate($array,$shop) {
        '<tr><td style="width: 200px;">Webhook Url: </td><td>'.$array['forwardurl'].'&s=100</td></tr>'.
        '</table></div>'
     */
-
-
+    return $array;
   } catch(Exception $exc) {
     $array['forwardurl'] = $strReturnUrl.'?orderId='.$array['ordernumber'].'&orderStatusId=0&error='.$exc->getMessage();
     return $array;
   }
-
-  return $array;
-
 }
 
 function paymentform($array,$shop) {
   global $GATEWAY,$SET,$STR;
-  // get gateway variables
-  require($GATEWAY['directory'].'settings.php');
-
+  require($GATEWAY['directory'].'settings.php'); // get gateway variables
   if (!isset($array['amount']) || !isset($array['ordernumber'])) {
     echo 'Missing amount or ordernumber!';
     die();
   }
-
   echo '<div style="width: 100%; margin-top: 48px; text-align: center;"><h4>'.$STR['Amount_to_pay'].': <span style="font-weight: bold;">'.$SET['shopcurrency'].' '.$shop->formatn($array['amount']).'</span></h4><br>'.
        '<span>'.$GATEWAY['description'].'</span><br><br>'.
        $STR['Paying_via'].':<br><img class="img-responsive" style="margin: 0 auto;" src="'.$GATEWAY['directory'].'mollie.jpeg" /></div>';
