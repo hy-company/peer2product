@@ -321,6 +321,7 @@ h5 { font-weight: bold;
 
 #categories button:hover{
   background-color: #337AB7;
+  border: 0px solid #FFFFFF;
 }
 
 #sorting {
