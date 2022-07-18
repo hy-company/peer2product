@@ -30,7 +30,7 @@ function paymentgate($array,$shop) {    // TODO: if(isset($_POST['next']) && $_P
             "value" => $shop->formatn($array['amount'])
         ],
         "description" => $array['ordernumber'],
-        "redirectUrl" => $array['forwardurl'].'&s=99',
+        "redirectUrl" => $array['forwardurl'].'&s=98',
         "webhookUrl"  => $array['forwardurl'].'&s=100'
 
     ]);

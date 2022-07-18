@@ -42,7 +42,7 @@
       ],
       'mode' => 'payment',
       'success_url' => $forwardURL.'&s=100',                // redirect on success
-      'cancel_url' => $SITE                                 // redirect on cancel
+      'cancel_url' => $forwardURL.'&s=98'                   // redirect on cancel
     ]);
 
     header("Location: " .$checkout_session->url);
