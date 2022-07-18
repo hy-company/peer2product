@@ -248,7 +248,7 @@ class Jcart {
 		$this->itemCount = 0;
 		$this->subtotal  = 0;
 
-		if(sizeof($this->items > 0)) {
+		if(sizeof($this->items) > 0) {
 			foreach($this->items as $item) {
 				$this->subtotal += ($this->qtys[$item] * $this->prices[$item]);
 
@@ -270,7 +270,7 @@ class Jcart {
 		} else {
 			$config = $this->config; 
 		}
-		
+
 		$errorMessage = null;
 
 		// Simplify some config variables
@@ -440,7 +440,6 @@ class Jcart {
 		echo tab(6) . "</th>\n";
 		echo tab(5) . "</tr>". "\n";
 		echo tab(4) . "</thead>\n";
-		
 		// Display the cart footer
 		echo tab(4) . "<tfoot>\n";
 		echo tab(5) . "<tr>\n";
@@ -458,8 +457,7 @@ class Jcart {
 		echo tab(7) . "<span id='jcart-subtotal'>".$config['text']['subtotal'].": <strong>$currencySymbol" . number_format($this->subtotal, $priceFormat['decimals'], $priceFormat['dec_point'], $priceFormat['thousands_sep']) . "</strong></span>\n";
 		echo tab(6) . "</th>\n";
 		echo tab(5) . "</tr>\n";
-		echo tab(4) . "</tfoot>\n";			
-		
+		echo tab(4) . "</tfoot>\n";
 		echo tab(4) . "<tbody>\n";
 
 		// If any items in the cart
@@ -510,13 +508,10 @@ class Jcart {
 			$inputType = "image";
 			$src = " src='{$config['button']['empty']}' alt='{$config['text']['emptyButton']}' title='' ";
 		}
-
 		echo tab(4) . "<input type='$inputType' $src name='jcartEmpty' value='{$config['text']['emptyButton']}' class='btn btn-default jcart-button' />\n";
 		echo tab(3) . "</div>\n";
-
 		echo tab(2) . "</fieldset>\n";
 		echo tab(1) . "</form>\n\n";
-		
 		echo tab(1) . "<div id='jcart-tooltip'></div>\n";
 	}
 }
