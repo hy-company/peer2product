@@ -9,7 +9,11 @@ error_reporting($DEBUG || $TESTMODE ? E_ERROR | E_WARNING | E_PARSE : 0);
 try {
   // normal step sequence
   if (isset($_POST['x'])) {
-    $array=$shop->rx($_POST['x']);
+    if($_POST['x']) {
+      $array=$shop->rx($_POST['x']);
+    } else {
+      $shop->siteroot();
+    }
   } else {
     // on return from payment gateway, restore order from file storage
     if(file_exists($SET['data/'].$SET['ordr/'].$_GET['x'].'.pending')) {
@@ -20,7 +24,7 @@ try {
   }
 } catch(Exception $e) {
   // No cart data, return to siteroot.
-  siteroot();
+  $shop->siteroot();
 }
 
 // HACK: gateway forwards user to payment gateway if $array['gateway'] and if $_POST['submit_payment_method'] is true
@@ -85,14 +89,14 @@ if (isset($_GET['s'])) {
   }
 }
 
-function paymentnav($tx,$next = FALSE,$back = FALSE,$enabled = TRUE) {
+function paymentnav($tx,$next = FALSE,$back = FALSE,$enabledA = TRUE,$enabledB = TRUE) {
   global $STR;
   if(!$next) { $next = $STR['Next']; }
   if(!$back) { $back = $STR['Back']; }
   return '    <div id="paymentnav">
             <input type="hidden" name="x" value="'.$tx.'"/>
-            <input class="back btn btn-'.($enabled?'danger" type="submit':'disabled" style="color: white;" type="button').'" name="back" value="&lt;&nbsp; '.$back.'"/>
-            <input class="submit btn btn-success" type="submit" name="next" value="'.$next.' &nbsp;&gt;" style="float: right;" />
+            <input class="back btn btn-'.($enabledA?'danger" type="submit"':'disabled" style="color: white;" type="button"').' name="back" value="&lt;&nbsp; '.$back.'"/>
+            <input class="submit btn btn-'.($enabledB?'success" type="submit" style="float: right;"':'disabled" style="color: white; float: right;" type="button"').'" name="next" value="'.$next.' &nbsp;&gt;"/>
           </div>';
 }
 
@@ -128,8 +132,34 @@ switch($array['sequence']) {
   break;
   // STEP 1: ENTER ADDRESS
   case 0:
-    $countries=$shop->get_json($SET['data/'].'countries.json');
-    include('ui/checkout-delivery.htm');
+    if(empty($jcart->items)) {
+      ?>  <div class="clear"></div>
+          <div id="checkout-container">
+            <form method="post" action="checkout" name="orderForm" id="orderForm">
+            <div id="checkout-container">
+              <?php echo paymentnav(null,FALSE,FALSE,TRUE,FALSE); ?>
+              <div id="checkout-form">
+                <center>
+                  <div class="navsteps">
+                <span class="badge">1. <?=$STR['Delivery'];?></span>
+                <span class="badge">2. <?=$STR['Validation'];?></span>
+                <span class="badge">3. <?=$STR['Payment'];?></span>
+                  </div>
+                  <h2><?=$STR['Checkout'];?></h2>
+                  <?=$STR['Cart_is_empty'];?><br><br>
+                  <img src="ui/images/sadface.png"/>
+                  <br><br>
+                </center>
+              </div>
+            </div>
+            <?php echo paymentnav(null,FALSE,FALSE,TRUE,FALSE); ?>
+          </form>
+        </div>
+      <?php
+    } else {
+      $countries=$shop->get_json($SET['data/'].'countries.json');
+      include('ui/checkout-delivery.htm');
+    }
   break;
   // STEP 2: ORDER VALIDATION
   case 1:
@@ -229,20 +259,20 @@ switch($array['sequence']) {
       // display destination address and gateway choice
         ?>
   </div>
-  <div class="row"> 
+  <div class="row">
     <div class="col-xs-12">
       <h2><?=$STR['Ordernumber'];?></h2>
       <?php echo $array['ordernumber']; ?>
     </div>
-    <div class="col-xs-12"><br></div>    
+    <div class="col-xs-12"><br></div>
      <div class="col-xs-12 col-md-6">
             <div class="col-xs-12" style="padding: 0;">
               <h2><?=$STR['Destination_address'];?></h2>
             </div>
             <div class="col-xs-12 col-md-6" style="border: 3px dotted #337AB7; background: #FFF;">
-            <br>              
+            <br>
               <?php echo (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']); ?>
-              <br> 
+              <br>
               <?php echo $array['streetname'].' '.$array['housenumber']; ?>
               <br>
               <?php echo $array['zipcode']; ?>
@@ -250,7 +280,7 @@ switch($array['sequence']) {
               <?php echo $array['city']; ?>
               <br>
               <?php echo $array['country']; ?>
-              <br><br> 
+              <br><br>
             </div>
       </div>
             <div class="col-xs-12 col-md-6">
@@ -266,11 +296,11 @@ switch($array['sequence']) {
                   ?>
                 </select>
             </div>
-     
+
   </div>
   </div>
   </div>
-  
+
           <br /><br />
         <div class="clear"></div>
         <?php echo paymentnav($shop->tx($array)); ?>
