@@ -1,5 +1,22 @@
 var navbarDropDownState = 0;  //value determines behaviour of navbarDropDown onclick event
 var cartToggleState = 0;
+var lastScrollTop = $.cookie('last-scroll-top');
+var viewportWidth = window.innerWidth;
+
+if (lastScrollTop) {    //reads scrollbar position cookie
+  $(window).scrollTop(lastScrollTop);
+  $.removeCookie('last-scroll-top');
+}
+
+window.addEventListener('resize', function(event){      //refreshes the window on resize to fix display issues with slider and storefont
+  let newViewportWidth = window.innerWidth;
+  if(viewportWidth !== newViewportWidth){
+	console.log('lets do something here like redirect ..');
+	$.cookie('last-scroll-top', $(window).scrollTop());
+	let url = window.location.href;
+	window.location.href= url;
+	}    
+});
 
 function navbarDropDown(){      //onlick event
 
