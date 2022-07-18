@@ -1,0 +1,483 @@
+/*
+jCart v1.3
+http://conceptlogic.com/jcart/
+
+This file represents any existing CSS your site may already use
+
+*/
+
+* { margin:0; padding:0; }
+
+html {
+  background:#FFFFFF;
+  font-family: Tahoma;
+}
+
+body {
+  font-size:1.5em;
+  padding-bottom: 48px;
+}
+
+h1 {
+  font-size: 2.2em;
+  margin-top:1.2em;
+  margin-bottom:1em;
+}
+
+h2 {
+  font-size: 1.85em;
+  margin-bottom:1em;
+}
+
+p  {
+  font-size: 1.3em; 
+  margin-bottom:1em;
+}
+
+
+h4 {
+  font-size: 1.4em;
+}
+
+h5 { font-weight: bold;
+  margin-left: 1em;
+  margin-right: 1em; 
+}
+
+.clear {
+  clear:both;
+}
+
+.fadeout {
+  position: relative;
+  bottom: 4em;
+  height: 4em;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%  ); 
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -o-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -ms-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+/* Item forms */
+.jcart {
+  margin: 0 auto;
+  margin-bottom: 24px;
+  min-width: 100%;
+  max-width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: solid #FFF 12px;
+}
+
+.jcart img{
+  max-width: 100% ;
+  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.13);
+}
+
+.jcart h5{
+  text-align: center;
+}
+
+.jcart ul {
+  margin:0;
+  list-style:none;
+  padding:0 20px;
+  text-align:justify;
+  color:#000000;
+}
+
+.jcart fieldset {
+  border:0;
+}
+
+.jcart strong { 
+  color:#000;
+}
+
+.jcart .button {
+  margin:20px;
+  padding:5px;
+  text-align: left;
+}
+
+#jcart th, #jcart td {
+  border-radius: 8px;
+  padding: 12px;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+#jcart th {
+  background-color: #68bf68;
+  color: #FFFFFF;
+}
+
+#jcart-checkout{
+  padding:8px;
+  font-family: Tahoma; 
+  font-weight: bold; 
+  background-color: #337AB7;
+  border-radius: 8px;
+}
+
+.jcart .add-to-cart { 
+  margin: 10px;
+  width: 100%;
+  border: 1px solid #337AB7;
+  border-radius: 12px;
+  font-family: Tahoma;
+  background-color: #337AB7;
+  color:#FFFFFF;
+}
+
+.jcart.slider {
+  width: 80%;
+  max-width: 80%;
+  height: auto;
+  max-height: 80%;
+  padding-top: 0;
+  font-family: Tahoma;
+}
+
+.jcart.slider h3 {
+  text-align: center;
+  font-family: Tahoma;
+  background-color: #FFFFFF;
+  border-top-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  padding: 12px;
+  text-align: center;
+  color:#000;
+}
+
+.jcart.slider .slider-description {
+  margin-right: 24px;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+.jcart.slider .slider-description-p {
+  overflow-y: hidden;
+  height: auto;
+  max-height: 300px;	
+  text-align: justify;
+  font-family: Tahoma;
+  font-weight: 300;
+  color: #000;
+}
+
+.jcart.slider .slider-description-p p {
+  text-align: center;
+  font-size: 1.1em !important;
+}
+
+.jcart.slider .imgdiv {
+  height: 280px;
+  width: 50%;
+  float: left;
+  text-align: center;
+  align-content: center;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.jcart.slider img {
+  max-height: 32vw;
+  max-width: 100%;
+}
+
+.jcart.slider .add-to-cart-slider {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.jcart h5{
+  font-family: Tahoma;
+  text-align: center;
+  color: #000000 !important;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.jcart ul{
+  font-family: Tahoma;
+  text-align: center;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+/* Main front */
+#peer2product { 
+  margin: 0 auto;
+  width: 90%;
+  padding: 8px;
+  min-height: 200px;
+}
+
+#shopnav { 
+  padding: 12px;
+  margin-bottom: 40px;
+  min-height: 48px; 
+}
+
+#topbar {
+  margin-top: -16px;
+}
+
+#shopcta {
+  text-align: center;
+  font-family: Tahoma;
+  font-size: 28px;
+  color: #000;
+}
+
+#shopcta p {
+  padding: 16px;
+  font-weight: 300;
+}
+
+#navbar { 
+  display: inline-block;
+  font-size: 1.3em;
+  margin-top: 24px;
+  width: 100%;
+  text-align: center;
+  font-family: Tahoma;
+}
+
+#navbar a { 
+  padding-left: 16px;
+  padding-right: 16px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: lighter;
+  font-family: Tahoma;
+  transition: 0.5s;
+}
+
+#navbar a:hover { 
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #FFF;
+  background-color: #000;
+  font-weight: lighter;
+  font-family: Tahoma;
+}
+
+#footer {
+  float: right;
+  margin-top: 24px;
+  margin-bottom: 16px; 
+  font-family: Tahoma;
+}
+
+#sidebar {
+  width:100%;
+  float:right;
+  margin-left: 20px;
+  margin-left: 20px;
+  padding-bottom: 24px;
+  font-family: Tahoma;
+}
+
+#bottombar {
+  width:70%;
+  max-width: 780px;
+  margin: auto;
+  margin-top: 48px;
+  margin-bottom: 36px;
+}
+
+#content {
+  min-height: 480px;
+  font-family: Tahoma;
+}
+
+#content p {
+  font-size: 1.2em;
+  margin-bottom: 0.7em;
+}
+
+#categories { 
+  padding-top: 0;
+  padding-bottom: 4px;
+  float: left;
+  font-family: Tahoma;
+}
+
+#categories button{ 
+  color: #FFFFFF;
+  font-family: Tahoma;
+  margin: 3px;
+  height: 40px;
+  min-width: 76px;
+  background-color: #68bf68;
+  border: 1px solid #68bf68;
+  border-radius: 12px;
+  transition: 1s;
+}
+
+#categories button:hover{
+  background-color: #337AB7;
+  border: 0px solid #FFFFFF;
+}
+
+#sorting {
+  padding: 5px;
+  float: right;
+  padding-top: 20px;
+  font-family: Tahoma;
+}
+
+#sorting button {
+  color: #535353;
+  background-color: #FFFFFF;
+  border-color: #535353;
+  font-weight: 300;
+  border-radius: 8px;
+  transition: 1s;
+}
+
+#sorting button:hover{
+  background-color: #535353;
+  color:#FFFFFF;
+}
+
+.nobutton { 
+  border: 0;
+  background-color: transparent;
+  border-color: transparent;
+  line-height: 1em;
+  font-size: 18px;
+}
+
+/* Checkout */
+.navsteps {
+  text-align: center;
+}
+
+.badge {
+  background-color: #337AB7;
+  padding: 5px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  margin-left: 12px; 
+  margin-right: 12px; 	 
+}
+
+.badge-active { 
+  background-color: #449d44;
+}
+
+#paymentnav {
+  padding: 10px 20px;
+  margin-top: 4px;
+}
+
+#paymentnav .btn {
+  min-width: 80px; 
+}
+
+label { 
+  margin-top: 12px;
+}
+
+#checkout-container {
+  margin-left: 12px;
+  margin-right: 12px;
+  font-family: Tahoma;
+}
+
+#address-container {
+  display: inline-block;
+  background: #FFFFFF;
+  margin-top: -12px;
+  padding: 12px;
+  min-width: 320px;
+  border: 3px dashed #337AB7;
+}
+
+#DestinationAdress{
+	border: 3px dotted #337AB7;
+}
+
+#checkout-form {
+  padding: 24px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+}
+
+#checkout-table {
+  background-color: #FFFFFF;
+}
+
+.checkout-table-total {
+  color: #FFF;
+  background-color: #68bf68 !important;
+}
+
+.checkout-table-modif {
+  color: #FFF;
+  background-color: #6A6A6A !important;
+}
+
+.back {
+  width: auto;
+  height: 32px;
+  border-radius: 12px;
+}
+
+.submit {
+  width: auto;
+  height: 32px;
+  border-radius: 12px;
+}
+
+#content {
+  color: #000;
+}
+
+@media only screen and (min-width: 480px) {
+  .jcart{
+    min-width: 49%;
+    max-width: 49%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .jcart{
+    min-width: 32%;
+    max-width: 32%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .jcart{
+    min-width: 23%;
+    max-width: 23%;
+  }
+}
+
+@media only screen and (min-width: 990px){
+  .jcart.slider h3 {
+    text-align: left; 
+    padding-left: 0px;
+  }
+
+  .jcart.slider .slider-description-p p {
+    text-align: left;
+  }
+  .jcart.slider .add-to-cart-slider {
+	float:left;
+	text-align: left;
+  }	
+}
+
+@media only screen and (min-width: 1201px) {
+	.jcart{min-width: 19%; max-width: 19%;}
+	} 
+
