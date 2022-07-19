@@ -73,11 +73,11 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
     }
   );
 
-  $f3->route('GET /sort/@key/*',
+  $f3->route('GET /sort/@key/@page',
     function($f3,$params) {
       global $func;
-      $reroute = $params[2];
-      echo $reroute;
+      $reroute = $params['page'];
+      // DEBUG: echo $reroute;
       $session = $f3->get('SESSION');
       if($params['key']!='-') {
         $session = $func->setsorting($session,$params['key']);

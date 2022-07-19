@@ -685,6 +685,7 @@ class functions {
 
   // pseudo-jailed eval for transport formula's
   function transport_eval($code,$var) {
+    $price = (isset($var['product']['price'])?$var['product']['price']:0);;
     $quantity = (isset($var['products']['quantity'])?$var['products']['quantity']:0);;
     $weight = (isset($var['products']['weight'])?$var['products']['weight']:0);
     $size = (isset($var['products']['size'])?$var['products']['size']:0);
@@ -723,6 +724,14 @@ class functions {
     $quantity = (isset($var['product']['quantity'])?$var['product']['quantity']:0);;
     $weight = (isset($var['product']['weight'])?$var['product']['weight']:0);
     $size = (isset($var['product']['size'])?$var['product']['size']:0);
+
+    $company = trim(strtolower( (isset($var['array']['company'])?$var['array']['company']:0) ));
+    $housenumber = trim(strtolower( (isset($var['array']['housenumber'])?$var['array']['housenumber']:0) ));
+    $street = trim(strtolower( (isset($var['array']['street'])?$var['array']['street']:0) ));
+    $city = trim(strtolower( (isset($var['array']['city'])?$var['array']['city']:0) ));
+    $countrycode = trim(strtolower( (isset($var['array']['countrycode'])?$var['array']['countrycode']:0) ));
+    $zipcode = trim(strtolower( (isset($var['array']['zipcode'])?$var['array']['zipcode']:0) ));
+    $notransport = (isset($var['array']['notransport'])?$var['array']['notransport']:0);
 
     $result=$var['result'];
     try {
