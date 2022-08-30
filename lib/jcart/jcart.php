@@ -5,19 +5,20 @@ error_reporting($DEBUG ? E_ERROR | E_WARNING | E_PARSE : 0);
 
 // jCart v1.3
 // http://conceptlogic.com/jcart/
+// NOTE: This Jcart code has been modified from the original for Peer2Product!
 //error_reporting(E_ALL);
 
 // Cart logic based on Webforce Cart: http://www.webforcecart.com/
 class Jcart {
 
-	public $config     = array();
-	public $items     = array();
-	private $names     = array();
-	private $prices    = array();
+	public $subtotal  = 0;
+	public $itemCount = 0;
+	public $config    = array();
 	public $qtys      = array();
-	private $urls      = array();
-	private $subtotal  = 0;
-	private $itemCount = 0;
+	public $items     = array();
+	public $names     = array();
+	public $prices    = array();
+	private $urls     = array();
 
 	function __construct() {
 		// Get $config array
