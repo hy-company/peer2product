@@ -46,6 +46,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
   padding-top: 0;
   margin-top: auto;
   margin-bottom: auto;
+  background: #FFF;
 }
 .jcart.slider h3 {
   text-align: center;
