@@ -18,34 +18,9 @@
         <div class="col-xs-12" id='shopbanner'>
           <a href="<?=$SITE;?>"><img class='img-responsive' src="<?php echo ($SET['shopmainlogo']?$SET['data/'].$SET['shopmainlogo']:$DEF['shopmainlogo']); ?>"/></a>
         </div>
-        <div id="navbar">
-          <div class="col-xs-12">
-            <a href="<?=$SITE;?>admin" target="_blank" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'" style="display: inline-block; opacity: 0; transition: opacity 3s;">&#9881;</a>
-          </div>
-          <div class="col-xs-4">
-            <a href="<?=$SITE;?>"><?=$STR['Store'];?></a>
-          </div>
-          <div class="col-xs-4">
-            <a href="<?=$SITE;?>checkout"><?=$STR['Checkout'];?></a>
-          </div>
-          <div class="col-xs-4">
-           <a href="#" id="navbarDropDownLink" onclick="navbarDropDown();"><?=$STR['More'];?></a>
-          </div>
-          <div class="col-xs-12"><br></div>
-            <div class="col-xs-12" id="navbarDropDown" style="display: none;">
-              <div class="row">
-              <div class="col-xs-4">
-                <a href="<?=$SITE;?>terms"><?=$STR['Terms'];?></a>
-              </div>
-              <div class="col-xs-4">
-                <a href="<?=$SITE;?>about"><?=$STR['About'];?></a>
-              </div>
-              <div class="col-xs-4">
-                <a href="<?=$SITE;?>contact"><?=$STR['Contact'];?></a>
-              </div>
-              <div class="col-xs-12"><br></div>
-            </div>
-        </div>
+        <?php include('ui/navbar.htm'); ?>
+        
+        
       </div>
       <?php include('lib/main.php');?>
       <div id="footer">Powered by <a href="http://peer2product.com">Peer2Product</a></div>
