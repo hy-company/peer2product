@@ -15,7 +15,7 @@
   <body>
     <div id="peer2product">
       <div id="shopnav" class="row">
-        <div class="col-xs-12" id='shopbanner'>
+        <div class="col-md-12" id='shopbanner'>
           <a href="<?=$SITE;?>"><img class='img-responsive' src="<?php echo ($SET['shopmainlogo']?$SET['data/'].$SET['shopmainlogo']:$DEF['shopmainlogo']); ?>"/></a>
         </div>
         <?php include('ui/navbar.htm'); ?>
@@ -50,9 +50,11 @@
           <p>We'd love to hear from you! Get in touch with us!</p>
         </div>
         <div class="col-xs-12"><br><br><br><br></div>
+        <p id="footer">Powered by <a href="http://peer2product.com">Peer2Product</a></p>
+        <br>
       </div>
 
-      <div id="footer">Powered by <a href="http://peer2product.com">Peer2Product</a></div>
+    
    
   <?php } ?>
   </footer>

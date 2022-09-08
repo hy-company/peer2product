@@ -138,10 +138,11 @@ margin: 4px;
 
 #footer {
  float: right;
+ margin-right: 2em;
 }
 
 #content {
-  min-height: 480px;
+  min-height: 400px;
 }
 
 #categories {
