@@ -7,6 +7,9 @@ h5 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+ul, li {
+margin: 0 auto;
+}
 .clear { clear:both; }
 
 .fadeout {
@@ -48,6 +51,24 @@ h5 {
   border: 1px solid #FFF0;
   border-top-right-radius: 18px;
   border-bottom-left-radius: 18px;;
+  transition: 1s;
+}
+
+.add-to-cart:hover{
+  padding: 18px;
+  background: #212521;
+  color:#36f32d;
+}
+
+.add-to-cart {
+  background: #36f32d;
+  color: #000;
+  padding: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #FFF0;
+  border-top-right-radius: 18px;
+  border-bottom-left-radius: 18px;;
+  width: 90%;
   transition: 1s;
 }
 
