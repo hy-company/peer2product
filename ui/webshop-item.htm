@@ -22,7 +22,8 @@
 						<li style="color: gray;"><?=$STR['Origin']?> <?=(isset($product['vendorname'])?$product['vendorname']:$STR['local'])?></li>
 						<li style="color: gray;"><?=$STR['Stock']?> <?=($product['stock']!=-1?$product['stock']:'∞')?></li>
 					</ul>
-					<button type="submit" name="my-add-button" value="add-to-cart" class="btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button>
+					<center><button type="submit" name="my-add-button" value="add-to-cart" class="btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button></center>
+					<br>
 				</fieldset>
 			</form>
 		</div>

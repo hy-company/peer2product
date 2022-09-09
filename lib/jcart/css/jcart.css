@@ -16,7 +16,6 @@ http://conceptlogic.com/jcart/
 #jcart tbody {  }
 #jcart tfoot {  }
 #jcart tr {  }
-#jcart th { background:#ccffcc }
 #jcart th, #jcart td { padding:5px; border:none; vertical-align:middle; text-align:left; font-weight:normal; }
 #jcart #jcart-empty { text-align:center; }
 
