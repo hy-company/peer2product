@@ -95,8 +95,8 @@ function paymentnav($tx,$next = FALSE,$back = FALSE,$enabledA = TRUE,$enabledB =
   if(!$back) { $back = $STR['Back']; }
   return '    <div id="paymentnav">
             <input type="hidden" name="x" value="'.$tx.'"/>
-            <input class="back btn btn-'.($enabledA?'danger" type="submit"':'disabled" style="color: white;" type="button"').' name="back" value="&lt;&nbsp; '.$back.'"/>
-            <input class="submit btn btn-'.($enabledB?'success" type="submit" style="float: right;"':'disabled" style="color: white; float: right;" type="button"').'" name="next" value="'.$next.' &nbsp;&gt;"/>
+            <input class="back btn btn-'.($enabledA?'danger" id="paymentnavBack" type="submit"':'disabled" style="color: white;" type="button"').' name="back" value="&lt;&nbsp; '.$back.'"/>
+            <input id="paymentnavNext" class="submit btn btn-'.($enabledB?'success" type="submit" style="float: right;"':'disabled" style="color: white; float: right;" type="button"').'" name="next" value="'.$next.' &nbsp;&gt;"/>
           </div>';
 }
 

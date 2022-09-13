@@ -1,11 +1,22 @@
 * { margin:0; padding:0; }
 
 html { background:#fff; font-family:trebuchet ms, candara, sans-serif; font-size:62.5%; }
-body { font-size:1.5em; padding-bottom: 48px; }
+body { font-size:1.5em; }
+.col-xs-4{padding-left: 4px !important; padding-right: 4px !important;}
+h1 { 
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.8em;
+  font-weight: 300;
+}
 
-h1 { font-size: 2.2em; margin-top:1.2em; margin-bottom:1em; }
 h2 { font-size: 1.85em; margin-bottom:1em; }
-p  { font-size: 1.3em; margin-bottom:1em; }
+
+p  {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+}
+
 h4 { font-size: 1.4em; }
 h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 
@@ -47,9 +58,14 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
   margin-top: auto;
   margin-bottom: auto;
   background: #FFF;
+  margin: 0 auto;
 }
 .jcart.slider h3 {
   text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #575757;
+  font-weight: 600;
+
 }
 .jcart.slider .slider-description {
   margin-right: 24px;
@@ -59,11 +75,15 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
   overflow-y: scroll;
   height: auto;
   max-height: 145px;
-  text-align: justify;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #575757;
 }
+
 .jcart.slider .slider-description-p p {
-  text-align: left;
+  text-align: justify;
   font-size: 1.1em !important;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .jcart.slider .imgdiv {
   height: 280px;
@@ -83,23 +103,197 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
   float:left;
 }
 
+#add-to-cart-slider{
+  margin-top: 2em;
+}
+
+#add-to-cart-slider-button{
+  background-image: url('../../data/hybrix\ -\ gradient.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  padding: padding-top;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-family: 'Open Sans Pro';
+  font-weight: 600;
+  border: 0.5px solid #575757;
+  border-radius: 4px;
+  transition: 1000ms;
+}
+
+#footerButton{
+  background-image: url('../../data/hybrix\ -\ gradient.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  padding: padding-top;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-family: 'Open Sans Pro';
+  font-weight: 600;
+  border: 0.5px solid #575757;
+  border-radius: 4px;
+  transition: 1000ms;
+}
+
+#footerButton:hover{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+#add-to-cart-slider-button:hover {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+#sliderShopControls{
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
 /* Main front */
-#peer2product { margin: 0 auto; width: 90%; padding: 8px; min-height: 200px;}
-#shopnav { padding: 12px; margin-bottom: 40px; min-height: 48px; }
-#topbar { margin-top: -16px; }
-#shopcta{text-align: center;}
-#navbar { display: inline-block; font-size: 1.1em; margin-top: 24px;width: 100%; text-align: center; }
-#navbar a { padding-left: 16px; padding-right: 16px; text-decoration: none; }
-#footer { float: right; margin-top: 24px; margin-bottom: 16px; }
+#peer2product { margin: 0 auto; width: 90%; padding: 1px; min-height: 200px;}
+/* #shopnav {   } */
+
+#shopcta{
+  /* background: #fff;
+	background: linear-gradient(90deg, rgba(231,160,96,0.6264705711386117) 4%, rgba(237,92,174,0.6376750529313288) 35%, rgba(125,186,202,1) 69%, rgba(239,87,187,0.6264705711386117) 96%);
+	background-size: 400% 400%;
+	animation: gradient 60s ease infinite; */
+  border-radius: 24px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 8px;
+  text-align: center; 
+  color: #575757;
+  margin-top: 1em;
+   
+}
+
+#shopcta p{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#shopNavigation {
+  background: url('../../data/hybrix_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 300px;
+}
+
+#navbar { 
+  display: inline-block;
+  margin-top: 2em;
+  width: 100%;
+  text-align: center;
+}
+
+#navbar a { 
+  text-decoration: none;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1em;
+  color: #575757;
+  min-width: 100px;
+  min-height: 2em;
+}
+
+.icon{
+  font-size: 1em;
+  
+}
+
+#sorting button {
+  background: #575757;
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+}
+
+#hybrix-footer{
+  min-height: 400px;
+  height: auto;
+  background-image: url(../../data/hybrix-mountainbanner.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+
+#footer { float: right; margin-top: 24px; margin-bottom: 16px; color:#FFF; }
+#footer a {text-decoration: none; color: #fff !important; transition: 600ms;}
+#footer a:hover{font-weight:bolder;}
 #sidebar { width:100%; float:right; margin-left: 20px; margin-left: 20px; padding-bottom: 24px; }
 #bottombar { width:70%; max-width: 780px; margin: auto; margin-top: 48px; margin-bottom: 36px; }
-#content { min-height: 480px; }
+
+#content { 
+  min-height: 480px; 
+}
+
+#itemName{
+  font-family: "Open Sans Pro";
+  text-align: center;
+  font-weight: 300 !important;
+  color: #575757;
+}
+
+#itemPrice{
+  font-family: "Open Sans Pro";
+  text-align: center;
+  font-weight: 300 !important;
+  color: #575757;
+}
+
+#itemAddToCart{
+  background: #575757;
+  color: #fff;
+  padding: padding-top;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-family: 'Open Sans Pro';
+  font-weight: 300;
+  border: 0.5px solid #575757;
+  border-radius: 4px;
+  transition: 1000ms;
+  margin: 0 auto;
+}
+
+#itemAddToCart:hover{
+  font-weight: 600;
+  background-image: url('../../data/hybrix\ -\ gradient.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
 #content p { font-size: 1.2em; margin-bottom: 0.7em; }
 
-#categories { padding-top: 0; padding-bottom: 4px; float: left; }
-#categories button { margin: 3px; height: 56px; min-width: 96px; }
-#sorting { padding: 5px; float: right; padding-top: 20px; }
-
+#categories { padding-top: 0; padding-bottom: 4px; float: left; text-align: left; margin-top: 0.5em}
 .nobutton { border: 0; background-color: transparent; border-color: transparent; line-height: 1em; font-size: 18px; }
 
 /* Checkout */
@@ -108,7 +302,15 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 .badge-active { background-color: #7B7; }
 
 #paymentnav { padding: 10px 20px; margin-top: 4px; }
-#paymentnav .btn { min-width: 80px; }
+#paymentnavBack, #paymentnavNext {
+  min-width: 80px;
+  border: 4px solid #fff;
+  background-color: #fff;
+  color: #575757;
+  font-family: "Open Sans Pro";
+  font-weight: 600;
+  margin-bottom: 1em;
+}
 
 label { margin-top: 12px; }
 
@@ -126,9 +328,10 @@ label { margin-top: 12px; }
   padding: 24px;
   margin-top: 12px;
   margin-bottom: 12px;
-  background-color: #EEFFEE;
-  border: 1px solid #4CAE4C;
+  background: rgb(238,255,238);
+  background: linear-gradient(90deg, rgba(238,255,238,1) 0%, rgba(255,255,255,1) 100%);
   border-radius: 5px;
+  font-family: 'Open Sans Pro';
 }
 
 #checkout-table {
@@ -146,16 +349,36 @@ label { margin-top: 12px; }
 }
 
 
+#categoryButtons button{
+  background: #575757;
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+  margin: 2px;
+  transition: 1000ms;
+}
+
+#categoryButtons button:hover{
+  background-image: url('../../data/hybrix\ -\ gradient.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
 @media only screen and (min-width: 480px) {
-  .jcart{min-width: 49%; max-width: 49%;}
+
 }
 
 @media only screen and (min-width: 600px) {
-  .jcart{min-width: 32%; max-width: 32%;}
+
+  #categories{text-align: left;}
 }
 
 @media only screen and (min-width: 768px) {
-  .jcart{min-width: 23%; max-width: 23%;}
+
+  #navbar a{font-size: 1.3em;}
+  .icon{font-size: 1.1em;}
+  .slider-description-p p{text-align: justify ;}
 }
 
 @media only screen and (min-width: 990px){
@@ -163,5 +386,5 @@ label { margin-top: 12px; }
 }
 
 @media only screen and (min-width: 1201px) {
-  .jcart{min-width: 19%; max-width: 19%;}
+
 }

@@ -14,44 +14,52 @@
   <?php include('ui/header.htm'); ?>
   <body>
     <div id="peer2product">
-      <div id="shopnav" class="row">
-        <div class="col-xs-12" id='shopbanner'>
+      <div class="row">
+    <div class="col-xs-12" id='shopbanner'>
           <a href="<?=$SITE;?>"><img class='img-responsive' src="<?php echo ($SET['shopmainlogo']?$SET['data/'].$SET['shopmainlogo']:$DEF['shopmainlogo']); ?>"/></a>
         </div>
+        </div>
+      <div class="row">
+        
         <div id="navbar">
           <div class="col-xs-12">
             <a href="<?=$SITE;?>admin" target="_blank" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'" style="display: inline-block; opacity: 0; transition: opacity 3s;">&#9881;</a>
           </div>
           <div class="col-xs-4">
-            <a href="<?=$SITE;?>"><?=$STR['Store'];?></a>
+            <a href="<?=$SITE;?>"><i class="fa-solid fa-store icon"></i><br><?=$STR['Store'];?></a>
           </div>
           <div class="col-xs-4">
-            <a href="<?=$SITE;?>checkout"><?=$STR['Checkout'];?></a>
+            <a href="<?=$SITE;?>checkout"><i class="fa-solid fa-money-bill icon"></i><br><?=$STR['Checkout'];?></a>
           </div>
           <div class="col-xs-4">
-           <a href="#" id="navbarDropDownLink" onclick="navbarDropDown();"><?=$STR['More'];?></a>
+           <a href="#" id="navbarDropDownLink" onclick="navbarDropDown();"><i class="fa-solid fa-circle-arrow-down icon" id="arrowIcon"></i><br><?=$STR['More'];?></a>
           </div>
           <div class="col-xs-12"><br></div>
-            <div class="col-xs-12" id="navbarDropDown" style="display: none;">
+
+            <div class="col-xs-12" id="navbarDropDown" style="display: none; margin-top: 2em;">
               <div class="row">
               <div class="col-xs-4">
-                <a href="<?=$SITE;?>terms"><?=$STR['Terms'];?></a>
+                <a href="<?=$SITE;?>terms"><i class="fa-solid fa-asterisk icon"></i><br><?=$STR['Terms'];?></a>
               </div>
               <div class="col-xs-4">
-                <a href="<?=$SITE;?>about"><?=$STR['About'];?></a>
+                <a href="<?=$SITE;?>about"><i class="fa-brands fa-leanpub icon"></i><br><?=$STR['About'];?></a>
               </div>
               <div class="col-xs-4">
-                <a href="<?=$SITE;?>contact"><?=$STR['Contact'];?></a>
+                <a href="<?=$SITE;?>contact"><i class="fa-regular fa-comments icon"></i><br><?=$STR['Contact'];?></a>
               </div>
               <div class="col-xs-12"><br></div>
             </div>
         </div>
       </div>
       <?php include('lib/main.php');?>
-      <div id="footer">Powered by <a href="http://peer2product.com">Peer2Product</a></div>
+  
     </div>
   </div>
-    <?php include('ui/footer.htm'); ?>
+  <?php } ?>
+
+<?php include('ui/footer.htm'); ?>
+
+</div> 
   </body>
 </html>
-<?php } ?>
+

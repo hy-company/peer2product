@@ -23,10 +23,12 @@ function navbarDropDown(){      //onlick event
     if(navbarDropDownState == 0){
         $("#navbarDropDown").slideDown();
         navbarDropDownState = 1;
+        document.getElementById('arrowIcon').className = "fa-solid fa-circle-arrow-up icon";
          // DEBUG: console.log("state: 1");
     }else{
         $("#navbarDropDown").slideUp();  // document.getElementById('aboutLinks').style.display = "none";
         navbarDropDownState = 0;
+        document.getElementById('arrowIcon').className = "fa-solid fa-circle-arrow-down icon";
         // DEBUG: console.log("state: 0");
     }
 }
@@ -40,3 +42,4 @@ function toggleCart(){      //onclick event
         cartToggleState = 0;
     }
 }
+
