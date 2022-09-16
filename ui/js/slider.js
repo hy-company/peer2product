@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function(event) {
   var currentPosition = 0;
   var stopped = 0;
   var automove = 1;

@@ -3,15 +3,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?=($SET['shopname']?$SET['shopname']:$DEF['shopname']); ?></title>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/bootstrap.min.css" />
+
 	<?php if(!isset($_GET['checkout'])) { ?>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="lib/jcart/css/jcart.css" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/lightbox.css">
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/slider.css" />
 	<?php } ?>
+	
+	<!-- FONTS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="admin/ui/css/awesome.css"/>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="ui/css/style.css" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?=$SET['data/'].$SET['them/'].($SET['shoptheme']?$SET['shoptheme']:$DEF['shoptheme'])?>.css" />
-	<script type="text/javascript" src="ui/js/jquery.min.js"></script>
+
+  <script type="text/javascript" src="ui/js/jquery.min.js"></script>
+	<script type="text/javascript" src="ui/js/fontawesome.js"></script>
+  <script type="text/javascript" src="ui/js/functions.js"></script>
+
 	<style>
 		body { background: url('<?=($SET['shopbackdrop']?$SET['data/'].$SET['shopbackdrop']:$DEF['shopbackdrop']);?>'); }
 	</style>
