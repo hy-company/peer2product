@@ -412,15 +412,15 @@ class Jcart {
 		////////////////////////////////////////////////////////////////////////
 		// Output the cart
 
-		// Return specified number of tabs to improve readability of HTML output
-		function tab($n) {
-			$tabs = null;
-			while ($n > 0) {
-				$tabs .= "\t";
-				--$n;
-			}
-			return $tabs;
-		}
+    // Return specified number of tabs to improve readability of HTML output
+    function insertTab($n) {
+      $tabs = null;
+      while ($n > 0) {
+        $tabs .= "\t";
+        --$n;
+      }
+      return $tabs;
+    }
 
 		// If there's an error message wrap it in some HTML
 		if ($errorMessage)	{
@@ -428,91 +428,98 @@ class Jcart {
 		}
 
 		// Display the cart header
-		echo tab(1) . "$errorMessage\n";
-		echo tab(1) . "<form method='post' action='$checkout'>\n";
-		echo tab(2) . "<fieldset>\n";
-		echo tab(3) . "<input type='hidden' name='jcartToken' value='{$_SESSION['jcartToken']}' />\n";
-		echo tab(3) . "<table border='1'>\n";
-		echo tab(4) . "<thead>\n";
-		echo tab(5) . "<tr>\n";
-		echo tab(6) . "<th colspan='3'>\n";
-		echo tab(7) . "<strong id='jcart-title'>{$config['text']['cartTitle']}</strong> ($this->itemCount $itemsText)\n";
-		echo tab(6) . "</th>\n";
-		echo tab(5) . "</tr>". "\n";
-		echo tab(4) . "</thead>\n";
+		echo insertTab(1) . "$errorMessage\n";
+		echo insertTab(1) . "<form method='post' action='$checkout'>\n";
+		echo insertTab(2) . "<fieldset>\n";
+		echo insertTab(3) . "<input type='hidden' name='jcartToken' value='{$_SESSION['jcartToken']}' />\n";
+		echo insertTab(3) . "<table border='1'>\n";
+		echo insertTab(4) . "<thead>\n";
+		echo insertTab(5) . "<tr>\n";
+		echo insertTab(6) . "<th colspan='3'>\n";
+		echo insertTab(7) . "<strong id='jcart-title'>{$config['text']['cartTitle']}</strong> ($this->itemCount $itemsText)\n";
+		echo insertTab(6) . "</th>\n";
+		echo insertTab(5) . "</tr>". "\n";
+		echo insertTab(4) . "</thead>\n";
 		// Display the cart footer
-		echo tab(4) . "<tfoot>\n";
-		echo tab(5) . "<tr>\n";
-		echo tab(6) . "<th colspan='3'>\n";
+		echo insertTab(4) . "<tfoot>\n";
+		echo insertTab(5) . "<tr>\n";
+		echo insertTab(6) . "<th colspan='3'>\n";
 
 		// If this is the checkout hide the cart checkout button
+    // Agent725 hack: always hide button
+    /*
 		if ($isCheckout !== true) {
 			if ($config['button']['checkout']) {
 				$inputType = "image";
 				$src = " src='{$config['button']['checkout']}' alt='{$config['text']['checkout']}' title='' ";
 			}
-			echo tab(7) . "<input type='$inputType' ".(isset($src)?$src:'')." id='jcart-checkout' name='jcartCheckout' class='btn btn-primary jcart-button' value='{$config['text']['checkout']}' />\n";
+			echo insertTab(7) . "<input type='$inputType' ".(isset($src)?$src:'')." id='jcart-checkout' name='jcartCheckout' class='btn btn-primary jcart-button' value='{$config['text']['checkout']}' />\n";
 		}
+    */
 
-		echo tab(7) . "<span id='jcart-subtotal'>".$config['text']['subtotal'].": <strong>$currencySymbol" . number_format($this->subtotal, $priceFormat['decimals'], $priceFormat['dec_point'], $priceFormat['thousands_sep']) . "</strong></span>\n";
-		echo tab(6) . "</th>\n";
-		echo tab(5) . "</tr>\n";
-		echo tab(4) . "</tfoot>\n";
-		echo tab(4) . "<tbody>\n";
+		echo insertTab(7) . "<span id='jcart-subtotal'>".$config['text']['subtotal'].": <strong>$currencySymbol" . number_format($this->subtotal, $priceFormat['decimals'], $priceFormat['dec_point'], $priceFormat['thousands_sep']) . "</strong></span>\n";
+		echo insertTab(6) . "</th>\n";
+		echo insertTab(5) . "</tr>\n";
+		echo insertTab(4) . "</tfoot>\n";
+		echo insertTab(4) . "<tbody>\n";
 
 		// If any items in the cart
 		if($this->itemCount > 0) {
 
 			// Display line items
 			foreach($this->get_contents() as $item)	{
-				echo tab(5) . "<tr>\n";
-				echo tab(6) . "<td class='jcart-item-qty'>\n";
-				echo tab(7) . "<input name='jcartItemId[]' type='hidden' value='{$item['id']}' />\n";
-				echo tab(7) . "<input id='jcartItemQty-{$item['id']}' name='jcartItemQty[]' size='2' type='text' value='{$item['qty']}' />\n";
-				echo tab(6) . "</td>\n";
-				echo tab(6) . "<td class='jcart-item-name'>\n";
+				echo insertTab(5) . "<tr>\n";
+				echo insertTab(6) . "<td class='jcart-item-qty'>\n";
+				echo insertTab(7) . "<input name='jcartItemId[]' type='hidden' value='{$item['id']}' />\n";
+				echo insertTab(7) . "<input id='jcartItemQty-{$item['id']}' name='jcartItemQty[]' size='2' type='text' value='{$item['qty']}' />\n";
+				echo insertTab(6) . "</td>\n";
+				echo insertTab(6) . "<td class='jcart-item-name'>\n";
 
 				if ($item['url']) {
-					echo tab(7) . "<a href='{$item['url']}'>{$item['name']}</a>\n";
+					echo insertTab(7) . "<a href='{$item['url']}'>{$item['name']}</a>\n";
 				}
 				else {
-					echo tab(7) . $item['name'] . "\n";
+					echo insertTab(7) . $item['name'] . "\n";
 				}
-				echo tab(7) . "<input name='jcartItemName[]' type='hidden' value='{$item['name']}' />\n";
-				echo tab(6) . "</td>\n";
-				echo tab(6) . "<td class='jcart-item-price'>\n";
-				echo tab(7) . "<span>$currencySymbol" . number_format($item['subtotal'], $priceFormat['decimals'], $priceFormat['dec_point'], $priceFormat['thousands_sep']) . "</span><input name='jcartItemPrice[]' type='hidden' value='{$item['price']}' />\n";
-				echo tab(7) . "<a class='jcart-remove' href='?jcartRemove={$item['id']}'>{$config['text']['removeLink']}</a>\n";
-				echo tab(6) . "</td>\n";
-				echo tab(5) . "</tr>\n";
+				echo insertTab(7) . "<input name='jcartItemName[]' type='hidden' value='{$item['name']}' />\n";
+				echo insertTab(6) . "</td>\n";
+				echo insertTab(6) . "<td class='jcart-item-price'>\n";
+				echo insertTab(7) . "<span>$currencySymbol" . number_format($item['subtotal'], $priceFormat['decimals'], $priceFormat['dec_point'], $priceFormat['thousands_sep']) . "</span><input name='jcartItemPrice[]' type='hidden' value='{$item['price']}' />\n";
+				echo insertTab(7) . "<a class='jcart-remove' href='?jcartRemove={$item['id']}'>{$config['text']['removeLink']}</a>\n";
+				echo insertTab(6) . "</td>\n";
+				echo insertTab(5) . "</tr>\n";
 			}
 		}
 
 		// The cart is empty
 		else {
-			echo tab(5) . "<tr><td id='jcart-empty' colspan='3'>{$config['text']['emptyMessage']}</td></tr>\n";
+			echo insertTab(5) . "<tr><td id='jcart-empty' colspan='3'>{$config['text']['emptyMessage']}</td></tr>\n";
 		}
-		echo tab(4) . "</tbody>\n";
-		echo tab(3) . "</table>\n\n";
+		echo insertTab(4) . "</tbody>\n";
+		echo insertTab(3) . "</table>\n\n";
 
-		echo tab(3) . "<div id='jcart-buttons'>\n";
+    // Agent725 hack: hide buttons
+    /*
+		echo insertTab(3) . "<div id='jcart-buttons'>\n";
 
 		if ($config['button']['update']) {
 			$inputType = "image";
 			$src = " src='{$config['button']['update']}' alt='{$config['text']['update']}' title='' ";
 		}
 
-		echo tab(4) . "<input type='$inputType' $src name='jcartUpdateCart' value='{$config['text']['update']}' class='btn btn-default jcart-button' />\n";
+		echo insertTab(4) . "<input type='$inputType' $src name='jcartUpdateCart' value='{$config['text']['update']}' class='btn btn-default jcart-button' />\n";
 
 		if ($config['button']['empty']) {
 			$inputType = "image";
 			$src = " src='{$config['button']['empty']}' alt='{$config['text']['emptyButton']}' title='' ";
 		}
-		echo tab(4) . "<input type='$inputType' $src name='jcartEmpty' value='{$config['text']['emptyButton']}' class='btn btn-default jcart-button' />\n";
-		echo tab(3) . "</div>\n";
-		echo tab(2) . "</fieldset>\n";
-		echo tab(1) . "</form>\n\n";
-		echo tab(1) . "<div id='jcart-tooltip'></div>\n";
+		echo insertTab(4) . "<input type='$inputType' $src name='jcartEmpty' value='{$config['text']['emptyButton']}' class='btn btn-default jcart-button' />\n";
+		echo insertTab(3) . "</div>\n";
+    */
+    
+		echo insertTab(2) . "</fieldset>\n";
+		echo insertTab(1) . "</form>\n\n";
+		echo insertTab(1) . "<div id='jcart-tooltip'></div>\n";
 	}
 }
 
