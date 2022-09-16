@@ -68,7 +68,8 @@ This file represents any existing CSS your site may already use
   height: auto;
   background-image: url(../../data/hybrix-mountainbanner.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: auto 100%;
+  background-position: center;
 }
 
 #footerButton{
