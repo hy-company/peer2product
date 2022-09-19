@@ -683,8 +683,8 @@ class functions {
     return $array;
   }
 
-  // pseudo-jailed eval for transport formula's
-  function transport_eval($code,$var) {
+  // pseudo-jailed eval for modifier and transport formula's
+  function modifier_eval($code,$var) {
     $price = (isset($var['product']['price'])?$var['product']['price']:0);;
     $quantity = (isset($var['products']['quantity'])?$var['products']['quantity']:0);;
     $weight = (isset($var['products']['weight'])?$var['products']['weight']:0);
@@ -700,38 +700,12 @@ class functions {
     $zipcode = trim(strtolower( (isset($var['array']['zipcode'])?$var['array']['zipcode']:0) ));
     $notransport = (isset($var['array']['notransport'])?$var['array']['notransport']:0);
 
-    $result=$var['result'];
-    try {
-      {{{{{{{{{{
-      {{{{{{{{{{
-      {{{{{{{{{{
-      {{{{{{{{{{
-        eval($code.';;;;;;;;;;');
-      }}}}}}}}}}
-      }}}}}}}}}}
-      }}}}}}}}}}
-      }}}}}}}}}}
-    }
-    catch (customException $e) {
-      $result=FALSE;
-    }
-    return $result;
-  }
-
-  // pseudo-jailed eval for modifier formula's
-  function modifier_eval($code,$var) {
-    $price = (isset($var['product']['price'])?$var['product']['price']:0);;
-    $quantity = (isset($var['product']['quantity'])?$var['product']['quantity']:0);;
-    $weight = (isset($var['product']['weight'])?$var['product']['weight']:0);
-    $size = (isset($var['product']['size'])?$var['product']['size']:0);
-
-    $company = trim(strtolower( (isset($var['array']['company'])?$var['array']['company']:0) ));
-    $housenumber = trim(strtolower( (isset($var['array']['housenumber'])?$var['array']['housenumber']:0) ));
-    $street = trim(strtolower( (isset($var['array']['street'])?$var['array']['street']:0) ));
-    $city = trim(strtolower( (isset($var['array']['city'])?$var['array']['city']:0) ));
-    $countrycode = trim(strtolower( (isset($var['array']['countrycode'])?$var['array']['countrycode']:0) ));
-    $zipcode = trim(strtolower( (isset($var['array']['zipcode'])?$var['array']['zipcode']:0) ));
-    $notransport = (isset($var['array']['notransport'])?$var['array']['notransport']:0);
+    $subtotal = $jcart->subtotal;
+    $itemCount = $jcart->itemCount;
+    $quantities = $jcart->qtys;
+	  $items = $jcart->items;
+	  $names = $jcart->names;
+	  $prices = $jcart->prices;
 
     $result=$var['result'];
     try {
@@ -874,7 +848,7 @@ class functions {
         }
         $transport = 0;
         foreach($transportmath as $transport_key => $transport_val) {
-          $transport = $transport + $this->transport_eval( $transport_val['formula'] , array('result'=>$vendorssubtotal[$vendorid],'products'=>$productslist,'array'=>$array) );
+          $transport = $transport + $this->modifier_eval( $transport_val['formula'] , array('result'=>$vendorssubtotal[$vendorid],'products'=>$productslist,'array'=>$array) );
         }
         $vendorssubtotal[$vendorid] = $vendorssubtotal[$vendorid] + $transport;
       // calculate remote transport
