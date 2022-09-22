@@ -1,4 +1,6 @@
 <?php
+include('email.php');
+use Snipworks\Smtp\Email;
 
 // injection of product-related functions
 class functions {
@@ -979,14 +981,33 @@ class functions {
         }
         $message .= '</body></html>';
       } else { $message = 'Message type error!'; }
-      $target = array();
-      foreach($users as $key => $user) {
-        if(isset($user['e-mail']) && $user['e-mail'] && isset($user['receive_notifications']) && $user['receive_notifications']) {
-          $target[] = $user['e-mail'];
-        }
-      }
       // sent by php mail or smtp
       if($reporting['use_smtp']) {
+        $mail = new Email($reporting['smtp_host'], ($reporting['smtp_port']?$reporting['smtp_port']:'25') );
+        $mail->setProtocol(Email::TLS);
+        $mail->setLogin($reporting['smtp_user'], $reporting['smtp_pass']);
+        $target = array();
+        $msgcounter = 0;
+        foreach($users as $key => $user) {
+          if(isset($user['e-mail']) && $user['e-mail'] && isset($user['receive_notifications']) && $user['receive_notifications']) {
+            // DEPRECATED: $target[] = $user['e-mail'];
+            if($msgCounter) {
+              $mail->addTo($user['e-mail'], $user['username']);
+            } else {
+              $mail->addBcc($user['e-mail'], $user['username']);
+            }
+            $msgCounter++;
+          }
+        }
+        $mail->setFrom($reporting['from_e-mail'], $SET['shopname']);
+        $mail->setSubject($subject);
+        $mail->setHtmlMessage($message);
+
+        if (!$mail->send()){
+          echo '<br><br><b>An error occurred when trying to send reporting e-mails!<b><br><br>';
+        }
+
+        /* PEAR mail now deprecated!
         include_once('lib/Mail/Mail.php');  // PEAR Mail object
         $recipients = implode(',',$target);
         $headers['To']      = implode(',',$target);
@@ -1002,6 +1023,8 @@ class functions {
         // Create the mail object using the Mail::factory method
         $mail_object = Mail::factory('smtp', $params);
         $mail_object->send($recipients, $headers, $message);
+        */
+
       } else {
         $headers = 'From:'.$SET['shopname'].' <'.$reporting['from_e-mail'].'>' . "\r\n";
         $headers .= 'MIME-Version: 1.0' . "\r\n"; // To send HTML mail, the Content-type header must be set

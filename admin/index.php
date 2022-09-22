@@ -971,6 +971,10 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
         $f3->set('sidebar',$f3->get('SETTINGSBAR'));
         $f3->set('sidebar_active','settings/reporting');
         $session = $f3->get('SESSION');
+        // load settings...
+        $map  = $func->get_json( $f3->get('DATA').'reporting.map' );
+        $json = $func->get_json( $f3->get('DATA').'reporting.json' );
+        $json = $func->mapfill_array($map,$json);
         // handle actions
         $post = $f3->get('POST');
         if(isset($post['action'])) {
@@ -978,14 +982,13 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
           unset($post['action']);
           $id = $post['id'];
           unset($post['id']);
+          if($post['smtp_pass']=='#####') {
+            $post['smtp_pass'] = $json['smtp_pass'];
+          }
           $directory = $f3->get('DATA');
           $func->put_json($directory.'reporting.json',$post);
           // TODO: send a test-email when requested in the UI: $func->reporting($f3->get('DATA'),$array,$users,'test_mail');
         }
-        // load settings...
-        $map  = $func->get_json( $f3->get('DATA').'reporting.map' );
-        $json = $func->get_json( $f3->get('DATA').'reporting.json' );
-        $json = $func->mapfill_array($map,$json);
         $f3->set('id',FALSE);
         $f3->set('dir',$f3->get('DATA'));
         $f3->set('map',$map);

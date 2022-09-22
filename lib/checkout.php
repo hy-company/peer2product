@@ -391,10 +391,11 @@ switch($array['sequence']) {
     // return values when good payment -> http://example.com/checkout.php?orderId=333316177X1bcc7a&orderStatusId=100&paymentSessionId=333316177
     if (isset($array['orderstatus']) && $array['orderstatus']>=99) {
       // send e-mail to client and shopadministrators
-      $users = array(); 
+      $users = array();
       $users = $shop->get_users($SET['data/'].$SET['user/']);
       if($array['email']) {
-        $users['_'] = array('e-mail'=>$array['email'],'receive_notifications'=>'on');
+        $username = $array['firstname'].' '.$array['preposition'].' '.$array['lastname'];
+        $users['_'] = array('username'=>$username,'e-mail'=>$array['email'],'receive_notifications'=>'on');
       }
       $shop->reporting($SET['data/'],$array,$users,'order_complete');
 
