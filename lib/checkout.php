@@ -93,10 +93,10 @@ function paymentnav($tx,$next = FALSE,$back = FALSE,$enabledA = TRUE,$enabledB =
   global $STR;
   if(!$next) { $next = $STR['Next']; }
   if(!$back) { $back = $STR['Back']; }
-  return '    <div id="paymentnav">
+  return '<div class="paymentNav">
             <input type="hidden" name="x" value="'.$tx.'"/>
-            <input class="back btn btn-'.($enabledA?'danger" id="paymentnavBack" type="submit"':'disabled" style="color: white;" type="button"').' name="back" value="&lt;&nbsp; '.$back.'"/>
-            <input id="paymentnavNext" class="submit btn btn-'.($enabledB?'success" type="submit" style="float: right;"':'disabled" style="color: white; float: right;" type="button"').'" name="next" value="'.$next.' &nbsp;&gt;"/>
+            <input class="paymentNavBack back btn btn-'.($enabledA?'danger"':'disabled" disabled="true"').' type="submit" name="back" value="&lt;&nbsp; '.$back.'"/>
+            <input class="paymentNavNext submit btn btn-'.($enabledB?'success"':'disabled" disabled="true"').' type="submit" name="next" value="'.$next.' &nbsp;&gt;"/>
           </div>';
 }
 
@@ -135,15 +135,15 @@ switch($array['sequence']) {
     if(empty($jcart->items)) {
       ?>  <div class="clear"></div>
           <div id="checkout-container">
-            <form method="post" action="checkout" name="orderForm" id="orderForm">
-            <div id="checkout-container">
-              <?php echo paymentnav(null,FALSE,FALSE,TRUE,FALSE); ?>
+          <form method="post" action="checkout" name="orderForm" id="orderForm">
+            <?php echo paymentnav(null,FALSE,FALSE,TRUE,FALSE); ?>
+            <div id="checkout-content">
               <div id="checkout-form">
                 <center>
                   <div class="navsteps">
-                <span class="badge">1. <?=$STR['Delivery'];?></span>
-                <span class="badge">2. <?=$STR['Validation'];?></span>
-                <span class="badge">3. <?=$STR['Payment'];?></span>
+                    <span class="badge">1. <?=$STR['Delivery'];?></span>
+                    <span class="badge">2. <?=$STR['Validation'];?></span>
+                    <span class="badge">3. <?=$STR['Payment'];?></span>
                   </div>
                   <h2><?=$STR['Checkout'];?></h2>
                   <?=$STR['Cart_is_empty'];?><br><br>
@@ -184,17 +184,18 @@ switch($array['sequence']) {
       }
       // display list of products
     ?><div class="clear"></div>
-       <div id="checkout-container">
+      <div id="checkout-container">
       <form method="post" action="" name="orderForm" id="orderForm">
       <?php echo paymentnav($shop->tx($array)); ?>
-        <div id="checkout-form">
-          <div class="navsteps">
-            <span class="badge">1. <?=$STR['Delivery'];?></span>
-            <span class="badge badge-active">2. <?=$STR['Validation'];?></span>
-            <span class="badge">3. <?=$STR['Payment'];?></span>
-          </div>
-          <div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Ensure_order_correct'];?></div>
-          <h2><?=$STR['Product_list'];?></h2>
+        <div id="checkout-content">
+          <div id="checkout-form">
+            <div class="navsteps">
+              <span class="badge">1. <?=$STR['Delivery'];?></span>
+              <span class="badge badge-active">2. <?=$STR['Validation'];?></span>
+              <span class="badge">3. <?=$STR['Payment'];?></span>
+            </div>
+            <div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Ensure_order_correct'];?></div>
+            <h2><?=$STR['Product_list'];?></h2>
       <?php
       // prepare quantities list
       $quantities = $jcart->qtys;     // get jcart quantities on id => val
@@ -258,14 +259,14 @@ switch($array['sequence']) {
       file_put_contents($SET['data/'].$SET['ordr/'].$orderid.'.pending',json_encode($output));
       // display destination address and gateway choice
         ?>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <h2><?=$STR['Ordernumber'];?></h2>
-      <?php echo $array['ordernumber']; ?>
-    </div>
-    <div class="col-xs-12"><br></div>
-     <div class="col-xs-12 col-md-6">
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2><?=$STR['Ordernumber'];?></h2>
+          <?php echo $array['ordernumber']; ?>
+        </div>
+        <div class="col-xs-12"><br></div>
+          <div class="col-xs-12 col-md-6">
             <div class="col-xs-12" style="padding: 0;">
               <h2><?=$STR['Destination_address'];?></h2>
             </div>
@@ -282,29 +283,26 @@ switch($array['sequence']) {
               <?php echo $array['country']; ?>
               <br><br>
             </div>
-      </div>
-            <div class="col-xs-12 col-md-6">
-                <h2><?=$STR['Payment_gateway'];?></h2>
-                <select name="gateway" class="form-control">
-                  <?php
-                  $gateways = $shop->get_gateways($SET['data/'].$SET['gate/']);
-                  foreach($gateways as $key => $val) {
-                    if($val['active']) {
-                    echo '<option value="'.$key.'"'.(isset($array['gateway']) && $array['gateway']==$key?' selected':'').'>'.$val['description'].' | '.$val['name'].'</option>';
-                    }
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <h2><?=$STR['Payment_gateway'];?></h2>
+            <select name="gateway" class="form-control">
+              <?php
+              $gateways = $shop->get_gateways($SET['data/'].$SET['gate/']);
+              foreach($gateways as $key => $val) {
+                if($val['active']) {
+                echo '<option value="'.$key.'"'.(isset($array['gateway']) && $array['gateway']==$key?' selected':'').'>'.$val['description'].' | '.$val['name'].'</option>';
                 }
-                  ?>
-                </select>
-            </div>
-
-  </div>
-  </div>
-  </div>
-
-          <br /><br />
-        <div class="clear"></div>
-        <?php echo paymentnav($shop->tx($array)); ?>
-      </form></div><?php
+            }
+              ?>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <?php echo paymentnav($shop->tx($array)); ?>
+  </div></form></div><?php
   break;
   // STEP 3: SHOW THE PAYMENT FORM
   case 2:
@@ -316,24 +314,26 @@ switch($array['sequence']) {
       file_put_contents($SET['data/'].$SET['ordr/'].$orderid.'.json',json_encode($output));
       // collect and show payment gateways...
       ?><div id="checkout-container">
-        <form method="post" action="" name="orderForm" id="orderForm">
-          <?php echo paymentnav($shop->tx($array),$STR['Finish']); ?>
-          <div id="checkout-form">
-            <div class="navsteps">
-              <span class="badge">1. <?=$STR['Delivery'];?></span>
-              <span class="badge">2. <?=$STR['Validation'];?></span>
-              <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
+          <form method="post" action="" name="orderForm" id="orderForm">
+            <?php echo paymentnav($shop->tx($array),$STR['Finish']); ?>
+            <div id="checkout-content">
+              <div id="checkout-form">
+                <div class="navsteps">
+                  <span class="badge">1. <?=$STR['Delivery'];?></span>
+                  <span class="badge">2. <?=$STR['Validation'];?></span>
+                  <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
+                </div>
+                <div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Almost_ready_to_pay'];?></div>
+                <div style="height:32px; margin-top: 40px; margin-bottom: -80px; width: 100%; text-align: center;"><img class="imgloading" style="display: none;" src="ui/images/loading.gif" /></div>
+                <h2><?=$STR['Payment'];?></h2>
+                <?php
+                  paymentform($array,$shop);
+                ?>
+              </div>
             </div>
-            <div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Almost_ready_to_pay'];?></div>
-            <div style="height:32px; margin-top: 40px; margin-bottom: -80px; width: 100%; text-align: center;"><img class="imgloading" style="display: none;" src="ui/images/loading.gif" /></div>
-            <h2><?=$STR['Payment'];?></h2>
-            <?php
-              paymentform($array,$shop);
-            ?>
+            <?php echo paymentnav($shop->tx($array),$STR['Finish']); ?>
           </div>
-          <?php echo paymentnav($shop->tx($array),$STR['Finish']); ?>
         </form>
-        </div>
         <script language="javascript" type="text/javascript">
           items = document.getElementsByClassName("submit");
           backs = document.getElementsByClassName("back");
@@ -345,18 +345,16 @@ switch($array['sequence']) {
             $(".loading").show(1000);
             for (var i = 0; i < items.length; i++) {
               items[i].setAttribute("onclick", "");
-              items[i].setAttribute("class", "submit btn btn-disabled");
-              backs[i].setAttribute("class", "back btn btn-disabled");
+              items[i].setAttribute("disabled", true);
+              backs[i].setAttribute("disabled", true);
             }
             document.orderForm.submit();
             setTimeout(function(){
               $(".loading").hide(1000);
               for (var i = 0; i < items.length; i++) {
-                for (var i = 0; i < items.length; i++) {
-                  items[i].setAttribute("onclick", "submitCheck();");
-                  items[i].setAttribute("class", "submit btn btn-success");
-                  backs[i].setAttribute("class", "back btn btn-danger");
-                }
+                items[i].setAttribute("onclick", "submitCheck();");
+                items[i].removeAttribute("disabled");
+                backs[i].removeAttribute("disabled");
               }
             }, 60000);
           }
@@ -393,13 +391,13 @@ switch($array['sequence']) {
     // return values when good payment -> http://example.com/checkout.php?orderId=333316177X1bcc7a&orderStatusId=100&paymentSessionId=333316177
     if (isset($array['orderstatus']) && $array['orderstatus']>=99) {
       // send e-mail to client and shopadministrators
-      if($array['orderstatus']==100) {
-        sleep(2);  // wait to avoid collisions writing file
-        $users = array(); $users[] = array('e-mail'=>$array['email'],'receive_notifications'=>1);
-        $shop->reporting($SET['data/'],$array,$users,'order_complete');
-      }
+      $users = array(); 
       $users = $shop->get_users($SET['data/'].$SET['user/']);
+      if($array['email']) {
+        $users['_'] = array('e-mail'=>$array['email'],'receive_notifications'=>'on');
+      }
       $shop->reporting($SET['data/'],$array,$users,'order_complete');
+
       // adjust stock amounts according to order
       $remoteorders = array();
       foreach($jcart->items as $cnt => $item) {
@@ -461,22 +459,23 @@ switch($array['sequence']) {
       <div id="checkout-container">
         <form method="post" action="checkout" name="orderForm" id="orderForm">
         <?php echo paymentnav($shop->tx($array),$STR['Return'],$STR['Back'],FALSE); ?>
-        <div id="checkout-form">
-          <div class="navsteps">
-            <span class="badge">1. <?=$STR['Delivery'];?></span>
-            <span class="badge">2. <?=$STR['Validation'];?></span>
-            <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
+        <div id="checkout-content">
+          <div id="checkout-form">
+            <div class="navsteps">
+              <span class="badge">1. <?=$STR['Delivery'];?></span>
+              <span class="badge">2. <?=$STR['Validation'];?></span>
+              <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
+            </div>
+            <h2><?=$STR['Order_succesful'];?></h2>
+            <center>
+              <?=$STR['Processing_order'];?><br><br>
+              <img src="ui/images/happyface.png"/>
+              <br><br>
+            </center>
           </div>
-          <h2><?=$STR['Order_succesful'];?></h2>
-          <center>
-            <?=$STR['Processing_order'];?><br><br>
-            <img src="ui/images/happyface.png"/>
-            <br><br>
-          </center>
         </div>
         <?php echo paymentnav($shop->tx($array),$STR['Return'],$STR['Back'],FALSE); ?>
-        </form>
-      </div>
+      </form></div>
       <?php
       // clean up
       if(!$TESTMODE) {
@@ -493,21 +492,21 @@ switch($array['sequence']) {
         <div class="clear"></div>
         <div id="checkout-container">
           <form method="post" action="checkout" name="orderForm" id="orderForm">
-          <div id="checkout-container">
             <?php echo paymentnav($shop->tx($array),$STR['Retry'],$STR['Back']); ?>
-            <div id="checkout-form">
-              <center>
-                <div class="navsteps">
-              <span class="badge">1. <?=$STR['Delivery'];?></span>
-              <span class="badge">2. <?=$STR['Validation'];?></span>
-              <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
-                </div>
-                <h2><?=$STR['Order_failed'];?></h2>
-                <?=$STR['Please_try_again'];?><br>
-                <?=$STR['Or_contact_us'];?><br><br>
-                <img src="ui/images/sadface.png"/>
-                <br><br>
-              </center>
+              <div id="checkout-form">
+                <center>
+                  <div class="navsteps">
+                    <span class="badge">1. <?=$STR['Delivery'];?></span>
+                    <span class="badge">2. <?=$STR['Validation'];?></span>
+                    <span class="badge badge-active">3. <?=$STR['Payment'];?></span>
+                  </div>
+                  <h2><?=$STR['Order_failed'];?></h2>
+                  <?=$STR['Please_try_again'];?><br>
+                  <?=$STR['Or_contact_us'];?><br><br>
+                  <img src="ui/images/sadface.png"/>
+                  <br><br>
+                </center>
+              </div>
             </div>
           </div>
           <?php echo paymentnav($shop->tx($array),$STR['Retry'],$STR['Back']); ?>

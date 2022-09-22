@@ -11,13 +11,15 @@ http://conceptlogic.com/jcart/
 #jcart-error { text-align:center; padding:5px; }
 
 #jcart table { width:100%; border:0; background:#fff; border-collapse:collapse; }
+/*
 #jcart thead {  }
 #jcart-title {  }
 #jcart tbody {  }
 #jcart tfoot {  }
-#jcart tr {  }
+*/
+#jcart tr { border-bottom: 1px solid #AAA; }
 #jcart th { background:#575757;color:#fff; font-family: 'Open Sans Pro'; }
-#jcart th, #jcart td { padding:5px; border:none; vertical-align:middle; text-align:left; font-weight:normal; font-family: 'Open Sans Pro';}
+#jcart th, #jcart td { padding:5px; border:none; vertical-align:middle; text-align:left; font-weight:normal; font-family: 'Open Sans Pro'; padding-left: 1em; padding-right: 1em; }
 #jcart #jcart-empty { text-align:center; }
 
 .jcart-item-qty { width:25%; }
@@ -35,4 +37,3 @@ http://conceptlogic.com/jcart/
 #jcart-checkout { float:right; padding:2px; }
 
 #jcart-paypal-checkout { display:block; width:14em; padding:10px; margin:20px auto; }
-

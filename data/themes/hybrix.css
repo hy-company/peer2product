@@ -21,7 +21,11 @@ This file represents any existing CSS your site may already use
 }
 
 #navbar a {
-  color: #DDD;
+  color: #DADADA;
+}
+
+#navbar a:hover {
+  color: #FFF;
 }
 
 #categoryButtons button:hover {
@@ -39,21 +43,6 @@ This file represents any existing CSS your site may already use
   background-position: center;
 }
 
-#add-to-cart-slider-button {
-  background: #676767 url('../../data/hybrixGradient.jpg');
-  background-repeat: no-repeat;
-  background-size: 120% 115%;
-  background-position: center;
-}
-
-#add-to-cart-slider-button:hover {
-  background: #676767 url('../../data/hybrixGradient.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  transition: 500ms;
-}
-
 .itemAddToCart:hover{
   background: #676767 url('../../data/hybrixGradient.jpg');
   background-repeat: no-repeat;
@@ -62,7 +51,30 @@ This file represents any existing CSS your site may already use
   transition: 500ms;
 }
 
-#checkout-form {
+.itemAddToCartSlider {
+  background: #676767 url('../../data/hybrixGradient.jpg');
+  background-repeat: no-repeat;
+  background-size: 120% 115%;
+  background-position: center;
+}
+
+.itemAddToCartSlider:hover {
+  background: #676767 url('../../data/hybrixGradient.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  transition: 500ms;
+}
+
+.itemPrice {
+  font-size: 1.2em;
+}
+
+.itemPrice label {
+  display: none;
+}
+
+#checkout-content {
   background: linear-gradient(90deg, rgb(189, 230, 226) 50%, rgba(164, 116, 149, 0.48) 100%);
 }
 
@@ -95,4 +107,18 @@ This file represents any existing CSS your site may already use
   background-size: 100% 100%;
   background-position: center;
   transition: 500ms;
+}
+
+#cartContainer {
+  margin-top: -0.5em;
+  padding-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+#jcart tbody {
+  background: #ECECEC;
+}
+
+.btn-success:active {
+  background-color: #5eb06f;
 }

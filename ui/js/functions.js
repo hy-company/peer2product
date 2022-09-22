@@ -18,9 +18,9 @@ window.addEventListener('resize', function(event){      // refreshes the window 
 	}    
 });
 
-function toggleCart() {      // onclick event
+function toggleCart(state) {      // onclick event
   const DIV_sidebar = document.getElementById('cartContainer');
-  if (cartToggleState == 0) {
+  if (state || cartToggleState == 0) {
     //DIV_sidebar.style.display = 'block';
     DIV_sidebar.style['max-height'] = '50em';
     cartToggleState= 1;

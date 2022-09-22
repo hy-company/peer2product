@@ -980,6 +980,7 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
           unset($post['id']);
           $directory = $f3->get('DATA');
           $func->put_json($directory.'reporting.json',$post);
+          // TODO: send a test-email when requested in the UI: $func->reporting($f3->get('DATA'),$array,$users,'test_mail');
         }
         // load settings...
         $map  = $func->get_json( $f3->get('DATA').'reporting.map' );

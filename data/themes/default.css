@@ -122,7 +122,7 @@ h5 { font-weight: bold; margin-left: 1em; margin-right: 1em; }
 #topbar { margin-top: -16px; }
 #shopcta{text-align: center;}
 #navbar { display: inline-block; font-size: 1.1em; margin-top: 24px;width: 100%; text-align: center; }
-#navbar a { padding-left: 16px; padding-right: 16px; text-decoration: none; }
+#navbar a { text-decoration: none; }
 #footer { float: right; margin-top: 24px; margin-bottom: 16px; }
 #sidebar { width:100%; float:right; margin-left: 20px; margin-left: 20px; padding-bottom: 24px; }
 #bottombar { width:70%; max-width: 780px; margin: auto; margin-top: 48px; margin-bottom: 36px; }
