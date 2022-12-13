@@ -14,7 +14,6 @@
   <?php include('ui/header.htm'); ?>
   <body>
     <div id="peer2product">
-<<<<<<< HEAD
       <div class="row">
         <div class="col-xs-12" id='shopbanner'>
           <a href="<?=$SITE;?>"><img class='img-responsive' src="<?php echo ($SET['shopmainlogo']?$SET['data/'].$SET['shopmainlogo']:$DEF['shopmainlogo']); ?>"/></a>
@@ -35,24 +34,24 @@
             <a href="<?=$SITE;?>checkout"><i class="fa-solid fa-money-bill icon"></i><br><?=$STR['Checkout'];?></a>
           </div>
         </div>
-      
+
       <?php include('lib/main.php');?>
-  
+
     </div>
   </div>
   <?php } ?>
 
 <?php include('ui/footer.htm'); ?>
 
-</div> 
-=======
+</div>
+<!-- DISABLED DUE TO MERGE, PLEASE FIX =======
       <div id="shopnav" class="row">
         <div class="col-md-12" id='shopbanner'>
           <a href="<?=$SITE;?>"><img class='img-responsive' src="<?php echo ($SET['shopmainlogo']?$SET['data/'].$SET['shopmainlogo']:$DEF['shopmainlogo']); ?>"/></a>
         </div>
         <?php include('ui/navbar.htm'); ?>
-        
-        
+
+
       </div>
       <?php include('lib/main.php');?>
       </div>
@@ -86,12 +85,11 @@
         <br>
       </div>
 
-    
-   
-  <?php } ?>
+  <?php //} REMOVE ME!!!!
+  ?>
   </footer>
     <?php include('ui/footer.htm'); ?>
->>>>>>> beta
+ beta --!>
   </body>
 </html>
 
