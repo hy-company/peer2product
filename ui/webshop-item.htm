@@ -1,4 +1,4 @@
-<div class="item-container col-xs-12 col-s-6 col-md-4 col-lg-3">
+<div class="col-xs-6 col-sm-4 col-md-3">
   <form method="post" action="" class="item jcart">
     <fieldset>
       <input type="hidden" name="jcartToken" value="<?php echo $_SESSION['jcartToken'];?>" />
@@ -14,14 +14,15 @@
       <? } ?>
       <? if($product['imgB']) { ?>
         <a class="lightbox-image-link" href="<?=($product['imgB']?$product['imgB']:'ui/images/product.png')?>" data-lightbox="<?=$productid?>" data-title="<?=$product['detail_caption_B']?>"></a>
-      <? } ?>					
+      <? } ?>	
+
       <ul>
         <li class="itemPrice"><label><?=$STR['Price']?>&nbsp;</label><?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).'&nbsp;'.$this->formatn($product['price'])?></li>
         <li class="itemStock"><label><?=$STR['Stock']?>&nbsp;</label><?=($product['stock']!=-1?$product['stock']:'âˆž')?></li>
-        <!-- <li style="color: gray; line-height: 0.8em; padding-bottom: 4px;"><small>(<?=$STR['Price_NoTax']?>: <?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price-notax'])?>)</small></li>
-        <!-- <li class="itemVendor"><?=$STR['Origin']?> <?=(isset($product['vendorname'])?$product['vendorname']:$STR['local'])?></li> -->
       </ul>
-      <center><button type="submit" name="my-add-button" value="add-to-cart" class="itemAddToCart btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button></center>
+      <center>
+				<button type="submit" name="my-add-button" value="add-to-cart" class="itemAddToCart btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button>
+			</center>
     </fieldset>
   </form>
 </div>
