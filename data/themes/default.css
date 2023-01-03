@@ -11,15 +11,16 @@ This file represents any existing CSS your site may already use
 
 h1 { 
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.8em;
-  font-weight: 300;
 }
 
-h2 { font-size: 1.85em; margin-bottom:1em; }
+h2 {  margin-bottom:1em; }
 
 h3 { text-align: center; }
 
-h4 { font-size: 1.4em; }
+h4 { 
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+ }
 
 h5 {
   text-align: center;
@@ -47,7 +48,7 @@ ul {
   margin-bottom: auto;
   background: #FFF;
   margin: 0 auto;
-  border: 2px solid #CCC;
+  border: 2px solid #CCCCCC59;
   border-radius: 12px;
   padding-top: 1em;
   padding-bottom: 2em;
@@ -70,14 +71,12 @@ ul {
   height: auto;
   max-height: 145px;
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #575757;
 }
 
 .jcart.slider .slider-description-p p {
   text-align: center;
-  font-size: 1.1em !important;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .jcart.slider .imgdiv {
@@ -97,7 +96,7 @@ ul {
 }
 
 .jcart.slider .add-to-cart-slider {
-  float:left;
+  margin: 0 auto;
 }
 
 #add-to-cart-slider{
@@ -179,7 +178,6 @@ itemAddToCartSlider:hover {
 #navbar a { 
   text-decoration: none;
   font-family: 'Comfortaa', cursive;
-  font-size: 1em;
   color: #575757;
   min-width: 100px;
   min-height: 2em;
@@ -265,7 +263,7 @@ itemAddToCartSlider:hover {
 }
 
 .item {
-  border: 2px solid #CCC;
+  border: 2px solid #CCCCCC59;
   border-radius: 12px;
   padding: 12px;
   padding-bottom: 24px;
@@ -293,7 +291,6 @@ itemAddToCartSlider:hover {
 }
 
 .itemAddToCart {
-  background: #575757;
   color: #fff;
   padding: padding-top;
   padding-top: .5em;
@@ -302,13 +299,8 @@ itemAddToCartSlider:hover {
   padding-right: 1em;
   font-family: 'Open Sans Pro';
   font-weight: 300;
-  border: 0.5px solid #575757;
   border-radius: 4px;
   margin: 0 auto;
-}
-
-.itemAddToCart:hover {
-  background: #676767;
 }
 
 #footer { display: block; margin-top: 2em; margin-bottom: 1em; text-align: center; }
@@ -319,6 +311,7 @@ itemAddToCartSlider:hover {
 
 footer h4{text-align: center;}
 footer p {text-align: center; padding: 2px 2px 2px;}
+#poweredBy {text-align: right;}
 
 /* Checkout */
 .navsteps { text-align: center; }
