@@ -10,7 +10,7 @@ This file represents any existing CSS your site may already use
 */
 
 #navbar {
-  background: url('../../data/hybrix_bg.jpg');
+  background: url('hybrix-background.jpg');
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: center;
@@ -29,7 +29,7 @@ This file represents any existing CSS your site may already use
 }
 
 #categoryButtons button:hover {
-  background: #676767 url('../../data/hybrixGradient.jpg');
+  background: #676767 url('hybrix-gradient.jpg');
   background-repeat: no-repeat;
   background-size: 120% 115%;
   background-position: center;
@@ -37,14 +37,14 @@ This file represents any existing CSS your site may already use
 }
 
 #categoryButtons .btn-info {
-  background: #676767 url('../../data/hybrixGradient.jpg');
+  background: #676767 url('hybrix-gradient.jpg');
   background-repeat: no-repeat;
   background-size: 120% 115%;
   background-position: center;
 }
 
 .itemAddToCart:hover{
-  background: #676767 url('../../data/hybrixGradient.jpg');
+  background: #676767 url('hybrix-gradient.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 120% 115%;
@@ -52,14 +52,14 @@ This file represents any existing CSS your site may already use
 }
 
 .itemAddToCartSlider {
-  background: #676767 url('../../data/hybrixGradient.jpg');
+  background: #676767 url('hybrix-gradient.jpg');
   background-repeat: no-repeat;
   background-size: 120% 115%;
   background-position: center;
 }
 
 .itemAddToCartSlider:hover {
-  background: #676767 url('../../data/hybrixGradient.jpg');
+  background: #676767 url('hybrix-gradient.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -82,7 +82,7 @@ This file represents any existing CSS your site may already use
   overflow: hidden;
   min-height: 400px;
   height: auto;
-  background-image: url(../../data/hybrix-mountainbanner.png);
+  background-image: url('hybrix-mountainbanner.png');
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center;
@@ -95,14 +95,14 @@ This file represents any existing CSS your site may already use
 }
 
 #footerButton{
-  background: #575757 url('../../data/hybrixGradient.jpg');
+  background: #575757 url('hybrix-gradient.jpg');
   background-repeat: no-repeat;
   background-size: 120% 115%;
   background-position: center;
 }
 
 #footerButton:hover {
-  background: #676767 url('../../data/hybrixGradient.jpg');
+  background: #676767 url('hybrix-gradient.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
