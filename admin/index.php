@@ -900,9 +900,8 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
         // get themes for dropdown list
         $handle = opendir($f3->get('DATA').$f3->get('THEMES'));
         $array['themes'] = array();
-        while ($file = readdir($handle)) if (!in_array($file, array('.', '..'))) {
-          $tmp = rtrim($file,'.css');
-          $array['themes'][$tmp] = $tmp;
+        while ($file = readdir($handle)) if (!in_array($file, array('.', '..','README.md'))) {
+          $array['themes'][$file] = ucwords($file);
         }
         // get categories for dropdown list
         if(file_exists($f3->get('DATA').'categories.json')) {

@@ -6,8 +6,8 @@
   width:100%;
   max-width: 2560px;
   height:auto;
-    position:relative;
-
+  position:relative;
+  text-align: center;
   display: inline-block;
   /* background:transparent url(../images/bg_slideshow.jpg) no-repeat 0 0; */
   border-radius: 24px;

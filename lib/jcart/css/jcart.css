@@ -20,7 +20,6 @@ http://conceptlogic.com/jcart/
 #jcart tr { border-bottom: 1px solid #AAA; }
 #jcart th { background:#575757;color:#fff; font-family: 'Open Sans Pro'; }
 #jcart th, #jcart td { padding:5px; border:none; vertical-align:middle; text-align:left; font-weight:normal; font-family: 'Open Sans Pro'; padding-left: 1em; padding-right: 1em; }
-
 #jcart #jcart-empty { text-align:center; }
 
 .jcart-item-qty { width:25%; }

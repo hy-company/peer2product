@@ -24,14 +24,14 @@
 								<h3 id="sliderProductName"><?=$product['name']?></h3> 
 									<div class="slider-description">
 									  <div class="slider-description-p"><?=$product['description']?></div>
+									  <!-- <div class="fadeout"></div> -->
 							</div>
-							<div class="add-to-cart-slider">
-								<br>
-								<div>
-									<h4><?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price'])?></h4>
+						
+								<div id="add-to-cart-slider">
+									<h4 style=""><?=($SET['shopcurrency']?$SET['shopcurrency']:$DEF['shopcurrency']).' '.$this->formatn($product['price'])?></h4>
+									<!-- <span style="color: gray;"><?=$STR['Stock']?> <?=($product['stock']!=-1?$product['stock']:'∞')?></span> -->
 								</div>
-								<center><button type="submit" name="my-add-button" value="add-to-cart" class="btn btn-success add-to-cart"><?=$STR['Add_to_cart'];?></button></center>
-								<br><br>
+								<button type="submit" name="my-add-button" value="add-to-cart" class="itemAddToCart itemAddToCartSlider"><?=$STR['Add_to_cart'];?></button>
 							</div>	
 						</fieldset>
 					</form>
