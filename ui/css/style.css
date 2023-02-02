@@ -315,11 +315,12 @@ ul {
 /* Checkout */
 
 .navsteps { text-align: center; }
-.badge { background-color: #999; padding: 5px; padding-left: 12px; padding-right: 12px; margin-left: 12px; margin-right: 12px; }
+.badge { background-color: #999; padding: 5px; padding-left: 12px; padding-right: 12px; margin-left: 12px; margin-right: 12px; vertical-align: middle; }
 .badge-active { background-color: #7B7; }
 
-#paymentnav { padding: 10px 20px; margin-top: 4px; }
-#paymentnav .btn { min-width: 80px; }
+.paymentNav { padding: 10px 20px; margin-top: 4px; }
+.paymentNav .btn { min-width: 80px; }
+.paymentNav .paymentNavNext { float: right; }
 
 label { margin-top: 12px; }
 
