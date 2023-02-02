@@ -168,12 +168,20 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
         $id = $params['id'];
         // get order and amend status entries
         $order = $func->get_order( $f3->get('DATA').$f3->get('ORDERS'),$id );
-        if($params['set']=='paymentdone') {
-          $order[$id]['orderstatus']=100;
+        if($params['set']=='ordercomplete') {  // this is usually not fired off unless admin "presses" resend confirmation button
+          $order[$id]['ordercomplete']=1;
           $users = array(); $users[] = array('e-mail'=>$order[$id]['email'],'receive_notifications'=>1);
           $array=$order[$id];
           $array['ordernumber']=$id;
           $func->reporting($f3->get('DATA'),$array,$users,'order_complete');
+        }
+        if($params['set']=='orderpaid') {
+          $order[$id]['orderstatus']=100; // set the status of the order as being complete (user ordered and paid for products)
+          $order[$id]['orderpaid']=1;
+          $users = array(); $users[] = array('e-mail'=>$order[$id]['email'],'receive_notifications'=>1);
+          $array=$order[$id];
+          $array['ordernumber']=$id;
+          $func->reporting($f3->get('DATA'),$array,$users,'order_paid');
         }
         if($params['set']=='ordersent') {
           $order[$id]['ordersent']=1;

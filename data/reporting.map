@@ -2,6 +2,8 @@
   "from_e-mail":"string",
   "order_complete_subject":"string",
   "order_complete_message":"editor",
+  "order_paid_subject":"string",
+  "order_paid_message":"editor",
   "order_sent_subject":"string",
   "order_sent_message":"editor",
   "use_smtp":"boolean",

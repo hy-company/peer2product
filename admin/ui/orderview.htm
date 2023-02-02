@@ -62,7 +62,7 @@
 				items = document.getElementsByClassName("btn-orderstatus");
 				items[0].setAttribute("onclick", "");
 				items[0].setAttribute("class", "btn-orderstatus btn btn-disabled");
-				xhttp.open("GET", "order/ajax/<?=$id;?>/paymentdone", true);
+				xhttp.open("GET", "order/ajax/<?=$id;?>/orderpaid", true);
 				xhttp.send();
 			}
 			function clickOrderSent() {
