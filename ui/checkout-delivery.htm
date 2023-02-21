@@ -9,51 +9,57 @@
 							<span class="badge">2. <?=$STR['Validation'];?></span>
 							<span class="badge">3. <?=$STR['Payment'];?></span>
 						</div>
-						<div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Please_fill_in_address'];?></div>
-						<h2><?=$STR['Address'];?></h2>
-						<label><?=$STR['Ordernumber'];?>: </label><small style="float: right;">(* = <?=$STR['mandatory_field'];?>)</small>
-						<?php echo $array['ordernumber']; ?><br>
-						<label><?=$STR['Company'];?></label>
-						<input class="form-control" type="text" size="46" name="company" value="<?php echo (isset($array['company'])?$array['company']:''); ?>" />
-						<label><?=$STR['Taxnumber'];?></label>
-						<input class="form-control" type="text" size="46" name="taxnumber" value="<?php echo (isset($array['taxnumber'])?$array['taxnumber']:''); ?>" />
-						<label><?=$STR['Firstname'];?> *</label>
-						<input class="form-control" type="text" id="tf1" size="46" name="firstname" value="<?php echo (isset($array['firstname'])?$array['firstname']:''); ?>" />
-						<label><?=$STR['Preposition'];?></label>
-						<input class="form-control" type="text" id="tf2" size="6" name="preposition" value="<?php echo (isset($array['preposition'])?$array['preposition']:''); ?>" />
-						<label><?=$STR['Lastname'];?> *</label>
-						<input class="form-control" type="text" id="tf3" size="46" name="lastname" value="<?php echo (isset($array['lastname'])?$array['lastname']:''); ?>" />
-						<label><?=$STR['Streetname'];?> *</label>
-						<input class="form-control" type="text" id="tf4" size="46" name="streetname" value="<?php echo (isset($array['streetname'])?$array['streetname']:''); ?>" />
-						<label><?=$STR['Housenumber'];?> *</label>
-						<input class="form-control" type="text" id="tf5" size="6" name="housenumber" value="<?php echo (isset($array['housenumber'])?$array['housenumber']:''); ?>" />
-						<label><?=$STR['Zipcode'];?> *</label>
-						<input class="form-control" type="text" id="tf6" size="12" name="zipcode" value="<?php echo (isset($array['zipcode'])?$array['zipcode']:''); ?>" />
-						<label><?=$STR['City'];?> *</label>
-						<input class="form-control" type="text" id="tf7" size="46" name="city" value="<?php echo (isset($array['city'])?$array['city']:''); ?>" />
-						<?php if(count($countries)) { ?>
-							<label><?=$STR['Country'];?> *</label>					
-							<select name="country" class="form-control">
-							<?php foreach($countries as $key => $val) { ?>
-								<option <?php if(isset($array['countrycode']) && $array['countrycode']==$key) { echo 'selected="selected" class="active" '; } ?>value="<?php echo $key; ?>"><?php echo $val; ?></option>
+						<div class="checkoutInnerHTML">
+							<div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Please_fill_in_address'];?></div>
+							<h2><?=$STR['Address'];?></h2>
+							<label><?=$STR['Ordernumber'];?>: </label><small style="float: right;">(* = <?=$STR['mandatory_field'];?>)</small>
+							<?php echo $array['ordernumber']; ?><br>
+							<!-- MAKE TOGGLEABLE -->
+							<!-- <label><?=$STR['Company'];?></label>
+							<input class="form-control" type="text" size="46" name="company" value="<?php echo (isset($array['company'])?$array['company']:''); ?>" /> -->
+
+							<!-- MAKE TOGGLABLE -->
+							<!-- <label><?=$STR['Taxnumber'];?></label>
+							<input class="form-control" type="text" size="46" name="taxnumber" value="<?php echo (isset($array['taxnumber'])?$array['taxnumber']:''); ?>" /> -->
+							<label><?=$STR['Firstname'];?> *</label>
+							<input class="form-control" type="text" id="tf1" size="46" name="firstname" value="<?php echo (isset($array['firstname'])?$array['firstname']:''); ?>" />
+							<label><?=$STR['Preposition'];?></label>
+							<input class="form-control" type="text" id="tf2" size="6" name="preposition" value="<?php echo (isset($array['preposition'])?$array['preposition']:''); ?>" />
+							<label><?=$STR['Lastname'];?> *</label>
+							<input class="form-control" type="text" id="tf3" size="46" name="lastname" value="<?php echo (isset($array['lastname'])?$array['lastname']:''); ?>" />
+							<label><?=$STR['Streetname'];?> *</label>
+							<input class="form-control" type="text" id="tf4" size="46" name="streetname" value="<?php echo (isset($array['streetname'])?$array['streetname']:''); ?>" />
+							<label><?=$STR['Housenumber'];?> *</label>
+							<input class="form-control" type="text" id="tf5" size="6" name="housenumber" value="<?php echo (isset($array['housenumber'])?$array['housenumber']:''); ?>" />
+							<label><?=$STR['Zipcode'];?> *</label>
+							<input class="form-control" type="text" id="tf6" size="12" name="zipcode" value="<?php echo (isset($array['zipcode'])?$array['zipcode']:''); ?>" />
+							<label><?=$STR['City'];?> *</label>
+							<input class="form-control" type="text" id="tf7" size="46" name="city" value="<?php echo (isset($array['city'])?$array['city']:''); ?>" />
+							<?php if(count($countries)) { ?>
+								<label><?=$STR['Country'];?> *</label>					
+								<select name="country" class="form-control">
+								<?php foreach($countries as $key => $val) { ?>
+									<option <?php if(isset($array['countrycode']) && $array['countrycode']==$key) { echo 'selected="selected" class="active" '; } ?>value="<?php echo $key; ?>"><?php echo $val; ?></option>
+								<?php } ?>
+								</select>
 							<?php } ?>
-							</select>
-						<?php } ?>
-						<label><?=$STR['E-mail'];?> *</label>
-						<input class="form-control" type="text" id="tf8" size="46" name="email" value="<?php echo (isset($array['email'])?$array['email']:''); ?>" />
-						<label><?=$STR['Telephone'];?></label>
-						<td colspan="2"><input class="form-control" type="text" id="tf9" size="46" name="telephone" value="<?php echo (isset($array['telephone'])?$array['telephone']:''); ?>" />
-						<br>
-						<label><?=$STR['TransportMethod'];?></label><br>
-						<input style="display: inline-block; width: 40px !important; margin-bottom: 8px; padding-right: 40px; vertical-align: middle;" type="checkbox" name="notransport" <?php echo ((isset($array['notransport'])?$array['notransport']:0)?'checked="checked" ':''); ?>/><?=$STR['NoTransport'];?></label><br>
-						<br>
-						<label><?=$STR['Comments'];?></label>
-						<textarea class="form-control" id="tx11" rows="3" name="remarks"><?php echo (isset($array['remarks'])?$array['remarks']:''); ?></textarea>
+							<label><?=$STR['E-mail'];?> *</label>
+							<input class="form-control" type="text" id="tf8" size="46" name="email" value="<?php echo (isset($array['email'])?$array['email']:''); ?>" />
+							<label><?=$STR['Telephone'];?></label>
+							<td colspan="2"><input class="form-control" type="text" id="tf9" size="46" name="telephone" value="<?php echo (isset($array['telephone'])?$array['telephone']:''); ?>" />
+							<br>
+							<label><?=$STR['TransportMethod'];?></label><br>
+							<input style="display: inline-block; width: 40px !important; margin-bottom: 8px; padding-right: 40px; vertical-align: middle;" type="checkbox" name="notransport" <?php echo ((isset($array['notransport'])?$array['notransport']:0)?'checked="checked" ':''); ?>/><?=$STR['NoTransport'];?></label><br>
+							<br>
+							<label><?=$STR['Comments'];?></label>
+							<textarea class="form-control" id="tx11" rows="3" name="remarks"><?php echo (isset($array['remarks'])?$array['remarks']:''); ?></textarea>
+						</div>
 					</div>
 				</div>
 				<?php echo paymentnav($shop->tx($array)); ?>
 			</form>
 		</div>
+
 		<?php if(!$TESTMODE) { ?>
 		<script language="javascript" type="text/javascript">
 			items = document.getElementsByClassName("submit");
