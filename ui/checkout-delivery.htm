@@ -10,10 +10,12 @@
 							<span class="badge">3. <?=$STR['Payment'];?></span>
 						</div>
 						<div class="checkoutInnerHTML">
+							<center><span style="margin-top: 1em; margin-bottom: 1em;"class="btn btn-info" onclick="toggleBusinessCheckout();"><?=$STR['CheckoutBusinessButton'];?></span></center>
 							<div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Please_fill_in_address'];?></div>
 							<h2><?=$STR['Address'];?></h2>
 							<label><?=$STR['Ordernumber'];?>: </label><small style="float: right;">(* = <?=$STR['mandatory_field'];?>)</small>
 							<?php echo $array['ordernumber']; ?><br>
+							
 							<!-- MAKE TOGGLEABLE -->
 							<!-- <label><?=$STR['Company'];?></label>
 							<input class="form-control" type="text" size="46" name="company" value="<?php echo (isset($array['company'])?$array['company']:''); ?>" /> -->
