@@ -343,6 +343,11 @@ label { margin-top: 12px; }
   border-radius: 5px;
 }
 
+.checkoutInnerHTML {
+  max-width: 600px;
+  margin: auto;
+}
+
 #checkout-table {
   background-color: #FFF;
 }
