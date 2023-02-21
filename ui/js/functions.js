@@ -24,10 +24,16 @@ function toggleCart(state) {      // onclick event
     //DIV_sidebar.style.display = 'block';
     DIV_sidebar.style['max-height'] = '50em';
     cartToggleState= 1;
+    setTimeout(
+      function() {
+        document.getElementById('blinky').className = "blink";
+      }, 5000);
+    
   } else {
     //DIV_sidebar.style.display = 'none';
     DIV_sidebar.style['max-height'] = '0em';
     cartToggleState = 0;
+    document.getElementById('blinky').className = "";
   }
 }
 
