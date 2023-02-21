@@ -15,14 +15,14 @@
 							<h2><?=$STR['Address'];?></h2>
 							<label><?=$STR['Ordernumber'];?>: </label><small style="float: right;">(* = <?=$STR['mandatory_field'];?>)</small>
 							<?php echo $array['ordernumber']; ?><br>
-							
-							<!-- MAKE TOGGLEABLE -->
-							<!-- <label><?=$STR['Company'];?></label>
-							<input class="form-control" type="text" size="46" name="company" value="<?php echo (isset($array['company'])?$array['company']:''); ?>" /> -->
-
-							<!-- MAKE TOGGLABLE -->
-							<!-- <label><?=$STR['Taxnumber'];?></label>
-							<input class="form-control" type="text" size="46" name="taxnumber" value="<?php echo (isset($array['taxnumber'])?$array['taxnumber']:''); ?>" /> -->
+							<div id="company">
+                <label><?=$STR['Company'];?></label>
+                <input class="form-control" type="text" size="46" name="company" value="<?php echo (isset($array['company'])?$array['company']:''); ?>" />
+							</div>	
+							<div id="taxnumber">
+                <label><?=$STR['Taxnumber'];?></label>
+                <input class="form-control" type="text" size="46" name="taxnumber" value="<?php echo (isset($array['taxnumber'])?$array['taxnumber']:''); ?>" />
+							</div>
 							<label><?=$STR['Firstname'];?> *</label>
 							<input class="form-control" type="text" id="tf1" size="46" name="firstname" value="<?php echo (isset($array['firstname'])?$array['firstname']:''); ?>" />
 							<label><?=$STR['Preposition'];?></label>
@@ -94,5 +94,14 @@
 				}
 				if(submit) document.orderForm.submit(); else alert("<?=$STR['RequiredFields']?>");
 			}
+
+      document.getElementById('company').style.display="none";
+      document.getElementById('taxnumber').style.display="none";
+       
+
+  function toggleBusinessCheckout(){
+    document.getElementById('company').style.display = "inline";
+    document.getElementById('taxnumber').style.display = "inline";
+}
 		</script>
 		<?php } ?>
