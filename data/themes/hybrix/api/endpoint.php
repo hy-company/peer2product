@@ -3,13 +3,40 @@
 // this is a very early testing build for this script. This script will eventualy allow hybrix to create
 // orders on the peer2product platform for vouchers.
 
+$config_json = file_get_contents("config.json");
+$config = json_decode($config_json);
+
 function create_order_deposit($payload){
     $order_id = uniqid();
-    $array = (array) $payload;
     $order = '{"'.$order_id . '" :' . $payload .  '}';
     $order_file = fopen("../../../orders/$order_id.json", "w");
     fwrite($order_file, $order);
     
+    echo $order_id; //return the order id to hybrix
+}
+
+function create_order_deposit_method_2($payload){
+    $order_id = uniqid();
+    $peer2product_data = [];
+    $peer2product_data['firstname'] = 'D K V';
+    $peer2product_data['lastname'] = "van Kleef";
+    $peer2product_data['company'] = "hybrix";
+    $peer2product_data['time'] = time();
+    $peer2product_data['notransport'] = 0;
+    $peer2product_data['transport'] = 0;
+    $peer2product_data['remarks'] = "1195583";
+    $peer2product_data['product-table'] = "<div>ORDER TYPE: {deposit}<br> TO: {target adress}<br> AMOUNT: {amount}<br> NAME: {BANK ACC OWNER NAME}</div>";
+
+    $payload = json_decode($payload);
+    $payload = (array) $payload;
+    $order_array = array_merge($payload, $peer2product_data);
+    $order_json = json_encode($order_array);
+
+
+    $order = '{"'.$order_id . '" :' . $order_json .  '}';
+    $order_file = fopen("../../../orders/$order_id.json", "w");
+    fwrite($order_file, $order);
+    echo "<br>Method 2:<br>";
     echo $order_id; //return the order id to hybrix
 }
 
@@ -74,6 +101,22 @@ $payload =  // IMPORTANT: [] in the target adress BREAKS THE ADMIN ->orders fore
   }
 ';
 create_order_deposit($payload);
+
+
+$payload = "";
+$payload = '
+{
+    "type" : "deposit",
+    "amount" : 10,
+    "margin" : 2.5,
+    "tariff" : 0,
+    "e-mail" : "agent725@725.be",
+    "target" : ["0xa12b3c4d5e..."]
+  }
+';
+
+
+create_order_deposit_method_2($payload);
 
 
 ?>
