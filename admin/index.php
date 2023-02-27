@@ -973,7 +973,7 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
 
     $f3->route('GET|POST /settings/reporting',
       function($f3) {
-        global $LANG,$func;
+        global $LANG,$func,$AUTH;
         $f3->set('LANG',$LANG);
         $f3->set('sidebar',$f3->get('SETTINGSBAR'));
         $f3->set('sidebar_active','settings/reporting');
@@ -982,6 +982,19 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
         $map  = $func->get_json( $f3->get('DATA').'reporting.map' );
         $json = $func->get_json( $f3->get('DATA').'reporting.json' );
         $json = $func->mapfill_array($map,$json);
+        // handle SMTP override (in this case SMTP mailing is handled by webmaster configuration)
+        if($AUTH['ReportingSMTP']<0) {
+          $map['use_smtp']='hidden';
+          $json['use_smtp']='override';
+          unset($map['smtp_host']);
+          unset($json['smtp_host']);
+          unset($map['smtp_port']);
+          unset($json['smtp_port']);
+          unset($map['smtp_user']);
+          unset($json['smtp_user']);
+          unset($map['smtp_pass']);
+          unset($json['smtp_pass']);
+        }
         // handle actions
         $post = $f3->get('POST');
         if(isset($post['action'])) {
