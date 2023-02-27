@@ -430,17 +430,29 @@ label { margin-top: 12px; }
 
 /* Cart blink animation */
 .blink {
-  animation: blink-animation 1s steps(5, start) infinite;
-  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  animation: blink-animation 1s steps(12, start) infinite;
+  -webkit-animation: blink-animation 1s steps(12, start) infinite;
 }
 @keyframes blink-animation {
-  to {
-    visibility: hidden;
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
   }
 }
 @-webkit-keyframes blink-animation {
-  to {
-    visibility: hidden;
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

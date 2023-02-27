@@ -20,21 +20,8 @@
         </div>
       </div>
       <div class="row">
-        <div id="navbar">
-          <div class="col-xs-12">
-            <a href="<?=$SITE;?>admin" target="_blank" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'" style="display: block;opacity: 0;transition: opacity 3s ease 0s;margin-top: -3em;">&#9881;</a>
-          </div>
-          <div class="col-xs-4">
-            <a href="<?=$SITE;?>"><i class="fa-solid fa-store icon"></i><br><?=$STR['Store'];?></a>
-          </div>
-          <div class="col-xs-4">
-           <a style="cursor: pointer;" onclick="toggleCart();"><i class="fa-solid fa-shopping-cart icon" id="arrowIcon"></i><br><?=$STR['Cart'];?></a>
-          </div>
-          <div class="col-xs-4">
-            <a href="<?=$SITE;?>checkout"><i class="fa-solid fa-money-bill icon"></i><br><?=$STR['Checkout'];?></a>
-          </div>
-        </div>
-      <?php include('lib/main.php');?>
+      <?php $HTM=$SET['data/'].$SET['them/'].$SET['shoptheme'].'/navbar.htm'; if (file_exists($HTM)) include($HTM); else include('ui/navbar.htm');
+            include('lib/main.php');?>
     </div>
   </div>
   <?php }

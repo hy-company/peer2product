@@ -15,25 +15,24 @@ window.addEventListener('resize', function(event){      // refreshes the window 
 	// TO DEPRECATE:  $.cookie('last-scroll-top', $(window).scrollTop());
 	let url = window.location.href;
 	window.location.href= url;
-	}    
+	}
 });
 
 function toggleCart(state) {      // onclick event
   const DIV_sidebar = document.getElementById('cartContainer');
   if (state || cartToggleState == 0) {
-    //DIV_sidebar.style.display = 'block';
     DIV_sidebar.style['max-height'] = '50em';
     cartToggleState= 1;
     setTimeout(
       function() {
-        document.getElementById('blinky').className = "blink";
+        document.getElementById('blinky').classList.add('blink');
       }, 5000);
-    
+
   } else {
-    //DIV_sidebar.style.display = 'none';
     DIV_sidebar.style['max-height'] = '0em';
     cartToggleState = 0;
-    document.getElementById('blinky').className = "";
+    document.getElementById('blinky').classList.remove('blink');
+
   }
 }
 
