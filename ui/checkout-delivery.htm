@@ -10,7 +10,10 @@
 							<span class="badge">3. <?=$STR['Payment'];?></span>
 						</div>
 						<div class="checkoutInnerHTML">
-							<center><span style="margin-top: 1em; margin-bottom: 1em;"class="btn btn-info" onclick="toggleBusinessCheckout();"><?=$STR['CheckoutBusinessButton'];?></span></center>
+							<center>
+								<option id="personalCheckout" style="margin-top: 1em; margin-bottom: 1em;"class="btn btn-info" onclick="togglePersonalCheckout();" disabled>Personal</option>
+								<option id="businessCheckout" style="margin-top: 1em; margin-bottom: 1em;"class="btn btn-info" onclick="toggleBusinessCheckout();"><?=$STR['CheckoutBusinessButton'];?></option>
+							</center>
 							<div style="text-align: center; margin-top: 24px; margin-bottom: 12px;"><?=$STR['Please_fill_in_address'];?></div>
 							<h2><?=$STR['Address'];?></h2>
 							<label><?=$STR['Ordernumber'];?>: </label><small style="float: right;">(* = <?=$STR['mandatory_field'];?>)</small>
@@ -102,6 +105,23 @@
   function toggleBusinessCheckout(){
     document.getElementById('company').style.display = "inline";
     document.getElementById('taxnumber').style.display = "inline";
+	disableBusinessButton();
+}
+
+function togglePersonalCheckout(){
+    document.getElementById('company').style.display = "none";
+    document.getElementById('taxnumber').style.display = "none";
+	disablePersonalButton();
+}
+
+function disableBusinessButton(){
+	document.getElementById('businessCheckout').disabled = true;
+	document.getElementById('personalCheckout').disabled = false;
+}
+
+function disablePersonalButton(){
+	document.getElementById('personalCheckout').disabled = true;
+	document.getElementById('businessCheckout').disabled = false;
 }
 		</script>
 		<?php } ?>
