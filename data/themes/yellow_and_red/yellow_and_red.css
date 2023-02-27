@@ -1,0 +1,99 @@
+/*
+ *  THIS THEME CSS FILE AND DIRECTORY CAN BE COPIED AND USED TO OVERRIDE THE PEER2PRODUCT DEFAULT THEME! 
+ */
+
+
+
+/* Start your customization  here. */
+.item.jcart img{
+  /* -webkit-box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.24);
+-moz-box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.24);
+box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.24); */
+}
+#categoryButtons button {
+  background: #ffd64d;
+  color: #575757;
+  font-weight: bold;
+  border-radius: 7px 10px 7px 10px;
+}
+
+#categoryButtons .btn-danger {
+  background: #f5264a36;
+  border-radius: 2px;
+  border: 1px solid #f5264a36;
+}
+
+#sorting button {
+  background: #f5264a;
+}
+
+.itemAddToCart {
+  background: #87ea5a;
+  color: #575757;
+  transition: 1s;
+  border: none;
+}
+.itemAddToCart {
+  background: #9efb74;
+  color: #575757;
+}
+
+.itemAddToCart:hover{
+  background-color: #87ea5a;
+  color: #000;
+}
+
+.item {
+  border:none;
+}
+#slideshow{
+  text-align: left;
+}
+.jcart.slider{
+  -webkit-box-shadow: inset 1px 1px 4px 3px rgba(87,87,87,0.09);
+  -moz-box-shadow: inset 1px 1px 4px 3px rgba(87,87,87,0.09);
+  box-shadow: inset 1px 1px 4px 3px rgba(87,87,87,0.09);
+  border: 0px solid #FFF;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.jcart.slider img {
+  height: 400px;
+  max-width: 100%;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+.jcart.slider h3{
+  text-align: left;
+}
+.jcart.slider .slider-description-p p {
+  text-align: left;
+}
+
+footer {
+  background: #FBFBFB;
+}
+
+footer i{
+  color: #575757;
+  transition: 1s;
+}
+
+footer i:hover {
+  color: #ffd64d;
+}
+#footerTermsHeader, #footerAboutHeader, #footerContactHeader{
+  text-align: center;
+
+}
+
+#footerTermsParagraph, #footerAboutParagraph, #footerContactParagraph {
+  text-align: center;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+#poweredBy {
+  text-align: right;
+}
