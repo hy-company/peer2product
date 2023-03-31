@@ -10,5 +10,18 @@ collect additional data required for the transaction. Ideally hybrix would hold 
 the transaction has been made and then sends a JSON file to order.php based upon the template found in 
 ./example_orders/. The data required to be collected about the user can be found in the JSON example template.
 
-4) copy or create JSON data from ./example_requests/
+4) copy or edit JSON data from ./example_requests/order_example.JSON
+5) update order.php:11 with the example data.
+6) run order.php in your browser to simulate a POST request.
+
+An updated order will now be located in ./example_orders/order_id.JSON
+
+Implementation of these scripts will require tweaks to the pathing of the orders and
+additional security checks to verify the requests made to the API. Additionaly a script still has to be 
+created to confirm the payment has been sent and recieved. This can be done by making calls to hybrix's
+blockchain explorer or by having the hybrix node send a POST request to a webhook script which will update
+the orders after the payment has been verified. The best way to implent this check will have to be decided
+by the team.
+
+
  
