@@ -92,7 +92,7 @@
  "orderview:do-not-send-message":"Do not send by postorder! Client will come to pick up product.",
  "orderview:button-set-payment":"Set payment done",
  "orderview:button-set-sent":"Set order sent",
- "orderview:shopping-list":"Shopping list",
+ "orderview:order-list":"Order details",
  "orderview:incomplete-checkout-message":"INCOMPLETE CHECKOUT: NO PRODUCTS HAVE BEEN ORDERED!",
  "orderview:changing-status":"Changing status...",
  "orderview:error-status-message":"Error: cannot get status!",
