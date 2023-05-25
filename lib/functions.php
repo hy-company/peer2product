@@ -992,7 +992,7 @@ class functions {
         $message .= '</body></html>';
       } else { $message = 'Message type error!'; }
       // sent by php mail or smtp
-      if($reporting['use_smtp']) {
+      if(isset($reporting['use_smtp']) && $reporting['use_smtp']) {
         $mail = new Email($reporting['smtp_host'], ($reporting['smtp_port']?$reporting['smtp_port']:'25') );
         $mail->setProtocol(Email::TLS);
         $mail->setLogin($reporting['smtp_user'], $reporting['smtp_pass']);
