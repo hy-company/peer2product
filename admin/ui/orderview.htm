@@ -25,13 +25,15 @@
 				  <table>
 					  <tbody>
 						  <tr><th><?=$LANG['orderview:vendor']?></th><td><?php echo (isset($json['vendor'])&&$json['vendor']?$vendors[ $json['vendor'] ]['name']:'local');?></td></tr>
-						  <tr><th style='padding-right: 3em;'><?=$LANG['orderview:datetime']?></th><td><?php echo date('d.m.Y  H:i',($json['time']?$json['time']:0));?></td></tr>
+						  <tr><th><?=$LANG['orderview:datetime']?></th><td><?php echo date('d.m.Y  H:i',($json['time']?$json['time']:0));?></td></tr>
 						  <tr><th style='padding-right: 3em;'><?=$LANG['orderview:ordernumber']?></th><td><?php echo $id; ?></td></tr>
-						  <?php if($json['firstname']||$json['lastname']) { echo '<tr><th>Contact</th><td>'.(!empty($json['firstname'])?$json['firstname'].' ':'').(!empty($json['preposition'])?$json['preposition'].' ':'').(!empty($json['lastname'])?$json['lastname']:'').'</td></tr>'; } ?>
+						  <?php if($json['email']) { echo '<tr><th>Contact</th><td>'.$json['email']; if($json['firstname']||$json['lastname']) echo ' &lt;'.(!empty($json['firstname'])?$json['firstname'].' ':'').(!empty($json['preposition'])?$json['preposition'].' ':'').(!empty($json['lastname'])?$json['lastname']:'').'&gt;'.'</td></tr>'; } ?>
 						  <tr style="height: 12px;"></tr>
 						  <tr><th><?=$LANG['orderview:status']?></th><td id="status"><?php echo $shop->order_status($json,2); ?></td></tr>
 						  <tr><th></th><td><div style="margin-top: 4px;"><button type="button" class="btn-orderstatus btn btn-<?=(isset($json['orderstatus'])&&$json['orderstatus']==100?'disabled':'primary')?>" onclick="clickPaymentDone();"><?=$LANG['orderview:button-set-payment']?> &nbsp;&nbsp;<i class="fa fa-money"></i></button> <button type="button" class="btn-ordersent btn btn btn-<?=(isset($json['ordersent'])&&$json['ordersent']?'disabled':'primary')?>" onclick="clickOrderSent();"><?=$LANG['orderview:button-set-sent']?> &nbsp;&nbsp;<i class="fa fa-rocket"></i></button></div></td></tr>
-						  <?php if($json['remarks']||$json['notransport']) { echo '<tr style="height: 12px;"></tr><tr><th style="vertical-align: top !important;">'.$LANG['orderview:remarks'].'</th><td>'.$json['remarks'].($json['notransport']?'<div style="color: red;">'.$LANG['orderview:do-not-send-message'].'</div>':'').'</td></tr>'; } ?>
+              <tr style="height: 12px;"></tr>
+						  <?php if($json['payment_target']) { echo '<tr><th>Incoming</th><td>'.$json['payment_target'].'</td></tr>'; } ?>
+						  <?php if($json['remarks']||$json['notransport']) { echo '<tr><th style="vertical-align: top !important;">'.$LANG['orderview:remarks'].'</th><td>'.$json['remarks'].($json['notransport']?'<div style="color: red;">'.$LANG['orderview:do-not-send-message'].'</div>':'').'</td></tr>'; } ?>
 					  </tbody>
 				  </table>
 			  </div>
