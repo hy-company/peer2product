@@ -959,7 +959,8 @@ class functions {
             $subject = 'TEST EMAIL';
           break;
           case 'order_complete':
-            $username = (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']);
+            $personalized = (!empty($array['firstname'])?$array['firstname'].' ':'').(!empty($array['preposition'])?$array['preposition'].' ':'').(!empty($array['lastname'])?$array['lastname']:'');
+            $username = !empty($personalized)?$personalized:(!empty($array['company'])?$array['company']:'');
             $address = '<p>'.(!empty($array['company'])?$array['company']: (!empty($array['firstname'])?$array['firstname'].' ':'').(!empty($array['preposition'])?$array['preposition'].' ':'').(!empty($array['lastname'])?$array['lastname']:'') ).'<br>
                    '.$array['streetname'].' '.$array['housenumber'].'<br>
                    '.$array['zipcode'].'<br>
