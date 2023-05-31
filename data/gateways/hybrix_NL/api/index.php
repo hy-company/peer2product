@@ -99,7 +99,7 @@ function create_order($payload) {
   $peer2product_data['product-table'] = '<table id="checkout-table" class="table table-striped"><tbody>'.
   '<tr><td><b>ACTION</b></td><td> </td><td> </td><td NOWRAP align="right">'.$payload->action.' '.$payload->type.'</td></tr>'.
   '<tr><td><b>TARGET</b></td><td> </td><td> </td><td NOWRAP align="right">'.implode('<br>',$payload->target).'</td></tr>'.
-  '<tr><td><b>DESCRIPTION</b></td><td> </td><td> </td><td NOWRAP align="right">'.($payload->action == 'transfer'?$payload->description:'voucher '.$order_id).'</td></tr>'.
+  '<tr><td><b>DESCRIPTION</b></td><td> </td><td> </td><td NOWRAP align="right">'.($payload->action == 'transfer'?str_replace('{ID}',$order_id,$payload->description):'voucher '.$order_id).'</td></tr>'.
   '<tr class="checkout-table-total"><td><b>AMOUNT TO SEND</b></td><td> </td><td> </td><td nowrap="" align="right"><b>'.strtoupper($payload->symbol).' '.$shop->formatn($payload->amount).'</b></td>'.
   '</tbody></table>';
 
