@@ -20,7 +20,6 @@
     <script src="../ui/js/bootstrap.min.js"></script>
     <script src="../ui/js/bootstrap-select.min.js"></script>
     <script src="../ui/js/jasny-bootstrap.min.js"></script>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -34,9 +33,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-			<?php $cnt=0;foreach($TOPBAR as $key => $val): if($AUTH[$key]>=$SESSION['authrole']):?>
-				<li><a href="<?php echo $val;if($val=='../'){echo'" target="_blank';}?>"><?php echo '<i class="fa fa-'.$ICON[$key].'"></i> '.$LANG['topbar:'.$key];?></a></li>
-			<?php endif; endforeach;?>
+			<?php $cnt=0;foreach($TOPBAR as $key => $val){ if($AUTH[$key]>=$SESSION['authrole']){ echo '<li><a href="'.$val;if($val=='../'){echo'" target="_blank';};echo '"><i class="fa fa-'.$ICON[$key].'"></i> '.$LANG['topbar:'.$key].'</a></li>'; }} ;?>
           </ul>
           <!--<form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">

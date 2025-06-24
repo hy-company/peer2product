@@ -41,7 +41,7 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
 
   $f3->route('GET /',
     function($f3) {
-      global $LANG,$func;
+      global $LANG,$AUTH,$session,$func;
       $f3->set('LANG',$LANG);
       $directories = array(
         $f3->get('DATA'),
@@ -54,7 +54,6 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
       $notify = $func->notifywriteable($directories);
       $f3->set('sidebar',$f3->get('SIDEBAR'));
       $f3->set('sidebar_active',1);
-      $session = $f3->get('SESSION');
       // set chart data: visitors
       $visitors = $func->get_stat_visitors( $f3->get('DATA').$f3->get('STATISTICS') );
       $chart['visitors'] = $func->chart_array($visitors);
@@ -69,6 +68,8 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
       $f3->set('chart',$chart);
       $f3->set('notify',$notify);
       $f3->set('content','dashboard.htm');
+      $f3->set('AUTH',$AUTH);
+      $f3->set('SESSION',$session);
       echo View::instance()->render('backoffice.htm');
     }
   );
@@ -1533,6 +1534,7 @@ if(isset($session['auth']) && isset($session['authID']) && $session['authID']==s
             $inventory = $func->get_users( $f3->get('DATA').$f3->get('USERS') );
             $users = array();
             foreach($inventory as $id => $val) {
+              if (!is_numeric($val['role'])) $val['role']=0; // default to admin role if input is non-numeric
               $users[$val['username']] = $val['password'];
               $roles[$val['username']] = $val['role'];
             }
