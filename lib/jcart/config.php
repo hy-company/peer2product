@@ -6,7 +6,6 @@
 // Do NOT store any sensitive info in this file!!!
 // It's loaded into the browser as plain text via Ajax
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // REQUIRED SETTINGS
 error_reporting(E_ALL & ~E_NOTICE);
@@ -39,18 +38,21 @@ $config['currencyCode']           = ($SET['shopcurrency']?$SET['shopcurrency']:$
 $config['csrfToken']              = false;
 
 // Override default cart text
-$config['text']['cartTitle']      = $STR['Shopping_cart'];    // Shopping Cart
-$config['text']['singleItem']     = $STR['item'];    // Item
-$config['text']['multipleItems']  = $STR['items'];    // Items
-$config['text']['subtotal']       = $STR['Subtotal'];    // Subtotal
-$config['text']['update']         = $STR['Update'];    // update
-$config['text']['checkout']       = $STR['Checkout'];    // checkout
-$config['text']['removeLink']     = $STR['remove_item'];    // remove
-$config['text']['emptyButton']    = $STR['Empty_cart'];    // empty
-$config['text']['emptyMessage']   = $STR['Your_cart_is_empty'];    // Your cart is empty!
-$config['text']['itemAdded']      = FALSE;    // DISABLED TEXT DUE TO CRAPPY BUG: Item added!
-$config['text']['priceError']     = $STR['Invalid_price_format'];    // Invalid price format!
-$config['text']['quantityError']  = $STR['Quantities_whole_numbers'];    // Item quantities must be whole numbers!
+if (!is_null($config['text']) {
+  $config['text'] = array();;
+  $config['text']['cartTitle']      = $STR['Shopping_cart'];    // Shopping Cart
+  $config['text']['singleItem']     = $STR['item'];    // Item
+  $config['text']['multipleItems']  = $STR['items'];    // Items
+  $config['text']['subtotal']       = $STR['Subtotal'];    // Subtotal
+  $config['text']['update']         = $STR['Update'];    // update
+  $config['text']['checkout']       = $STR['Checkout'];    // checkout
+  $config['text']['removeLink']     = $STR['remove_item'];    // remove
+  $config['text']['emptyButton']    = $STR['Empty_cart'];    // empty
+  $config['text']['emptyMessage']   = $STR['Your_cart_is_empty'];    // Your cart is empty!
+  $config['text']['itemAdded']      = FALSE;    // DISABLED TEXT DUE TO CRAPPY BUG: Item added!
+  $config['text']['priceError']     = $STR['Invalid_price_format'];    // Invalid price format!
+  $config['text']['quantityError']  = $STR['Quantities_whole_numbers'];    // Item quantities must be whole numbers!
+}
 
 // Override the default buttons by entering paths to your button images
 $config['button']['checkout']     = '';
