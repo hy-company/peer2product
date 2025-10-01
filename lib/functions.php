@@ -959,8 +959,7 @@ class functions {
             $subject = 'TEST EMAIL';
           break;
           case 'order_complete':
-            $personalized = (!empty($array['firstname'])?$array['firstname'].' ':'').(!empty($array['preposition'])?$array['preposition'].' ':'').(!empty($array['lastname'])?$array['lastname']:'');
-            $username = !empty($personalized)?$personalized:(!empty($array['company'])?$array['company']:'');
+            $username = (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']);
             $address = '<p>'.(!empty($array['company'])?$array['company']: (!empty($array['firstname'])?$array['firstname'].' ':'').(!empty($array['preposition'])?$array['preposition'].' ':'').(!empty($array['lastname'])?$array['lastname']:'') ).'<br>
                    '.$array['streetname'].' '.$array['housenumber'].'<br>
                    '.$array['zipcode'].'<br>
@@ -968,17 +967,7 @@ class functions {
                    '.$array['country'].'</p>';
             $message .= str_replace(array('{ordernumber}','{shopname}','{user}','{address}','{product-table}','{date}','{duedate}'), array($array['ordernumber'],$SET['shopname'],$username,$address,$array['product-table'],date('d-m-Y'),date('d-m-Y',strtotime('now +14 days'))), $reporting['order_complete_message']);
             $subject = str_replace(array('{ordernumber}','{shopname}'),array($array['ordernumber'],$SET['shopname']),$reporting['order_complete_subject']);
-            break;
-          case 'order_paid':
-            $username = (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']);
-            $address = '<p>'.(!empty($array['company'])?$array['company']: (!empty($array['firstname'])?$array['firstname'].' ':'').(!empty($array['preposition'])?$array['preposition'].' ':'').(!empty($array['lastname'])?$array['lastname']:'') ).'<br>
-                   '.$array['streetname'].' '.$array['housenumber'].'<br>
-                   '.$array['zipcode'].'<br>
-                   '.$array['city'].'<br>
-                   '.$array['country'].'</p>';
-            $message .= str_replace(array('{ordernumber}','{shopname}','{user}','{address}','{product-table}','{date}','{duedate}'), array($array['ordernumber'],$SET['shopname'],$username,$address,$array['product-table'],date('d-m-Y'),date('d-m-Y',strtotime('now +14 days'))), $reporting['order_paid_message']);
-            $subject = str_replace(array('{ordernumber}','{shopname}'),array($array['ordernumber'],$SET['shopname']),$reporting['order_paid_subject']);
-            break;
+          break;
           case 'order_sent':
             $username = (!empty($array['company'])?$array['company']:$array['firstname'].(!empty($array['preposition'])?' '.$array['preposition']:'').' '.$array['lastname']);
             $address = '<p>'.(!empty($array['company'])?$array['company']: (!empty($array['firstname'])?$array['firstname'].' ':'').(!empty($array['preposition'])?$array['preposition'].' ':'').(!empty($array['lastname'])?$array['lastname']:'') ).'<br>
@@ -993,7 +982,7 @@ class functions {
         $message .= '</body></html>';
       } else { $message = 'Message type error!'; }
       // sent by php mail or smtp
-      if(isset($reporting['use_smtp']) && $reporting['use_smtp']) {
+      if($reporting['use_smtp']) {
         $mail = new Email($reporting['smtp_host'], ($reporting['smtp_port']?$reporting['smtp_port']:'25') );
         $mail->setProtocol(Email::TLS);
         $mail->setLogin($reporting['smtp_user'], $reporting['smtp_pass']);
@@ -1013,16 +1002,30 @@ class functions {
         $mail->setFrom($reporting['from_e-mail'], $SET['shopname']);
         $mail->setSubject($subject);
         $mail->setHtmlMessage($message);
+
         if (!$mail->send()){
           echo '<br><br><b>An error occurred when trying to send reporting e-mails!<b><br><br>';
         }
+
+        /* PEAR mail now deprecated!
+        include_once('lib/Mail/Mail.php');  // PEAR Mail object
+        $recipients = implode(',',$target);
+        $headers['To']      = implode(',',$target);
+        $headers['From']    = $SET['shopname'].' <'.$reporting['from_e-mail'].'>';
+        $headers['Subject'] = $subject;
+        $headers['MIME-Version'] = '1.0'; // To send HTML mail, the Content-type header must be set
+        $headers['Content-type'] = 'text/html; charset=UTF-8';
+        $params['host'] = $reporting['smtp_host'];
+        $params['port'] = ($reporting['smtp_port']?$reporting['smtp_port']:'25');
+        $params['auth'] = ($reporting['smtp_user']?true:false);
+        $params['username'] = $reporting['smtp_user'];
+        $params['password'] = $reporting['smtp_pass'];
+        // Create the mail object using the Mail::factory method
+        $mail_object = Mail::factory('smtp', $params);
+        $mail_object->send($recipients, $headers, $message);
+        */
+
       } else {
-        $target = array();
-        foreach($users as $key => $user) {
-          if(isset($user['e-mail']) && $user['e-mail'] && isset($user['receive_notifications']) && $user['receive_notifications']) {
-            $target[] = $user['e-mail'];
-          }
-        }
         $headers = 'From:'.$SET['shopname'].' <'.$reporting['from_e-mail'].'>' . "\r\n";
         $headers .= 'MIME-Version: 1.0' . "\r\n"; // To send HTML mail, the Content-type header must be set
         $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";

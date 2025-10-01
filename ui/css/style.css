@@ -59,7 +59,10 @@ ul {
   opacity: 0.5;
 }
 
-.col-xs-4 {padding-left: 4px !important; padding-right: 4px !important;}
+.col-xs-4 {
+  padding-left: 1em;
+  padding-right: 1em;
+}
 
 /* Jcart specific styling */
 
@@ -359,6 +362,8 @@ label { margin-top: 12px; }
 
 /* Footer */
 
+#footerDiv { margin-top: 4em; margin-bottom: 1em }
+
 #footer { display: block; color:#FFF; margin-top: 4em; margin-bottom: 1em; text-align: center; }
 
 #footer a { color:#FFF; text-decoration: none; transition: 600ms; }
@@ -382,6 +387,12 @@ label { margin-top: 12px; }
 
 #footerButton:hover{
   filter: brightness(1.1);
+}
+
+#poweredByDiv {
+  margin-top: 5em;
+  margin-bottom: 1em;
+  text-align: center;
 }
 
 /* Responsiveness helpers */

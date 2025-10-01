@@ -38,7 +38,7 @@ $config['currencyCode']           = ($SET['shopcurrency']?$SET['shopcurrency']:$
 $config['csrfToken']              = false;
 
 // Override default cart text
-if (!is_null($config['text']) {
+if (!isset($config['text'])) {
   $config['text'] = array();;
   $config['text']['cartTitle']      = $STR['Shopping_cart'];    // Shopping Cart
   $config['text']['singleItem']     = $STR['item'];    // Item
