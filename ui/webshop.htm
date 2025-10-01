@@ -1,43 +1,38 @@
-</div>
-<div id="cartContainer">
-  <div id="jcart"><?php $jcart->display_cart();?></div>
-</div>
-<div id="topbar" class="row">
-	<div id="categoriesAndSorting" style="display: flex;">
-    <div id="categories" class="col-xs-12">
-      <p><?=$STR['Categories'];?></p>
-      <div id='categoryButtons'>
-        <?=$content['categories'];?>
-      </div>
-    </div>
-    <form action="" method="POST">
-      <div id="sorting">
-        <p><?=$STR['Sort_items_by'];?></p>
-        <div id="sortingButtons">
-          <button class="btn btn-xs btn-<?php echo ($sort=='name'?'info':'default'); ?>" type="submit" name="sort" value="name"><?=$STR['sortbutton_name'];?></button>&nbsp;
-          <button class="btn btn-xs btn-<?php echo ($sort=='price'?'info':'default'); ?>" type="submit" name="sort" value="price"><?=$STR['sortbutton_price'];?></button>&nbsp;
-          <button class="btn btn-xs btn-<?php echo ($sort=='time'?'info':'default'); ?>" type="submit" name="sort" value="time"><?=$STR['sortbutton_date'];?></button>&nbsp;
-          <input class="btn btn-xs nobutton" type="submit" name="sortasc" value="<?php echo ($sortasc?'&darr;':'&uarr;'); ?>" style="display: inline-block;" />
+  <div id="topbar" class="row">
+    <div id="categoriesAndSorting" style="display: flex;">
+      <div id="categories" class="col-xs-12">
+        <p><?=$STR['Categories'];?></p>
+        <div id='categoryButtons'>
+          <?=$content['categories'];?>
         </div>
       </div>
-    </form>
-  </div>
-  
-  <div id="shopcta" class="col-xs-12"><?=$content['description'];?></div>
+      <form action="" method="POST">
+        <div id="sorting">
+          <p><?=$STR['Sort_items_by'];?></p>
+          <div id="sortingButtons">
+            <button class="btn btn-xs btn-<?php echo ($sort=='name'?'info':'default'); ?>" type="submit" name="sort" value="name"><?=$STR['sortbutton_name'];?></button>&nbsp;
+            <button class="btn btn-xs btn-<?php echo ($sort=='price'?'info':'default'); ?>" type="submit" name="sort" value="price"><?=$STR['sortbutton_price'];?></button>&nbsp;
+            <button class="btn btn-xs btn-<?php echo ($sort=='time'?'info':'default'); ?>" type="submit" name="sort" value="time"><?=$STR['sortbutton_date'];?></button>&nbsp;
+            <input class="btn btn-xs nobutton" type="submit" name="sortasc" value="<?php echo ($sortasc?'&darr;':'&uarr;'); ?>" style="display: inline-block;" />
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div id="shopcta" class="col-xs-12"><?=$content['description'];?></div>
 
-	<?php
-    if(!$category && $content['description']) { 
-			  echo '<div id="'.($SET['shopslider'] && !$category?'':'cat-').'description">
-					';		 
-    }
-  ?>
-</div>	
-<div class="row" id="content">	
-	<?php echo $content['forms']; ?>	
-	<?php if($SET['shopslider'] && !$category) { ?>
+    <?php
+      if(!$category && $content['description']) { 
+          echo '<div id="'.($SET['shopslider'] && !$category?'':'cat-').'description">
+            ';		 
+      }
+    ?>
+  </div>	
+  <div class="row" id="content">	
+    <?php echo $content['forms']; ?>	
+    <?php if($SET['shopslider'] && !$category) { ?>
 
-<div id="bottombar">
-</div>
-<?php } ?>
-<div class="clear"></div>
+  <div id="bottombar"></div>
+  <?php } ?>
+  <div class="clear"></div>
 </div>

@@ -4,6 +4,11 @@ $DEBUG = TRUE;
 error_reporting($DEBUG ? E_ALL : 0);
 
 include_once('lib/jcart/jcart.php');
+?>
+      <div id="cartContainer">
+        <div id="jcart"><?php $jcart->display_cart();?></div>
+      </div>
+<?php
 
 if(isset($_GET['checkout'])) {
   include('lib/checkout.php');

@@ -20,7 +20,8 @@
         </div>
       </div>
       <div class="row">
-      <?php $HTM=$SET['data/'].$SET['them/'].$SET['shoptheme'].'/navbar.htm'; if (file_exists($HTM)) include($HTM); else include('ui/navbar.htm'); ?>
+        <?php $HTM=$SET['data/'].$SET['them/'].$SET['shoptheme'].'/navbar.htm'; if (file_exists($HTM)) include($HTM); else include('ui/navbar.htm'); ?>
+      </div>
       <?php include('lib/main.php'); ?>
     </div>
   </div>

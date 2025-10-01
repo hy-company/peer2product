@@ -27,12 +27,16 @@ function toggleCart(state) {      // onclick event
       function() {
         document.getElementById('blinky').classList.add('blink');
       }, 5000);
-
+    document.getElementById('cartContainer').classList.add('cartopen');
+    document.getElementById('cartLink').classList.add('cartopen');
+    document.getElementById('cartDiv').classList.add('cartopen');
   } else {
     DIV_sidebar.style['max-height'] = '0em';
     cartToggleState = 0;
     document.getElementById('blinky').classList.remove('blink');
-
+    document.getElementById('cartContainer').classList.remove('cartopen');
+    document.getElementById('cartLink').classList.remove('cartopen');
+    document.getElementById('cartDiv').classList.remove('cartopen');
   }
 }
 
