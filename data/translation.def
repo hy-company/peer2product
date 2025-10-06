@@ -41,6 +41,7 @@
  "generic-no":"no",
  "generic-unknown":"unknown",
  "generic-details":"details",
+ "confirm-delete":"Are you sure you want to delete ",
 
 "_Administrator:_login":"",
  "login:please-sign-in":"Please sign in",
