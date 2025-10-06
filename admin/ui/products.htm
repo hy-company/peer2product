@@ -20,7 +20,7 @@
 						<td><?php echo date('d.m.Y H:i',($val['time']?$val['time']:0));?></td>
 						<td style="text-align: right;">
 							<a href="product/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-success"><?=$LANG['button-edit']?></button></a>
-						    <a href="product/delete/<?php echo $key;?>"><button type="button" class="btn btn-xs btn-danger"><?=$LANG['button-delete']?></button></a>
+              <button type="button" class="btn btn-xs btn-danger" onclick="clickDelete('<?php echo $key;?>','product/delete')"><?=$LANG['button-delete']?></button>
 						</td>
 					</tr>
 				<?php endforeach;?>
@@ -28,10 +28,24 @@
             </table>
           </div>
           <script>
-			function stockadd(id) {
-				$("#stock-"+id).load("product/stock/"+id+"/add");
-			}
-			function stocksub(id) {
-				$("#stock-"+id).load("product/stock/"+id+"/sub");
-			}
+            function stockadd(id) {
+              $("#stock-"+id).load("product/stock/"+id+"/add");
+            }
+            function stocksub(id) {
+              $("#stock-"+id).load("product/stock/"+id+"/sub");
+            }
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (xhttp.readyState === 4 && xhttp.status === 200) {
+                location.reload();
+              } else if(xhttp.status === 500 || xhttp.status === 404) {
+                alert(xhttp.status + 'server error!');
+              }
+            }
+            function clickDelete(key, path) {
+              if (confirm('<?=$LANG['delete-confirm']?> ' + key + ' ?')) {
+                xhttp.open('GET', path + '/' + key, true);
+                xhttp.send();
+              }
+            }
           </script>

@@ -66,3 +66,19 @@ tbody tr.title th div {
 .dropdown-menu.dropdown-item {
     margin-bottom:50px !important;
 }
+
+#orderview-address {
+  display: inline-block;
+  float: left;
+  margin-right: 48px;
+}
+
+#orderview-properties {
+  display: inline-block;
+  max-width: 38em;
+}
+
+#orderview-orderdetails {
+  display: block;
+  max-width: 65em;
+}
